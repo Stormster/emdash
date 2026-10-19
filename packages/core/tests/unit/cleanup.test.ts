@@ -10,7 +10,7 @@ import {
 	handleDeviceTokenExchange,
 	handleTokenRevoke,
 } from "../../src/api/handlers/device-flow.js";
-import { hashApiToken } from "../../src/auth/api-tokens.js";
+import { ACCESS_TOKEN_TTL_SECONDS, hashApiToken } from "../../src/auth/api-tokens.js";
 import { runSystemCleanup, shouldRunSystemCleanup } from "../../src/cleanup.js";
 import { runMigrations } from "../../src/database/migrations/runner.js";
 import { MediaRepository } from "../../src/database/repositories/media.js";
@@ -567,7 +567,7 @@ describeEachDialect("Expired OAuth login cleanup", (dialect) => {
 		await ctx.db
 			.insertInto("_emdash_oauth_tokens")
 			.values([
-				oauthToken(refreshHash, "refresh", minutesFromNow(-55)),
+				oauthToken(refreshHash, "refresh", minutesFromNow(5 - ACCESS_TOKEN_TTL_SECONDS / 60)),
 				{
 					...oauthToken("live-access", "access", minutesFromNow(5)),
 					refresh_token_hash: refreshHash,

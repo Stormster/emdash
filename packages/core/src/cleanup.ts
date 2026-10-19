@@ -12,6 +12,7 @@
 import { createKyselyAdapter, type AuthTables } from "@emdash-cms/auth/adapters/kysely";
 import type { Kysely } from "kysely";
 
+import { ACCESS_TOKEN_TTL_SECONDS } from "./auth/api-tokens.js";
 import { cleanupExpiredChallenges } from "./auth/challenge-store.js";
 import { MediaRepository } from "./database/repositories/media.js";
 import { RedirectRepository } from "./database/repositories/redirect.js";
@@ -46,13 +47,11 @@ const REVISION_KEEP_COUNT = 50;
 const REVISION_PRUNE_BATCH_SIZE = 10;
 
 /**
- * How long expired OAuth tokens and device codes are kept. It must be at least
- * the access token lifetime: revoking a refresh token finds the access tokens
- * issued from it through its row, and those can outlive it by up to an hour.
- * A device code's row is what lets a client that is still polling get
- * `expired_token`.
+ * Revoking a refresh token finds the access tokens issued from it through its
+ * row, and those can outlive it by one access token lifetime. A device code's
+ * row is what lets a client that is still polling get `expired_token`.
  */
-const OAUTH_EXPIRY_GRACE_MS = 60 * 60 * 1000;
+const OAUTH_EXPIRY_GRACE_MS = ACCESS_TOKEN_TTL_SECONDS * 1000;
 
 /** Target cadence for full system cleanup. */
 export const SYSTEM_CLEANUP_INTERVAL_MS = 60 * 60 * 1000;
