@@ -2723,6 +2723,7 @@ function PluginBlockModal({
 							))
 						) : (
 							<Input
+								dir="ltr"
 								ref={inputRef}
 								type="url"
 								className="w-full"

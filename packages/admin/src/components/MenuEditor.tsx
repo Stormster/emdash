@@ -518,6 +518,7 @@ export function MenuEditor() {
 								<form onSubmit={handleAddCustomLink} className="space-y-4">
 									<Input label={t`Label`} name="label" required placeholder={t`Home`} />
 									<Input
+										dir="ltr"
 										label={t`URL`}
 										name="url"
 										type="text"
@@ -715,6 +716,7 @@ export function MenuEditor() {
 							<Input label={t`Label`} name="label" required defaultValue={editingItem.label} />
 							{editingItem.type === "custom" && (
 								<Input
+									dir="ltr"
 									label={t`URL`}
 									name="url"
 									type="text"

@@ -2938,7 +2938,9 @@ function ReferenceFieldRenderer({
 										</div>
 										{row.slug && (
 											<div className="flex items-center gap-2 text-xs text-kumo-subtle">
-												<span className="truncate">{row.slug}</span>
+												<span className="truncate">
+													<bdi dir="ltr">{row.slug}</bdi>
+												</span>
 											</div>
 										)}
 									</Link>
@@ -3257,6 +3259,7 @@ function JsonFieldEditor({
 	return (
 		<div>
 			<InputArea
+				dir="ltr"
 				label={label}
 				id={id}
 				value={text}
