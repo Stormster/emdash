@@ -1395,9 +1395,41 @@ div:has(> [role="listbox"] > .emdash-compact-select-option) {
 }
 
 /**
- * Prevent dialogs from overflowing the viewport on small screens.
- * Kumo's size variants set min-width (e.g. min-w-[32rem] for "lg")
- * which overrides max-width in CSS. We need to cap min-width too.
+ * Keep Kumo dialogs centred and sized to their content, with each size as a
+ * minimum width. Kumo pins them near the top at a fixed width per size.
+ * `:where()` keeps these at the specificity of the Kumo class they replace, so
+ * a dialog's own position or width classes still win. A dialog that needs one
+ * of these widths exactly must use another class for it, such as `sm:w-lg`.
+ */
+@layer utilities {
+	:where([role="dialog"], [role="alertdialog"]):is(.top-8, .sm\:top-16) {
+		top: 50%;
+		--tw-translate-y: -50%;
+	}
+
+	@media (width >= 40rem) {
+		:where([role="dialog"], [role="alertdialog"]).sm\:w-72 {
+			width: auto;
+			min-width: 18rem;
+		}
+		:where([role="dialog"], [role="alertdialog"]).sm\:w-96 {
+			width: auto;
+			min-width: 24rem;
+		}
+		:where([role="dialog"], [role="alertdialog"]).sm\:w-\[32rem\] {
+			width: auto;
+			min-width: 32rem;
+		}
+		:where([role="dialog"], [role="alertdialog"]).sm\:w-\[48rem\] {
+			width: auto;
+			min-width: 48rem;
+		}
+	}
+}
+
+/**
+ * Prevent dialogs from overflowing the viewport on small screens, where the
+ * minimum widths above would override max-width.
  */
 @media (max-width: 639px) {
 	[role="dialog"] {

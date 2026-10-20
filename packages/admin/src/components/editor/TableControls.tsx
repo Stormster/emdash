@@ -386,7 +386,7 @@ function TableMenu({
 				onOpenChangeComplete={(open) => !open && finishMenu()}
 			>
 				{/* prettier-ignore */}
-				<DropdownMenu.Trigger render={<Button ref={triggerRef} type="button" variant="ghost" shape={more ? "square" : undefined} className={more ? "h-8 w-8 pointer-coarse:h-11 pointer-coarse:w-11" : "h-8 min-w-10 flex-none gap-0.5 rounded-lg px-1.5 text-kumo-subtle hover:bg-kumo-interact/50 hover:text-kumo-default data-popup-open:bg-kumo-interact/50 data-popup-open:text-kumo-default pointer-coarse:min-h-11 pointer-coarse:min-w-11"} onMouseDown={more ? undefined : (event) => event.preventDefault()} onBlur={() => { shortcutReturnRef.current = false; }} aria-label={title} aria-expanded={menuOpen} aria-keyshortcuts={more ? undefined : "Alt+F10"} title={title} data-emdash-table-trigger={more ? undefined : ""}>{more ? <Icons.DotsThree className="h-4 w-4" aria-hidden="true" /> : <><Icons.Table className="h-4 w-4" aria-hidden="true" /><Icons.CaretDown className="h-3 w-3" aria-hidden="true" /></>}</Button>} />
+				<DropdownMenu.Trigger render={more ? <Button ref={triggerRef} type="button" variant="ghost" shape="square" className="h-8 w-8 pointer-coarse:h-11 pointer-coarse:w-11" onBlur={() => { shortcutReturnRef.current = false; }} aria-label={title} aria-expanded={menuOpen} title={title}><Icons.DotsThree className="h-4 w-4" aria-hidden="true" /></Button> : <Button ref={triggerRef} type="button" variant="ghost" className="h-8 min-w-10 flex-none gap-0.5 rounded-lg px-1.5 text-kumo-subtle hover:bg-kumo-interact/50 hover:text-kumo-default data-popup-open:bg-kumo-interact/50 data-popup-open:text-kumo-default pointer-coarse:min-h-11 pointer-coarse:min-w-11" onMouseDown={(event) => event.preventDefault()} onBlur={() => { shortcutReturnRef.current = false; }} aria-label={title} aria-expanded={menuOpen} aria-keyshortcuts="Alt+F10" title={title} data-emdash-table-trigger=""><Icons.Table className="h-4 w-4" aria-hidden="true" /><Icons.CaretDown className="h-3 w-3" aria-hidden="true" /></Button>} />
 				<DropdownMenu.Content
 					align="start"
 					positionMethod="fixed"
@@ -394,7 +394,7 @@ function TableMenu({
 					className={cn(MENU_CLASS, more ? "min-w-56" : "min-w-48")}
 				>
 					{/* prettier-ignore */}
-					{more || state.inTable ? state.controls && <ActionMenu editor={editor} state={state.controls} onRun={(label) => { intentRef.current = "focus"; if (label) onRun?.(label); }} /> : <DropdownMenu.Item icon={<Icons.Table className="me-2 h-4 w-4" aria-hidden="true" />} onClick={() => { intentRef.current = "picker"; }} className="text-sm pointer-coarse:min-h-11">{t`Insert table`}</DropdownMenu.Item>}
+					{more || state.inTable ? state.controls && <ActionMenu editor={editor} state={state.controls} onRun={(label) => { intentRef.current = "focus"; if (label) onRun?.(label); }} /> : <DropdownMenu.Item icon={<Icons.Table className="h-4 w-4" aria-hidden="true" />} onClick={() => { intentRef.current = "picker"; }} className="text-sm pointer-coarse:min-h-11">{t`Insert table`}</DropdownMenu.Item>}
 				</DropdownMenu.Content>
 			</DropdownMenu>
 			{/* prettier-ignore */}
