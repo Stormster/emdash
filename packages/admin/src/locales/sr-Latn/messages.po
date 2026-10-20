@@ -289,12 +289,12 @@ msgstr "{0, plural, one {Medijski fajl} few {Medijska fajla} other {Medijskih fa
 #. placeholder {0}: policyRejected - policyRejections.length
 #: packages/admin/src/components/Dashboard.tsx:211
 msgid "{0, plural, one {One more blocked entry is not shown.} other {# more blocked entries are not shown.}}"
-msgstr "{0, plural, =1 {Još jedan blokirani unos nije prikazan.} one {Još # blokirani unos nije prikazan.} few {Još # blokirana unosa nisu prikazana.} other {Još # blokiranih unosa nije prikazano.}}"
+msgstr "{0, plural, =1 {Još jedan blokirani unos nije prikazan.} one {Još # blokiranih unosa nije prikazano.} few {Još # blokirana unosa nisu prikazana.} other {Još # blokiranih unosa nije prikazano.}}"
 
 #. placeholder {0}: state.rows
 #: packages/admin/src/components/editor/TableControls.tsx:228
 msgid "{0, plural, one {Row deleted} other {# rows deleted}}"
-msgstr "{0, plural, =1 {Red obrisan} one {# red obrisan} few {# reda obrisana} other {# redova obrisano}}"
+msgstr "{0, plural, =1 {Red obrisan} one {# reda obrisana} few {# reda obrisana} other {# redova obrisano}}"
 
 #. placeholder {0}: names.length - SCAFFOLD_NAMES_SHOWN
 #: packages/admin/src/components/settings/transfer/ImportReview.tsx:575
@@ -706,11 +706,11 @@ msgstr ""
 
 #: packages/admin/src/components/Dashboard.tsx:151
 msgid "{overdueCount, plural, one {One scheduled item is overdue and the scheduler heartbeat is stale. Run `npx emdash doctor` and verify the deployed Cron Trigger.} other {# scheduled items are overdue and the scheduler heartbeat is stale. Run `npx emdash doctor` and verify the deployed Cron Trigger.}}"
-msgstr "{overdueCount, plural, =1 {Jedna zakazana stavka kasni i otkucaj zakazivača je zastareo. Pokreni `npx emdash doctor` i proveri raspoređeni Cron Trigger.} one {# zakazana stavka kasni i otkucaj zakazivača je zastareo. Pokreni `npx emdash doctor` i proveri raspoređeni Cron Trigger.} few {# zakazane stavke kasne i otkucaj zakazivača je zastareo. Pokreni `npx emdash doctor` i proveri raspoređeni Cron Trigger.} other {# zakazanih stavki kasni i otkucaj zakazivača je zastareo. Pokreni `npx emdash doctor` i proveri raspoređeni Cron Trigger.}}"
+msgstr "{overdueCount, plural, =1 {Jedna zakazana stavka kasni i otkucaj zakazivača je zastareo. Pokreni `npx emdash doctor` i proveri raspoređeni Cron Trigger.} one {# zakazanih stavki kasni i otkucaj zakazivača je zastareo. Pokreni `npx emdash doctor` i proveri raspoređeni Cron Trigger.} few {# zakazane stavke kasne i otkucaj zakazivača je zastareo. Pokreni `npx emdash doctor` i proveri raspoređeni Cron Trigger.} other {# zakazanih stavki kasni i otkucaj zakazivača je zastareo. Pokreni `npx emdash doctor` i proveri raspoređeni Cron Trigger.}}"
 
 #: packages/admin/src/components/Dashboard.tsx:146
 msgid "{overdueCount, plural, one {One scheduled item is overdue, but no scheduler run has completed. Run `npx emdash doctor` and verify the deployed Cron Trigger.} other {# scheduled items are overdue, but no scheduler run has completed. Run `npx emdash doctor` and verify the deployed Cron Trigger.}}"
-msgstr "{overdueCount, plural, =1 {Jedna zakazana stavka kasni, ali nijedno pokretanje zakazivača nije završeno. Pokreni `npx emdash doctor` i proveri raspoređeni Cron Trigger.} one {# zakazana stavka kasni, ali nijedno pokretanje zakazivača nije završeno. Pokreni `npx emdash doctor` i proveri raspoređeni Cron Trigger.} few {# zakazane stavke kasne, ali nijedno pokretanje zakazivača nije završeno. Pokreni `npx emdash doctor` i proveri raspoređeni Cron Trigger.} other {# zakazanih stavki kasni, ali nijedno pokretanje zakazivača nije završeno. Pokreni `npx emdash doctor` i proveri raspoređeni Cron Trigger.}}"
+msgstr "{overdueCount, plural, =1 {Jedna zakazana stavka kasni, ali nijedno pokretanje zakazivača nije završeno. Pokreni `npx emdash doctor` i proveri raspoređeni Cron Trigger.} one {# zakazanih stavki kasni, ali nijedno pokretanje zakazivača nije završeno. Pokreni `npx emdash doctor` i proveri raspoređeni Cron Trigger.} few {# zakazane stavke kasne, ali nijedno pokretanje zakazivača nije završeno. Pokreni `npx emdash doctor` i proveri raspoređeni Cron Trigger.} other {# zakazanih stavki kasni, ali nijedno pokretanje zakazivača nije završeno. Pokreni `npx emdash doctor` i proveri raspoređeni Cron Trigger.}}"
 
 #: packages/admin/src/components/MediaUploadDialog.tsx:287
 msgid "{overflowCount, plural, one {# file was not added because the upload list is full.} other {# files were not added because the upload list is full.}}"
@@ -774,7 +774,7 @@ msgstr "{row} × {column} tabela"
 
 #: packages/admin/src/components/editor/TableControls.tsx:197
 msgid "{rows, plural, one {Row deleted} other {# rows deleted}}"
-msgstr "{rows, plural, =1 {Red obrisan} one {# red obrisan} few {# reda obrisana} other {# redova obrisano}}"
+msgstr "{rows, plural, =1 {Red obrisan} one {# reda obrisana} few {# reda obrisana} other {# redova obrisano}}"
 
 #: packages/admin/src/components/PortableTextEditor.tsx:3563
 msgid "{rows} × {columns} table pasted"
