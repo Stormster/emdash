@@ -267,6 +267,7 @@ test.describe("Portable Text tables", () => {
 			await more.click();
 			const menu = page.locator('[role="menu"]:visible');
 			await expect(menu).toBeVisible();
+			await expect(menu).not.toHaveAttribute("data-starting-style");
 			await menu.evaluate((element) =>
 				Promise.all(element.getAnimations().map((animation) => animation.finished)),
 			);
