@@ -243,7 +243,7 @@ function ActionMenu({
 				<React.Fragment key={group.id}>
 					{groupIndex > 0 && <DropdownMenu.Separator />}
 					<DropdownMenu.Group>
-						<DropdownMenu.Label className="text-xs">{t(group)}</DropdownMenu.Label>
+						<DropdownMenu.Label className="px-2! text-xs">{t(group)}</DropdownMenu.Label>
 						{actions.map((action) => {
 							const [id, descriptor, Icon, , rtl] = action;
 							const label =
