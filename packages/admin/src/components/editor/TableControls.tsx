@@ -272,7 +272,7 @@ function ActionMenu({
 								return <DropdownMenu.CheckboxItem key={id} {...itemProps} checked={checked} data-emdash-header-checkbox>{label}</DropdownMenu.CheckboxItem>;
 							}
 							// prettier-ignore
-							return <DropdownMenu.Item key={id} {...itemProps} icon={<Icon className={cn("me-2 h-4 w-4", rtl && "rtl:-scale-x-100")} aria-hidden="true" />} variant={id === "delete-table" ? "danger" : "default"}>{label}</DropdownMenu.Item>;
+							return <DropdownMenu.Item key={id} {...itemProps} icon={<Icon className={cn("h-4 w-4", rtl && "rtl:-scale-x-100")} aria-hidden="true" />} variant={id === "delete-table" ? "danger" : "default"}>{label}</DropdownMenu.Item>;
 						})}
 					</DropdownMenu.Group>
 				</React.Fragment>

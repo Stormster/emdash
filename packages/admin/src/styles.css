@@ -1397,31 +1397,38 @@ div:has(> [role="listbox"] > .emdash-compact-select-option) {
 /**
  * Keep Kumo dialogs centred and sized to their content, with each size as a
  * minimum width. Kumo pins them near the top at a fixed width per size.
- * `:where()` keeps these at the specificity of the Kumo class they replace, so
- * a dialog's own position or width classes still win. A dialog that needs one
- * of these widths exactly must use another class for it, such as `sm:w-lg`.
+ * The rules match only while Kumo's classes are still on the dialog. `top` and
+ * `width` override those classes; the translate and minimum widths are in
+ * `:where()`, so a dialog's own classes for them still win. A dialog that needs
+ * one of these widths exactly must use another class for it, such as `sm:w-lg`.
  */
 @layer utilities {
-	:where([role="dialog"], [role="alertdialog"]):is(.top-8, .sm\:top-16) {
+	:where([role="dialog"], [role="alertdialog"]).top-8:where(.sm\:top-16) {
 		top: 50%;
+	}
+	:where([role="dialog"].top-8.sm\:top-16, [role="alertdialog"].top-8.sm\:top-16) {
 		--tw-translate-y: -50%;
 	}
 
 	@media (width >= 40rem) {
-		:where([role="dialog"], [role="alertdialog"]).sm\:w-72 {
+		:where([role="dialog"], [role="alertdialog"]):is(
+			.sm\:w-72,
+			.sm\:w-96,
+			.sm\:w-\[32rem\],
+			.sm\:w-\[48rem\]
+		) {
 			width: auto;
+		}
+		:where([role="dialog"].sm\:w-72, [role="alertdialog"].sm\:w-72) {
 			min-width: 18rem;
 		}
-		:where([role="dialog"], [role="alertdialog"]).sm\:w-96 {
-			width: auto;
+		:where([role="dialog"].sm\:w-96, [role="alertdialog"].sm\:w-96) {
 			min-width: 24rem;
 		}
-		:where([role="dialog"], [role="alertdialog"]).sm\:w-\[32rem\] {
-			width: auto;
+		:where([role="dialog"].sm\:w-\[32rem\], [role="alertdialog"].sm\:w-\[32rem\]) {
 			min-width: 32rem;
 		}
-		:where([role="dialog"], [role="alertdialog"]).sm\:w-\[48rem\] {
-			width: auto;
+		:where([role="dialog"].sm\:w-\[48rem\], [role="alertdialog"].sm\:w-\[48rem\]) {
 			min-width: 48rem;
 		}
 	}
