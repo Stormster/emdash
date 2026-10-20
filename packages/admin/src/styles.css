@@ -1435,8 +1435,8 @@ div:has(> [role="listbox"] > .emdash-compact-select-option) {
 }
 
 /**
- * Prevent dialogs from overflowing the viewport on small screens, where the
- * minimum widths above would override max-width.
+ * Prevent dialogs from overflowing the viewport on small screens, where a
+ * dialog's own min-width would override max-width.
  */
 @media (max-width: 639px) {
 	[role="dialog"] {

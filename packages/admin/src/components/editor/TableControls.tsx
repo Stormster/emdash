@@ -33,7 +33,7 @@ const GROUPS: ReadonlyArray<readonly [MessageDescriptor, readonly Action[]]> = [
 const SIZES = Array.from({ length: 10 }, (_, index) => index + 1);
 const SIZE_ITEMS = Object.fromEntries(SIZES.map((size) => [String(size), size]));
 const MENU_CLASS =
-	"emdash-table-menu max-h-[min(28rem,50dvh)] max-w-[calc(100vw-1rem)] overflow-y-auto text-sm motion-reduce:animate-none motion-reduce:transition-none";
+	"emdash-table-menu max-h-[min(28rem,50dvh)] max-w-[calc(100vw-1rem)] overflow-y-auto text-sm data-ending-style:duration-0 motion-reduce:animate-none motion-reduce:transition-none";
 
 export function insertTable(
 	editor: Editor,
