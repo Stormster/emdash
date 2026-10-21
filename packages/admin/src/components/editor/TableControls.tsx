@@ -266,7 +266,7 @@ function ActionMenu({
 								const checked = id === "header-row" ? state.headerRow : state.headerColumn;
 								if (checked === "mixed") {
 									// prettier-ignore
-									return <DropdownMenu.Item key={id} {...itemProps} role="menuitemcheckbox" aria-checked="mixed" className={`${itemProps.className} relative ps-8 pe-2`}><span className="absolute start-2 flex h-3.5 w-3.5 items-center justify-center"><Icons.Minus className="h-3 w-3" aria-hidden="true" /></span>{label}<span className="ms-auto text-xs text-kumo-subtle">{t`Mixed`}</span></DropdownMenu.Item>;
+									return <DropdownMenu.Item key={id} {...itemProps} role="menuitemcheckbox" aria-checked="mixed" className={`${itemProps.className} relative ps-8! pe-2!`}><span className="absolute start-2 flex h-3.5 w-3.5 items-center justify-center"><Icons.Minus className="h-3 w-3" aria-hidden="true" /></span>{label}<span className="ms-auto text-xs text-kumo-subtle">{t`Mixed`}</span></DropdownMenu.Item>;
 								}
 								// prettier-ignore
 								return <DropdownMenu.CheckboxItem key={id} {...itemProps} checked={checked} data-emdash-header-checkbox>{label}</DropdownMenu.CheckboxItem>;
