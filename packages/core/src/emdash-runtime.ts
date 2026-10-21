@@ -6023,13 +6023,15 @@ export class EmDashRuntime {
 		const blockFields = includeBlocks
 			? collectionInfo.fields.filter((field) => field.type === "blocks")
 			: [];
+		const findMediaIds = (storageKeys: string[]) =>
+			new MediaRepository(this.db).findIdsByStorageKeys(storageKeys);
 		const portableTextFields = collectionInfo.fields.filter(
 			(field) => field.type === "portableText" && Array.isArray(result[field.slug]),
 		);
 		if (portableTextFields.length > 0) {
 			const linked = await linkPortableTextFileUrls(
 				portableTextFields.map((field) => result[field.slug]),
-				(storageKeys) => new MediaRepository(this.db).findIdsByStorageKeys(storageKeys),
+				findMediaIds,
 			);
 			for (const [index, field] of portableTextFields.entries()) {
 				result[field.slug] = linked[index];
@@ -6114,6 +6116,9 @@ export class EmDashRuntime {
 								} else if (nestedField.type === "file") {
 									const normalized = await normalizeMediaValue(nestedValue, getProvider);
 									if (normalized) normalizedBlock[nestedField.slug] = normalized;
+								} else if (nestedField.type === "portableText" && Array.isArray(nestedValue)) {
+									const [linked] = await linkPortableTextFileUrls([nestedValue], findMediaIds);
+									normalizedBlock[nestedField.slug] = linked;
 								} else if (nestedField.type === "repeater" && Array.isArray(nestedValue)) {
 									const imageSlugs = (nestedField.validation?.subFields ?? [])
 										.filter((subField) => subField.type === "image")

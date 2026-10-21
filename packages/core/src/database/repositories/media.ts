@@ -9,6 +9,7 @@ import { ulid } from "ulidx";
 
 import { normalizeFocalPoint, type FocalPointUpdate } from "../../media/focal-point.js";
 import { chunks, SQL_BATCH_SIZE } from "../../utils/chunks.js";
+import { jsonTextValues } from "../json-recordset.js";
 import type { Database, MediaRow } from "../types.js";
 import type { FindManyResult } from "./types.js";
 import { encodeCursor, decodeCursor } from "./types.js";
@@ -421,19 +422,22 @@ export class MediaRepository {
 		return row ? this.rowToItem(row) : null;
 	}
 
-	/** Map each storage key to the id of its media item. Unknown keys are left out. */
+	/**
+	 * Map each storage key to the id of its media item, in one query however
+	 * many keys there are. Unknown keys are left out.
+	 */
 	async findIdsByStorageKeys(storageKeys: readonly string[]): Promise<Map<string, string>> {
 		const ids = new Map<string, string>();
-		for (const chunk of chunks([...new Set(storageKeys)], SQL_BATCH_SIZE)) {
-			const rows = await this.db
-				.selectFrom("media")
-				.select(["id", "storage_key"])
-				.where("storage_key", "in", chunk)
-				.orderBy("id")
-				.execute();
-			for (const row of rows) {
-				if (!ids.has(row.storage_key)) ids.set(row.storage_key, row.id);
-			}
+		if (storageKeys.length === 0) return ids;
+		const result = await sql<{ id: string; storage_key: string }>`
+			WITH requested AS (${jsonTextValues(this.db, storageKeys)})
+			SELECT media.id, media.storage_key
+			FROM media
+			INNER JOIN requested ON requested.value = media.storage_key
+			ORDER BY media.id
+		`.execute(this.db);
+		for (const row of result.rows) {
+			if (!ids.has(row.storage_key)) ids.set(row.storage_key, row.id);
 		}
 		return ids;
 	}
