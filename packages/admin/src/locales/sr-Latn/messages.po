@@ -289,7 +289,7 @@ msgstr "{0, plural, one {Medijski fajl} few {Medijska fajla} other {Medijskih fa
 #. placeholder {0}: policyRejected - policyRejections.length
 #: packages/admin/src/components/Dashboard.tsx:211
 msgid "{0, plural, one {One more blocked entry is not shown.} other {# more blocked entries are not shown.}}"
-msgstr "{0, plural, =1 {Još jedan blokirani unos nije prikazan.} one {Još # blokiranih unosa nije prikazano.} few {Još # blokirana unosa nisu prikazana.} other {Još # blokiranih unosa nije prikazano.}}"
+msgstr "{0, plural, =1 {Još jedan blokirani unos nije prikazan.} one {Još # blokirani unos nije prikazan.} few {Još # blokirana unosa nisu prikazana.} other {Još # blokiranih unosa nije prikazano.}}"
 
 #. placeholder {0}: state.rows
 #: packages/admin/src/components/editor/TableControls.tsx:228
