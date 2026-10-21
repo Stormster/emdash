@@ -103,6 +103,18 @@ describeEachDialect("092_media_usage_file_url_reindex migration", (dialect) => {
 	});
 
 	it("leaves sites that never turned tracking on alone", async () => {
+		const posts = await db
+			.selectFrom("_emdash_collections")
+			.select("id")
+			.where("slug", "=", "posts")
+			.executeTakeFirstOrThrow();
+		await db
+			.updateTable("_emdash_media_usage_index_status")
+			.set({ collection_id: posts.id, status: "complete", capture_state: "active" })
+			.where("adapter_id", "=", "content-media")
+			.where("scope_type", "=", "collection")
+			.where("scope_key", "=", "posts")
+			.execute();
 		const before = await db.selectFrom("_emdash_media_usage_index_status").selectAll().execute();
 
 		await up(db);

@@ -6023,21 +6023,27 @@ export class EmDashRuntime {
 		const blockFields = includeBlocks
 			? collectionInfo.fields.filter((field) => field.type === "blocks")
 			: [];
-		const findMediaIds = (storageKeys: string[]) =>
-			new MediaRepository(this.db).findIdsByStorageKeys(storageKeys);
-		const portableTextFields = collectionInfo.fields.filter(
-			(field) => field.type === "portableText" && Array.isArray(result[field.slug]),
-		);
-		if (portableTextFields.length > 0) {
-			const linked = await linkPortableTextFileUrls(
-				portableTextFields.map((field) => result[field.slug]),
-				findMediaIds,
-			);
-			for (const [index, field] of portableTextFields.entries()) {
-				result[field.slug] = linked[index];
+		// Collected across top-level and block fields so linking costs one lookup.
+		const portableTextValues: { owner: Record<string, unknown>; slug: string }[] =
+			collectionInfo.fields
+				.filter((field) => field.type === "portableText" && Array.isArray(result[field.slug]))
+				.map((field) => ({ owner: result, slug: field.slug }));
+		const linkPortableTextValues = async () => {
+			if (portableTextValues.length === 0) return;
+			try {
+				const linked = await linkPortableTextFileUrls(
+					portableTextValues.map(({ owner, slug }) => owner[slug]),
+					(storageKeys) => new MediaRepository(this.db).findIdsByStorageKeys(storageKeys),
+				);
+				for (const [index, { owner, slug }] of portableTextValues.entries()) {
+					owner[slug] = linked[index];
+				}
+			} catch {
+				// Don't fail the save if linking file URLs to media items fails
 			}
-		}
+		};
 		if (imageFields.length === 0 && repeaterFields.length === 0 && blockFields.length === 0) {
+			await linkPortableTextValues();
 			return result;
 		}
 
@@ -6117,8 +6123,7 @@ export class EmDashRuntime {
 									const normalized = await normalizeMediaValue(nestedValue, getProvider);
 									if (normalized) normalizedBlock[nestedField.slug] = normalized;
 								} else if (nestedField.type === "portableText" && Array.isArray(nestedValue)) {
-									const [linked] = await linkPortableTextFileUrls([nestedValue], findMediaIds);
-									normalizedBlock[nestedField.slug] = linked;
+									portableTextValues.push({ owner: normalizedBlock, slug: nestedField.slug });
 								} else if (nestedField.type === "repeater" && Array.isArray(nestedValue)) {
 									const imageSlugs = (nestedField.validation?.subFields ?? [])
 										.filter((subField) => subField.type === "image")
@@ -6152,6 +6157,7 @@ export class EmDashRuntime {
 			}
 		}
 
+		await linkPortableTextValues();
 		return result;
 	}
 
