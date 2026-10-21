@@ -14,6 +14,7 @@ import {
 import { isolate } from "../lib/utils.js";
 import { getLocaleDir } from "../locales/config.js";
 import { useDateLocale } from "../locales/date-locale.js";
+import { AnimatedDialog } from "./AnimatedDialog.js";
 import { DialogError, getMutationError } from "./DialogError.js";
 
 interface PublishingDateTimeFieldsProps {
@@ -324,7 +325,7 @@ function PublishingDateTimeDialogContent({
 	};
 
 	return (
-		<Dialog
+		<AnimatedDialog
 			className="max-h-[calc(100vh-2rem)] max-w-[calc(100vw-2rem)] overflow-y-auto px-6 py-4 sm:px-7 sm:py-5"
 			size="sm"
 			style={{ width: "22rem" }}
@@ -382,7 +383,7 @@ function PublishingDateTimeDialogContent({
 					</Button>
 				</div>
 			</form>
-		</Dialog>
+		</AnimatedDialog>
 	);
 }
 

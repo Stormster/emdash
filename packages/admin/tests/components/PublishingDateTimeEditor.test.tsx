@@ -4,8 +4,13 @@ import * as React from "react";
 import { expect, it, vi } from "vitest";
 import { userEvent } from "vitest/browser";
 
-import { PublishingDateTimeFields } from "../../src/components/PublishingDateTimeEditor.js";
+import "../../dist/styles.css";
+import {
+	PublishingDateTimeFields,
+	PublishingScheduleDialog,
+} from "../../src/components/PublishingDateTimeEditor.js";
 import { getPublishingTimeZone } from "../../src/lib/publishing-datetime.js";
+import { heightAnimation, pauseHalfway } from "../utils/height-animation.js";
 import { render } from "../utils/render.tsx";
 
 it("returns the calendar to the current month when a new entry has no saved date", async () => {
@@ -138,4 +143,34 @@ it("moves focus to minutes and converts the selected day period", async () => {
 
 	await expect.element(screen.getByText("22:30", { exact: true })).toBeVisible();
 	await screen.unmount();
+});
+
+it("animates the schedule dialog height when an error appears", async () => {
+	const message = "The schedule could not be saved because another editor changed this entry.";
+	const screen = await render(
+		<PublishingScheduleDialog
+			open
+			entryKey="post-1"
+			scheduledAt="2035-06-15T13:00:00.000Z"
+			isLive={false}
+			onOpenChange={vi.fn()}
+			onSchedule={vi.fn().mockRejectedValue(new Error(message))}
+		/>,
+	);
+	const dialog = screen.getByRole("dialog", { name: "Change schedule" }).element();
+	await screen.getByRole("textbox", { name: "Minute" }).fill("30");
+	await expect.poll(() => dialog.getAnimations().length).toBe(0);
+	const startHeight = dialog.getBoundingClientRect().height;
+
+	await screen.getByRole("button", { name: "Save schedule" }).click();
+	await expect.element(screen.getByText(message)).toBeInTheDocument();
+	await expect.poll(() => heightAnimation(dialog)).toBeDefined();
+	const animation = heightAnimation(dialog)!;
+	pauseHalfway(animation);
+	const halfwayHeight = dialog.getBoundingClientRect().height;
+	animation.finish();
+
+	const errorHeight = dialog.getBoundingClientRect().height;
+	expect(halfwayHeight).toBeGreaterThan(startHeight);
+	expect(halfwayHeight).toBeLessThan(errorHeight);
 });
