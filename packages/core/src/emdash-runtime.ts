@@ -67,6 +67,7 @@ import { AuditRepository } from "./database/repositories/audit.js";
 import { CommentRepository } from "./database/repositories/comment.js";
 import type { CommentStatus } from "./database/repositories/comment.js";
 import { ContentRepository } from "./database/repositories/content.js";
+import { MediaRepository } from "./database/repositories/media.js";
 import { RevisionRepository } from "./database/repositories/revision.js";
 import { selectTaxonomyDefs } from "./database/repositories/taxonomy-def.js";
 import { ContentMutationConflictError } from "./database/repositories/types.js";
@@ -81,6 +82,7 @@ import { warnAboutUnconfiguredTaxonomyLocales } from "./i18n/taxonomy-locale-dia
 import { safeJsonSchemaToZod } from "./mcp/json-schema.js";
 import { pluginToolName } from "./mcp/plugin-tool-name.js";
 import { normalizeMediaValue } from "./media/normalize.js";
+import { linkPortableTextFileUrls } from "./media/portable-text-file-refs.js";
 import type { MediaProvider, MediaProviderCapabilities } from "./media/types.js";
 import { activateMediaUsageCapture } from "./media/usage/activation.js";
 import {
@@ -5980,8 +5982,9 @@ export class EmDashRuntime {
 
 	/**
 	 * Normalize field values in content data before validation.
-	 * Turns a blank string in an array-valued field into `null`, and fills
-	 * missing image/file dimensions, storageKey, mimeType, and filename from providers.
+	 * Turns a blank string in an array-valued field into `null`, fills
+	 * missing image/file dimensions, storageKey, mimeType, and filename from
+	 * providers, and links rich text media named by file URL to its media item.
 	 */
 	private async normalizeFieldValues(
 		collection: string,
@@ -6020,6 +6023,18 @@ export class EmDashRuntime {
 		const blockFields = includeBlocks
 			? collectionInfo.fields.filter((field) => field.type === "blocks")
 			: [];
+		const portableTextFields = collectionInfo.fields.filter(
+			(field) => field.type === "portableText" && Array.isArray(result[field.slug]),
+		);
+		if (portableTextFields.length > 0) {
+			const linked = await linkPortableTextFileUrls(
+				portableTextFields.map((field) => result[field.slug]),
+				(storageKeys) => new MediaRepository(this.db).findIdsByStorageKeys(storageKeys),
+			);
+			for (const [index, field] of portableTextFields.entries()) {
+				result[field.slug] = linked[index];
+			}
+		}
 		if (imageFields.length === 0 && repeaterFields.length === 0 && blockFields.length === 0) {
 			return result;
 		}

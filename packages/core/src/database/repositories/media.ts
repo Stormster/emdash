@@ -421,6 +421,23 @@ export class MediaRepository {
 		return row ? this.rowToItem(row) : null;
 	}
 
+	/** Map each storage key to the id of its media item. Unknown keys are left out. */
+	async findIdsByStorageKeys(storageKeys: readonly string[]): Promise<Map<string, string>> {
+		const ids = new Map<string, string>();
+		for (const chunk of chunks([...new Set(storageKeys)], SQL_BATCH_SIZE)) {
+			const rows = await this.db
+				.selectFrom("media")
+				.select(["id", "storage_key"])
+				.where("storage_key", "in", chunk)
+				.orderBy("id")
+				.execute();
+			for (const row of rows) {
+				if (!ids.has(row.storage_key)) ids.set(row.storage_key, row.id);
+			}
+		}
+		return ids;
+	}
+
 	/**
 	 * Find media by filename
 	 * Useful for idempotent imports
