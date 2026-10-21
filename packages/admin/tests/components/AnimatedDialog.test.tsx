@@ -142,13 +142,18 @@ it("starts from the height a window resize left the dialog at", async () => {
 	expect(height()).toBeCloseTo(resizedHeight, 1);
 });
 
-it("does not animate content that changes while the dialog closes", async () => {
+it("stops animating once the dialog starts closing", async () => {
 	const { screen, popup } = await renderOpened(<ResizingDialog extra={0} />);
+	await screen.rerender(<ResizingDialog extra={120} />);
+	await expect.poll(() => heightAnimation(popup)).toBeDefined();
+	const growing = heightAnimation(popup)!;
+	pauseHalfway(growing);
 
-	await screen.rerender(<ResizingDialog extra={120} open={false} />);
+	await screen.rerender(<ResizingDialog extra={0} open={false} />);
 	await nextFrames();
 
 	expect(popup.isConnected).toBe(true);
+	expect(growing.playState).toBe("idle");
 	expect(heightAnimation(popup)).toBeUndefined();
 });
 

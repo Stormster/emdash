@@ -84,13 +84,17 @@ function observeDialogHeight(content: HTMLElement): () => void {
 		if (fromHeight === null || prefersReducedMotion()) return;
 		animateHeight(popup, fromHeight, toHeight);
 	});
-	// A closing dialog stops observing at once. Its content often resets inside another
+	// A closing dialog stops observing and animating at once. Its content often resets inside another
 	// observer's callback, such as a toast's flushSync, which would leave this notification
 	// undelivered too.
 	const syncOpenState = () => {
 		settledHeight = null;
-		if (popup.hasAttribute("data-closed")) resizeObserver.disconnect();
-		else resizeObserver.observe(content);
+		if (popup.hasAttribute("data-closed")) {
+			resizeObserver.disconnect();
+			currentHeightAnimation(popup)?.cancel();
+		} else {
+			resizeObserver.observe(content);
+		}
 	};
 	const attributeObserver = new MutationObserver(syncOpenState);
 	attributeObserver.observe(popup, { attributeFilter: ["data-closed"] });
