@@ -8,6 +8,7 @@ import { MediaDetailPanel } from "../../src/components/MediaDetailPanel";
 import { ApiResponseError, type LocalMediaItem, type MediaItem } from "../../src/lib/api";
 
 import "../../src/media-image-cropper.css";
+import { heightAnimation, pauseHalfway } from "../utils/height-animation.js";
 import { render } from "../utils/render.tsx";
 
 const TEST_IMAGE_URL =
@@ -486,6 +487,24 @@ describe("MediaDetailPanel", () => {
 			expect(dialog.getBoundingClientRect().height).toBeLessThan(detailsHeight),
 		);
 		await expect.element(screen.getByRole("button", { name: "Cancel" })).toBeVisible();
+	});
+
+	it("animates the dialog height when the tab changes", async () => {
+		const screen = await renderPanel();
+		const dialog = screen.getByRole("dialog", { name: "Media details" }).element();
+		await expect.poll(() => dialog.getAnimations().length).toBe(0);
+		const detailsHeight = dialog.getBoundingClientRect().height;
+
+		screen.getByRole("tab", { name: "Used in" }).element().click();
+		const animation = heightAnimation(dialog);
+		expect(animation).toBeDefined();
+		pauseHalfway(animation!);
+		const halfwayHeight = dialog.getBoundingClientRect().height;
+		animation!.finish();
+
+		const usedInHeight = dialog.getBoundingClientRect().height;
+		expect(halfwayHeight).toBeLessThan(detailsHeight);
+		expect(halfwayHeight).toBeGreaterThan(usedInHeight);
 	});
 
 	it("suppresses inner scrollbars only while the dialog height expands", async () => {

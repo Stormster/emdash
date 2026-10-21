@@ -65,6 +65,7 @@ import {
 	type CropAspectMode,
 	type PixelCrop,
 } from "../lib/crop-image.js";
+import { transitionDialogHeight } from "../lib/dialog-height.js";
 import { useDebouncedValue, useStableCallback } from "../lib/hooks";
 import {
 	getFileIcon,
@@ -92,8 +93,6 @@ const MEDIA_DATE_FORMAT: Intl.DateTimeFormatOptions = {
 };
 
 const CLOSE_FALLBACK_MS = 500;
-const DIALOG_RESIZE_DURATION_MS = 340;
-const DIALOG_RESIZE_EASING = "cubic-bezier(0.22, 1, 0.36, 1)";
 const MEDIA_DETAIL_PREVIEW_WIDTH = 1200;
 type MediaDetailTab = "details" | "used-in" | "edit-image";
 type ImageEditMode = "focal-point" | "crop";
@@ -980,51 +979,23 @@ export function MediaDetailPanel({
 		cropMutation.reset();
 	};
 	const transitionDialogLayout = (update: () => void) => {
-		const dialog = dialogBodyRef.current?.closest<HTMLDivElement>('[role="dialog"]') ?? null;
-		const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-		if (!dialog || reduceMotion || typeof dialog.animate !== "function") {
-			dialogResizeAnimationRef.current?.cancel();
-			dialogResizeAnimationRef.current = null;
-			if (dialog) dialog.style.height = "";
-			setSuppressDialogResizeOverflow(false);
-			update();
-			return;
-		}
-
-		const startHeight = dialog.getBoundingClientRect().height;
-		dialogResizeAnimationRef.current?.cancel();
-		dialogResizeAnimationRef.current = null;
-		dialog.style.height = `${startHeight}px`;
-		flushSync(() => {
-			setSuppressDialogResizeOverflow(true);
-			update();
+		const animation = transitionDialogHeight(dialogBodyRef.current, () => {
+			flushSync(() => {
+				setSuppressDialogResizeOverflow(true);
+				update();
+			});
 		});
-		dialog.style.height = "auto";
-		const endHeight = dialog.getBoundingClientRect().height;
-		if (Math.abs(endHeight - startHeight) < 1) {
-			dialog.style.height = "";
+		dialogResizeAnimationRef.current = animation;
+		if (!animation) {
 			setSuppressDialogResizeOverflow(false);
 			return;
 		}
-
-		dialog.style.height = `${startHeight}px`;
-		const animation = dialog.animate(
-			[{ height: `${startHeight}px` }, { height: `${endHeight}px` }],
-			{
-				duration: DIALOG_RESIZE_DURATION_MS,
-				easing: DIALOG_RESIZE_EASING,
-				fill: "forwards",
-			},
-		);
-		dialogResizeAnimationRef.current = animation;
 		animation.addEventListener(
 			"finish",
 			() => {
 				if (dialogResizeAnimationRef.current !== animation) return;
 				dialogResizeAnimationRef.current = null;
-				dialog.style.height = "";
 				setSuppressDialogResizeOverflow(false);
-				animation.cancel();
 			},
 			{ once: true },
 		);
