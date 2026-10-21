@@ -17,7 +17,7 @@ import { useLingui } from "@lingui/react/macro";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import * as React from "react";
 
-import { useAdminBranding } from "../lib/admin-branding-context";
+import { useAdminBranding } from "../lib/admin-branding-context.js";
 import { apiFetch, parseApiResponse } from "../lib/api/client";
 import { useAuthProviderList, type AuthProviderModule } from "../lib/auth-provider-context";
 import { navigateTo } from "../lib/navigation.js";

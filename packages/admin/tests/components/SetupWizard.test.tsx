@@ -66,7 +66,7 @@ Object.defineProperty(window, "PublicKeyCredential", {
 // Import after mocks
 const { SetupWizard } = await import("../../src/components/SetupWizard");
 const { AuthProviderProvider } = await import("../../src/lib/auth-provider-context");
-const { AdminBrandingProvider } = await import("../../src/lib/admin-branding-context");
+const { AdminBrandingProvider } = await import("../../src/lib/admin-branding-context.js");
 
 function QueryWrapper({ children }: { children: React.ReactNode }) {
 	const qc = new QueryClient({
