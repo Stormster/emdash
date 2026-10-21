@@ -97,7 +97,7 @@ msgid "{0, plural, one {# comment imported} other {# comments imported}}"
 msgstr "{0, plural, other {# komentar diimpor}}"
 
 #. placeholder {0}: result.affected
-#: packages/admin/src/router.tsx:2445
+#: packages/admin/src/router.tsx:2446
 msgid "{0, plural, one {# comment updated} other {# comments updated}}"
 msgstr "{0, plural, other {# komentar diperbarui}}"
 
@@ -1172,7 +1172,7 @@ msgstr "Terima Undangan"
 msgid "Access denied"
 msgstr "Akses ditolak"
 
-#: packages/admin/src/router.tsx:2465
+#: packages/admin/src/router.tsx:2466
 msgid "Access Denied"
 msgstr "Akses Ditolak"
 
@@ -1561,7 +1561,7 @@ msgstr "Admin"
 msgid "Admin navigation"
 msgstr "Navigasi admin"
 
-#: packages/admin/src/components/WelcomeModal.tsx:25
+#: packages/admin/src/components/WelcomeModal.tsx:26
 msgid "Administrator"
 msgstr "Administrator"
 
@@ -1829,11 +1829,11 @@ msgstr "Kunci digital terenkripsi yang Anda buka menggunakan sidik jari, wajah, 
 #: packages/admin/src/router.tsx:1593
 #: packages/admin/src/router.tsx:1626
 #: packages/admin/src/router.tsx:1647
-#: packages/admin/src/router.tsx:2410
-#: packages/admin/src/router.tsx:2426
-#: packages/admin/src/router.tsx:2451
-#: packages/admin/src/router.tsx:2877
-#: packages/admin/src/router.tsx:3062
+#: packages/admin/src/router.tsx:2411
+#: packages/admin/src/router.tsx:2427
+#: packages/admin/src/router.tsx:2452
+#: packages/admin/src/router.tsx:2878
+#: packages/admin/src/router.tsx:3063
 #: packages/admin/src/routes/byline-schema.tsx:103
 #: packages/admin/src/routes/byline-schema.tsx:123
 #: packages/admin/src/routes/byline-schema.tsx:139
@@ -1984,7 +1984,7 @@ msgstr "Apakah Anda yakin ingin menghapus kolom \"{0}\"?"
 msgid "Are you sure you want to delete this menu? This will also delete all menu items. This action cannot be undone."
 msgstr "Apakah Anda yakin ingin menghapus menu ini? Ini juga akan menghapus semua item menu. Tindakan ini tidak dapat dibatalkan."
 
-#: packages/admin/src/components/WelcomeModal.tsx:59
+#: packages/admin/src/components/WelcomeModal.tsx:60
 msgid "As an administrator, you can invite other users from the Users section."
 msgstr "Sebagai administrator, Anda dapat mengundang pengguna lain dari bagian Pengguna."
 
@@ -2058,7 +2058,7 @@ msgstr "Otentikasi dibatalkan atau waktu telah habis. Silakan coba lagi."
 #: packages/admin/src/components/ContentSettingsPanel.tsx:1418
 #: packages/admin/src/components/RelationForm.tsx:315
 #: packages/admin/src/components/users/roleDefinitions.ts:30
-#: packages/admin/src/components/WelcomeModal.tsx:27
+#: packages/admin/src/components/WelcomeModal.tsx:28
 msgid "Author"
 msgstr "Penulis"
 
@@ -3096,7 +3096,7 @@ msgstr "Klik tautan ini untuk masuk ke {siteName}:"
 #: packages/admin/src/components/users/InviteUserModal.tsx:88
 #: packages/admin/src/components/users/InviteUserModal.tsx:94
 #: packages/admin/src/components/users/InviteUserModal.tsx:98
-#: packages/admin/src/components/WelcomeModal.tsx:60
+#: packages/admin/src/components/WelcomeModal.tsx:61
 #: packages/admin/src/components/Widgets.tsx:414
 #: packages/admin/src/components/Widgets.tsx:420
 #: packages/admin/src/components/Widgets.tsx:424
@@ -3482,7 +3482,7 @@ msgid "Continue with security key"
 msgstr "Lanjutkan dengan kunci keamanan"
 
 #: packages/admin/src/components/users/roleDefinitions.ts:24
-#: packages/admin/src/components/WelcomeModal.tsx:28
+#: packages/admin/src/components/WelcomeModal.tsx:29
 msgid "Contributor"
 msgstr "Kontributor"
 
@@ -5111,7 +5111,7 @@ msgid "visualEditing.sessionExpired"
 msgstr "Sesi penyuntingan kedaluwarsa. Muat ulang halaman untuk melanjutkan."
 
 #: packages/admin/src/components/users/roleDefinitions.ts:36
-#: packages/admin/src/components/WelcomeModal.tsx:26
+#: packages/admin/src/components/WelcomeModal.tsx:27
 msgid "Editor"
 msgstr "Penyunting"
 
@@ -5413,7 +5413,7 @@ msgstr "entri di sisi penautan"
 #: packages/admin/src/components/SetupWizard.tsx:607
 #: packages/admin/src/components/TaxonomyManager.tsx:1210
 #: packages/admin/src/components/Widgets.tsx:773
-#: packages/admin/src/router.tsx:3337
+#: packages/admin/src/router.tsx:3338
 msgid "Error"
 msgstr "Galat"
 
@@ -5790,7 +5790,7 @@ msgid "Failed to delete collection"
 msgstr "Gagal menghapus koleksi"
 
 #: packages/admin/src/lib/api/comments.ts:114
-#: packages/admin/src/router.tsx:2425
+#: packages/admin/src/router.tsx:2426
 msgid "Failed to delete comment"
 msgstr "Gagal menghapus komentar"
 
@@ -5885,7 +5885,7 @@ msgstr "Gagal membuang draf"
 msgid "Failed to dismiss scheduled publication rejection"
 msgstr "Gagal mengabaikan penolakan publikasi terjadwal"
 
-#: packages/admin/src/components/WelcomeModal.tsx:76
+#: packages/admin/src/components/WelcomeModal.tsx:78
 msgid "Failed to dismiss welcome"
 msgstr "Gagal mengabaikan sambutan"
 
@@ -6155,7 +6155,7 @@ msgstr "Gagal mengambil status pembaruan"
 #: packages/admin/src/lib/api/current-user.ts:22
 #: packages/admin/src/lib/api/users.ts:91
 #: packages/admin/src/lib/api/users.ts:96
-#: packages/admin/src/router.tsx:2356
+#: packages/admin/src/router.tsx:2357
 msgid "Failed to fetch user"
 msgstr "Gagal mengambil pengguna"
 
@@ -6344,7 +6344,7 @@ msgid "Failed to lock the entry"
 msgstr "Gagal mengunci entri"
 
 #: packages/admin/src/lib/api/comments.ts:131
-#: packages/admin/src/router.tsx:2450
+#: packages/admin/src/router.tsx:2451
 msgid "Failed to perform bulk action"
 msgstr "Gagal menjalankan tindakan massal"
 
@@ -6374,7 +6374,7 @@ msgstr "Gagal memublikasikan konten"
 msgid "Failed to read byline field usage"
 msgstr "Gagal membaca penggunaan kolom byline"
 
-#: packages/admin/src/router.tsx:2876
+#: packages/admin/src/router.tsx:2877
 msgid "Failed to register {slug}"
 msgstr "Gagal mendaftarkan {slug}"
 
@@ -6457,7 +6457,7 @@ msgstr "Gagal menulis ulang URL"
 
 #: packages/admin/src/router.tsx:910
 #: packages/admin/src/router.tsx:1313
-#: packages/admin/src/router.tsx:3061
+#: packages/admin/src/router.tsx:3062
 msgid "Failed to save"
 msgstr "Gagal menyimpan"
 
@@ -6627,7 +6627,7 @@ msgstr "Gagal memperbarui bagian"
 msgid "Failed to update settings"
 msgstr "Gagal memperbarui pengaturan"
 
-#: packages/admin/src/router.tsx:2409
+#: packages/admin/src/router.tsx:2410
 msgid "Failed to update status"
 msgstr "Gagal memperbarui status"
 
@@ -6873,7 +6873,7 @@ msgstr "Map dihapus"
 msgid "Folder name must be between 1 and 200 characters"
 msgstr "Nama map harus antara 1 dan 200 karakter"
 
-#: packages/admin/src/router.tsx:2079
+#: packages/admin/src/router.tsx:2080
 msgid "Folder no longer exists"
 msgstr "Map tidak ada lagi"
 
@@ -6991,7 +6991,7 @@ msgstr "Pengaturan Umum"
 msgid "Genres"
 msgstr "Genre"
 
-#: packages/admin/src/components/WelcomeModal.tsx:154
+#: packages/admin/src/components/WelcomeModal.tsx:156
 msgid "Get Started"
 msgstr "Mulai"
 
@@ -7020,7 +7020,7 @@ msgid "Go live {countdown}"
 msgstr "Tayangkan {countdown}"
 
 #: packages/admin/src/components/WordPressImport.tsx:2477
-#: packages/admin/src/router.tsx:3357
+#: packages/admin/src/router.tsx:3358
 msgid "Go to Dashboard"
 msgstr "Pergi ke Dasbor"
 
@@ -8207,7 +8207,7 @@ msgid "Load preview"
 msgstr "Muat pratinjau"
 
 #: packages/admin/src/components/calendar/CalendarToolbar.tsx:59
-#: packages/admin/src/router.tsx:3312
+#: packages/admin/src/router.tsx:3313
 msgid "Loading"
 msgstr "Memuat"
 
@@ -8236,8 +8236,8 @@ msgstr "Memuat koleksi..."
 msgid "Loading comments..."
 msgstr "Memuat komentar..."
 
-#: packages/admin/src/router.tsx:3314
-#: packages/admin/src/router.tsx:3326
+#: packages/admin/src/router.tsx:3315
+#: packages/admin/src/router.tsx:3327
 msgid "Loading configuration..."
 msgstr "Memuat konfigurasi..."
 
@@ -8549,11 +8549,11 @@ msgstr "Markdown"
 msgid "Marketplace"
 msgstr "Marketplace"
 
-#: packages/admin/src/router.tsx:2713
+#: packages/admin/src/router.tsx:2714
 msgid "Marketplace browsing is no longer available."
 msgstr "Penjelajahan Marketplace tidak lagi tersedia."
 
-#: packages/admin/src/router.tsx:2688
+#: packages/admin/src/router.tsx:2689
 msgid "Marketplace browsing is no longer available. Manage installed plugins from Plugins."
 msgstr "Penjelajahan Marketplace tidak lagi tersedia. Kelola pengaya yang terpasang dari Pengaya."
 
@@ -10068,7 +10068,7 @@ msgstr "Intisari paket"
 msgid "Package downloaded"
 msgstr "Paket diunduh"
 
-#: packages/admin/src/router.tsx:3352
+#: packages/admin/src/router.tsx:3353
 msgid "Page Not Found"
 msgstr "Halaman Tidak Ditemukan"
 
@@ -10422,8 +10422,8 @@ msgstr "Registri Pengaya"
 msgid "Plugin registry configuration error"
 msgstr "Galat konfigurasi registri pengaya"
 
-#: packages/admin/src/router.tsx:2648
-#: packages/admin/src/router.tsx:2679
+#: packages/admin/src/router.tsx:2649
+#: packages/admin/src/router.tsx:2680
 msgid "Plugin registry is not configured."
 msgstr "Registri pengaya tidak dikonfigurasikan."
 
@@ -10850,7 +10850,7 @@ msgid "Read your taxonomies and terms"
 msgstr "Baca taksonomi dan istilah Anda"
 
 #: packages/admin/src/components/EntryLockNotice.tsx:70
-#: packages/admin/src/router.tsx:2012
+#: packages/admin/src/router.tsx:2013
 msgid "Read-only"
 msgstr "Hanya baca"
 
@@ -11573,7 +11573,7 @@ msgstr "Pensiun"
 #: packages/admin/src/components/Sections.tsx:281
 #: packages/admin/src/components/ThemeMarketplaceBrowse.tsx:122
 #: packages/admin/src/lib/content-editor-panels.tsx:201
-#: packages/admin/src/router.tsx:3340
+#: packages/admin/src/router.tsx:3341
 #: packages/admin/src/routes/byline-schema.tsx:280
 #: packages/admin/src/routes/calendar.tsx:345
 msgid "Retry"
@@ -13220,7 +13220,7 @@ msgid "Sub-Fields"
 msgstr "Sub-Kolom"
 
 #: packages/admin/src/components/users/roleDefinitions.ts:18
-#: packages/admin/src/components/WelcomeModal.tsx:29
+#: packages/admin/src/components/WelcomeModal.tsx:30
 msgid "Subscriber"
 msgstr "Pelanggan"
 
@@ -13708,7 +13708,7 @@ msgstr "Konten paket ditulis ke situs ini. Impor tidak dapat dibatalkan setelah 
 msgid "The package’s file index is not valid."
 msgstr "Indeks berkas paket tidak valid."
 
-#: packages/admin/src/router.tsx:3354
+#: packages/admin/src/router.tsx:3355
 msgid "The page you're looking for doesn't exist."
 msgstr "Halaman yang Anda cari tidak ada."
 
@@ -13940,11 +13940,11 @@ msgstr "Entri ini diubah di tempat lain setelah Anda membukanya."
 msgid "This entry changed somewhere else. Save anyway, or reload to get the newer version."
 msgstr "Entri ini diubah di tempat lain. Simpan saja, atau muat ulang untuk mendapatkan versi terbaru."
 
-#: packages/admin/src/router.tsx:1949
+#: packages/admin/src/router.tsx:1950
 msgid "This entry doesn't exist or isn't published. Your role can only view published content."
 msgstr "Entri ini tidak ada atau tidak dipublikasikan. Peran Anda hanya dapat melihat konten yang dipublikasikan."
 
-#: packages/admin/src/router.tsx:1950
+#: packages/admin/src/router.tsx:1951
 msgid "This entry doesn't exist or was deleted."
 msgstr "Entri ini tidak ada atau telah dihapus."
 
@@ -15390,11 +15390,11 @@ msgstr "Situs web"
 msgid "Website URL"
 msgstr "URL situs web"
 
-#: packages/admin/src/components/WelcomeModal.tsx:102
+#: packages/admin/src/components/WelcomeModal.tsx:104
 msgid "Welcome to EmDash, {firstName}!"
 msgstr "Selamat datang di EmDash, {firstName}!"
 
-#: packages/admin/src/components/WelcomeModal.tsx:102
+#: packages/admin/src/components/WelcomeModal.tsx:104
 msgid "Welcome to EmDash!"
 msgstr "Selamat datang di EmDash!"
 
@@ -15666,11 +15666,11 @@ msgstr "Yoast/RankMath"
 msgid "You can close this page and return to your terminal."
 msgstr "Anda dapat menutup halaman ini dan kembali ke terminal Anda."
 
-#: packages/admin/src/components/WelcomeModal.tsx:49
+#: packages/admin/src/components/WelcomeModal.tsx:50
 msgid "You can create and edit your own content."
 msgstr "Anda dapat membuat dan menyunting konten Anda sendiri."
 
-#: packages/admin/src/components/WelcomeModal.tsx:48
+#: packages/admin/src/components/WelcomeModal.tsx:49
 msgid "You can manage content, media, menus, and taxonomies."
 msgstr "Anda dapat mengelola konten, media, menu, dan taksonomi."
 
@@ -15678,7 +15678,7 @@ msgstr "Anda dapat mengelola konten, media, menu, dan taksonomi."
 msgid "You can still edit the fixed fields above. Saving will not touch any stored custom-field values."
 msgstr "Anda masih dapat menyunting kolom tetap di atas. Penyimpanan tidak akan mengubah nilai kolom kustom yang sudah tersimpan."
 
-#: packages/admin/src/components/WelcomeModal.tsx:50
+#: packages/admin/src/components/WelcomeModal.tsx:51
 msgid "You can view and contribute to the site."
 msgstr "Anda dapat melihat dan berkontribusi ke situs."
 
@@ -15703,7 +15703,7 @@ msgstr "Anda tidak memiliki izin untuk memindahkan berkas ini."
 msgid "You don't have permission to view the calendar."
 msgstr "Anda tidak memiliki izin untuk melihat kalender."
 
-#: packages/admin/src/components/WelcomeModal.tsx:47
+#: packages/admin/src/components/WelcomeModal.tsx:48
 msgid "You have full access to manage this site, including users, settings, and all content."
 msgstr "Anda memiliki akses penuh untuk mengelola situs ini, termasuk pengguna, pengaturan, dan semua konten."
 
@@ -15719,7 +15719,7 @@ msgstr "Anda memerlukan izin Admin untuk mengelola pelacakan penggunaan media."
 msgid "You need Admin permissions to transfer this site."
 msgstr "Anda memerlukan izin Admin untuk mentransfer situs ini."
 
-#: packages/admin/src/router.tsx:2466
+#: packages/admin/src/router.tsx:2467
 msgid "You need Editor permissions to moderate comments."
 msgstr "Anda memerlukan izin Penyunting untuk memoderasi komentar."
 
@@ -15782,7 +15782,7 @@ msgstr "you@company.com"
 msgid "you@example.com"
 msgstr "you@example.com"
 
-#: packages/admin/src/components/WelcomeModal.tsx:45
+#: packages/admin/src/components/WelcomeModal.tsx:46
 msgid "Your account has been created successfully."
 msgstr "Akun Anda telah berhasil dibuat."
 
@@ -15856,15 +15856,15 @@ msgstr "Nama Anda"
 msgid "Your name (optional)"
 msgstr "Nama Anda (opsional)"
 
-#: packages/admin/src/components/WelcomeModal.tsx:46
+#: packages/admin/src/components/WelcomeModal.tsx:47
 msgid "Your Role"
 msgstr "Peran Anda"
 
-#: packages/admin/src/router.tsx:2017
+#: packages/admin/src/router.tsx:2018
 msgid "Your role can edit your own entries only while they are drafts."
 msgstr ""
 
-#: packages/admin/src/router.tsx:2018
+#: packages/admin/src/router.tsx:2019
 msgid "Your role can't edit this entry."
 msgstr ""
 

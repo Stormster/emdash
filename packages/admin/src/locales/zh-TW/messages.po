@@ -97,7 +97,7 @@ msgid "{0, plural, one {# comment imported} other {# comments imported}}"
 msgstr "{0, plural, one {# 則留言已匯入} other {# 則留言已匯入}}"
 
 #. placeholder {0}: result.affected
-#: packages/admin/src/router.tsx:2445
+#: packages/admin/src/router.tsx:2446
 msgid "{0, plural, one {# comment updated} other {# comments updated}}"
 msgstr "{0, plural, one {# 則留言已更新} other {# 則留言已更新}}"
 
@@ -1172,7 +1172,7 @@ msgstr "接受邀請"
 msgid "Access denied"
 msgstr "存取遭拒"
 
-#: packages/admin/src/router.tsx:2465
+#: packages/admin/src/router.tsx:2466
 msgid "Access Denied"
 msgstr "存取遭拒"
 
@@ -1561,7 +1561,7 @@ msgstr "管理員"
 msgid "Admin navigation"
 msgstr "管理介面導覽"
 
-#: packages/admin/src/components/WelcomeModal.tsx:25
+#: packages/admin/src/components/WelcomeModal.tsx:26
 msgid "Administrator"
 msgstr "管理員"
 
@@ -1829,11 +1829,11 @@ msgstr "使用指紋、臉部辨識、PIN 碼或裝置密碼解鎖的加密數�
 #: packages/admin/src/router.tsx:1593
 #: packages/admin/src/router.tsx:1626
 #: packages/admin/src/router.tsx:1647
-#: packages/admin/src/router.tsx:2410
-#: packages/admin/src/router.tsx:2426
-#: packages/admin/src/router.tsx:2451
-#: packages/admin/src/router.tsx:2877
-#: packages/admin/src/router.tsx:3062
+#: packages/admin/src/router.tsx:2411
+#: packages/admin/src/router.tsx:2427
+#: packages/admin/src/router.tsx:2452
+#: packages/admin/src/router.tsx:2878
+#: packages/admin/src/router.tsx:3063
 #: packages/admin/src/routes/byline-schema.tsx:103
 #: packages/admin/src/routes/byline-schema.tsx:123
 #: packages/admin/src/routes/byline-schema.tsx:139
@@ -1984,7 +1984,7 @@ msgstr "確定要刪除「{0}」欄位嗎？"
 msgid "Are you sure you want to delete this menu? This will also delete all menu items. This action cannot be undone."
 msgstr "您確定要刪除這個選單嗎？這也會刪除所有選單項目。此操作無法復原。"
 
-#: packages/admin/src/components/WelcomeModal.tsx:59
+#: packages/admin/src/components/WelcomeModal.tsx:60
 msgid "As an administrator, you can invite other users from the Users section."
 msgstr "身為管理員，您可以從 [使用者] 區段邀請其他使用者。"
 
@@ -2058,7 +2058,7 @@ msgstr "身分驗證已取消或逾時。請再試一次。"
 #: packages/admin/src/components/ContentSettingsPanel.tsx:1418
 #: packages/admin/src/components/RelationForm.tsx:315
 #: packages/admin/src/components/users/roleDefinitions.ts:30
-#: packages/admin/src/components/WelcomeModal.tsx:27
+#: packages/admin/src/components/WelcomeModal.tsx:28
 msgid "Author"
 msgstr "作者"
 
@@ -3096,7 +3096,7 @@ msgstr "請點擊這個連結以登入 {siteName}："
 #: packages/admin/src/components/users/InviteUserModal.tsx:88
 #: packages/admin/src/components/users/InviteUserModal.tsx:94
 #: packages/admin/src/components/users/InviteUserModal.tsx:98
-#: packages/admin/src/components/WelcomeModal.tsx:60
+#: packages/admin/src/components/WelcomeModal.tsx:61
 #: packages/admin/src/components/Widgets.tsx:414
 #: packages/admin/src/components/Widgets.tsx:420
 #: packages/admin/src/components/Widgets.tsx:424
@@ -3482,7 +3482,7 @@ msgid "Continue with security key"
 msgstr "使用安全金鑰繼續"
 
 #: packages/admin/src/components/users/roleDefinitions.ts:24
-#: packages/admin/src/components/WelcomeModal.tsx:28
+#: packages/admin/src/components/WelcomeModal.tsx:29
 msgid "Contributor"
 msgstr "投稿者"
 
@@ -5111,7 +5111,7 @@ msgid "visualEditing.sessionExpired"
 msgstr "編輯工作階段已過期。請重新整理頁面以繼續。"
 
 #: packages/admin/src/components/users/roleDefinitions.ts:36
-#: packages/admin/src/components/WelcomeModal.tsx:26
+#: packages/admin/src/components/WelcomeModal.tsx:27
 msgid "Editor"
 msgstr "編輯者"
 
@@ -5413,7 +5413,7 @@ msgstr "連結來源端的內容"
 #: packages/admin/src/components/SetupWizard.tsx:607
 #: packages/admin/src/components/TaxonomyManager.tsx:1210
 #: packages/admin/src/components/Widgets.tsx:773
-#: packages/admin/src/router.tsx:3337
+#: packages/admin/src/router.tsx:3338
 msgid "Error"
 msgstr "錯誤"
 
@@ -5790,7 +5790,7 @@ msgid "Failed to delete collection"
 msgstr "無法刪除內容集合"
 
 #: packages/admin/src/lib/api/comments.ts:114
-#: packages/admin/src/router.tsx:2425
+#: packages/admin/src/router.tsx:2426
 msgid "Failed to delete comment"
 msgstr "刪除留言失敗"
 
@@ -5885,7 +5885,7 @@ msgstr ""
 msgid "Failed to dismiss scheduled publication rejection"
 msgstr "無法關閉排程發佈遭拒的通知"
 
-#: packages/admin/src/components/WelcomeModal.tsx:76
+#: packages/admin/src/components/WelcomeModal.tsx:78
 msgid "Failed to dismiss welcome"
 msgstr "關閉歡迎畫面失敗"
 
@@ -6155,7 +6155,7 @@ msgstr "無法取得更新狀態"
 #: packages/admin/src/lib/api/current-user.ts:22
 #: packages/admin/src/lib/api/users.ts:91
 #: packages/admin/src/lib/api/users.ts:96
-#: packages/admin/src/router.tsx:2356
+#: packages/admin/src/router.tsx:2357
 msgid "Failed to fetch user"
 msgstr "無法擷取使用者"
 
@@ -6344,7 +6344,7 @@ msgid "Failed to lock the entry"
 msgstr "無法鎖定內容項目"
 
 #: packages/admin/src/lib/api/comments.ts:131
-#: packages/admin/src/router.tsx:2450
+#: packages/admin/src/router.tsx:2451
 msgid "Failed to perform bulk action"
 msgstr "執行批次操作失敗"
 
@@ -6374,7 +6374,7 @@ msgstr ""
 msgid "Failed to read byline field usage"
 msgstr "無法讀取署名欄位的使用情況"
 
-#: packages/admin/src/router.tsx:2876
+#: packages/admin/src/router.tsx:2877
 msgid "Failed to register {slug}"
 msgstr ""
 
@@ -6457,7 +6457,7 @@ msgstr "重寫網址失敗"
 
 #: packages/admin/src/router.tsx:910
 #: packages/admin/src/router.tsx:1313
-#: packages/admin/src/router.tsx:3061
+#: packages/admin/src/router.tsx:3062
 msgid "Failed to save"
 msgstr "儲存失敗"
 
@@ -6627,7 +6627,7 @@ msgstr "更新區段失敗"
 msgid "Failed to update settings"
 msgstr "無法更新設定"
 
-#: packages/admin/src/router.tsx:2409
+#: packages/admin/src/router.tsx:2410
 msgid "Failed to update status"
 msgstr "無法更新狀態"
 
@@ -6873,7 +6873,7 @@ msgstr "已刪除資料夾"
 msgid "Folder name must be between 1 and 200 characters"
 msgstr "資料夾名稱必須介於 1 到 200 個字元之間"
 
-#: packages/admin/src/router.tsx:2079
+#: packages/admin/src/router.tsx:2080
 msgid "Folder no longer exists"
 msgstr "資料夾已不存在"
 
@@ -6991,7 +6991,7 @@ msgstr "一般設定"
 msgid "Genres"
 msgstr "文類"
 
-#: packages/admin/src/components/WelcomeModal.tsx:154
+#: packages/admin/src/components/WelcomeModal.tsx:156
 msgid "Get Started"
 msgstr "開始使用"
 
@@ -7020,7 +7020,7 @@ msgid "Go live {countdown}"
 msgstr "{countdown} 上線"
 
 #: packages/admin/src/components/WordPressImport.tsx:2477
-#: packages/admin/src/router.tsx:3357
+#: packages/admin/src/router.tsx:3358
 msgid "Go to Dashboard"
 msgstr "前往控制台"
 
@@ -8207,7 +8207,7 @@ msgid "Load preview"
 msgstr "載入預覽"
 
 #: packages/admin/src/components/calendar/CalendarToolbar.tsx:59
-#: packages/admin/src/router.tsx:3312
+#: packages/admin/src/router.tsx:3313
 msgid "Loading"
 msgstr "正在載入"
 
@@ -8236,8 +8236,8 @@ msgstr "正在載入內容集合…"
 msgid "Loading comments..."
 msgstr "正在載入留言..."
 
-#: packages/admin/src/router.tsx:3314
-#: packages/admin/src/router.tsx:3326
+#: packages/admin/src/router.tsx:3315
+#: packages/admin/src/router.tsx:3327
 msgid "Loading configuration..."
 msgstr "正在載入設定..."
 
@@ -8549,11 +8549,11 @@ msgstr "Markdown"
 msgid "Marketplace"
 msgstr "市集"
 
-#: packages/admin/src/router.tsx:2713
+#: packages/admin/src/router.tsx:2714
 msgid "Marketplace browsing is no longer available."
 msgstr "已無法瀏覽外掛市集。"
 
-#: packages/admin/src/router.tsx:2688
+#: packages/admin/src/router.tsx:2689
 msgid "Marketplace browsing is no longer available. Manage installed plugins from Plugins."
 msgstr "已無法瀏覽外掛市集。請從 [外掛] 管理已安裝的外掛。"
 
@@ -10068,7 +10068,7 @@ msgstr "套件摘要值"
 msgid "Package downloaded"
 msgstr "已下載套件"
 
-#: packages/admin/src/router.tsx:3352
+#: packages/admin/src/router.tsx:3353
 msgid "Page Not Found"
 msgstr "找不到頁面"
 
@@ -10422,8 +10422,8 @@ msgstr "外掛庫"
 msgid "Plugin registry configuration error"
 msgstr "外掛庫設定錯誤"
 
-#: packages/admin/src/router.tsx:2648
-#: packages/admin/src/router.tsx:2679
+#: packages/admin/src/router.tsx:2649
+#: packages/admin/src/router.tsx:2680
 msgid "Plugin registry is not configured."
 msgstr "尚未設定外掛庫。"
 
@@ -10850,7 +10850,7 @@ msgid "Read your taxonomies and terms"
 msgstr "讀取您的分類法及分類項目"
 
 #: packages/admin/src/components/EntryLockNotice.tsx:70
-#: packages/admin/src/router.tsx:2012
+#: packages/admin/src/router.tsx:2013
 msgid "Read-only"
 msgstr "唯讀"
 
@@ -11573,7 +11573,7 @@ msgstr "已淘汰"
 #: packages/admin/src/components/Sections.tsx:281
 #: packages/admin/src/components/ThemeMarketplaceBrowse.tsx:122
 #: packages/admin/src/lib/content-editor-panels.tsx:201
-#: packages/admin/src/router.tsx:3340
+#: packages/admin/src/router.tsx:3341
 #: packages/admin/src/routes/byline-schema.tsx:280
 #: packages/admin/src/routes/calendar.tsx:345
 msgid "Retry"
@@ -13220,7 +13220,7 @@ msgid "Sub-Fields"
 msgstr "子欄位"
 
 #: packages/admin/src/components/users/roleDefinitions.ts:18
-#: packages/admin/src/components/WelcomeModal.tsx:29
+#: packages/admin/src/components/WelcomeModal.tsx:30
 msgid "Subscriber"
 msgstr "訂閱者"
 
@@ -13708,7 +13708,7 @@ msgstr "套件的內容會寫入這個網站。匯入一旦開始，就無法復
 msgid "The package’s file index is not valid."
 msgstr "套件的檔案索引無效。"
 
-#: packages/admin/src/router.tsx:3354
+#: packages/admin/src/router.tsx:3355
 msgid "The page you're looking for doesn't exist."
 msgstr "您要找的頁面不存在。"
 
@@ -13940,11 +13940,11 @@ msgstr "你開啟這個內容項目後，它已在其他地方變更。"
 msgid "This entry changed somewhere else. Save anyway, or reload to get the newer version."
 msgstr "這個內容項目已在其他地方變更。你可以選擇仍要儲存，或重新載入以取得較新的版本。"
 
-#: packages/admin/src/router.tsx:1949
+#: packages/admin/src/router.tsx:1950
 msgid "This entry doesn't exist or isn't published. Your role can only view published content."
 msgstr ""
 
-#: packages/admin/src/router.tsx:1950
+#: packages/admin/src/router.tsx:1951
 msgid "This entry doesn't exist or was deleted."
 msgstr ""
 
@@ -15390,11 +15390,11 @@ msgstr "網站"
 msgid "Website URL"
 msgstr "網站網址"
 
-#: packages/admin/src/components/WelcomeModal.tsx:102
+#: packages/admin/src/components/WelcomeModal.tsx:104
 msgid "Welcome to EmDash, {firstName}!"
 msgstr "歡迎使用 EmDash，{firstName}！"
 
-#: packages/admin/src/components/WelcomeModal.tsx:102
+#: packages/admin/src/components/WelcomeModal.tsx:104
 msgid "Welcome to EmDash!"
 msgstr "歡迎使用 EmDash。"
 
@@ -15666,11 +15666,11 @@ msgstr "Yoast/RankMath"
 msgid "You can close this page and return to your terminal."
 msgstr "您可以關閉此頁面並返回終端機。"
 
-#: packages/admin/src/components/WelcomeModal.tsx:49
+#: packages/admin/src/components/WelcomeModal.tsx:50
 msgid "You can create and edit your own content."
 msgstr "您可以建立及編輯自己的內容。"
 
-#: packages/admin/src/components/WelcomeModal.tsx:48
+#: packages/admin/src/components/WelcomeModal.tsx:49
 msgid "You can manage content, media, menus, and taxonomies."
 msgstr "您可以管理內容、媒體、選單及分類法。"
 
@@ -15678,7 +15678,7 @@ msgstr "您可以管理內容、媒體、選單及分類法。"
 msgid "You can still edit the fixed fields above. Saving will not touch any stored custom-field values."
 msgstr "您仍可編輯上方的固定欄位。儲存時不會變更任何已儲存的自訂欄位值。"
 
-#: packages/admin/src/components/WelcomeModal.tsx:50
+#: packages/admin/src/components/WelcomeModal.tsx:51
 msgid "You can view and contribute to the site."
 msgstr "您可以檢視網站並參與內容編輯。"
 
@@ -15703,7 +15703,7 @@ msgstr "你沒有移動這個檔案的權限。"
 msgid "You don't have permission to view the calendar."
 msgstr "你沒有查看行事曆的權限。"
 
-#: packages/admin/src/components/WelcomeModal.tsx:47
+#: packages/admin/src/components/WelcomeModal.tsx:48
 msgid "You have full access to manage this site, including users, settings, and all content."
 msgstr "您擁有管理此網站的完整存取權，包括使用者、設定及所有內容。"
 
@@ -15719,7 +15719,7 @@ msgstr "你需要管理員權限才能管理媒體使用追蹤。"
 msgid "You need Admin permissions to transfer this site."
 msgstr "你需要管理員權限才能移轉這個網站。"
 
-#: packages/admin/src/router.tsx:2466
+#: packages/admin/src/router.tsx:2467
 msgid "You need Editor permissions to moderate comments."
 msgstr "您需要編輯者權限才能審核留言。"
 
@@ -15782,7 +15782,7 @@ msgstr "you@company.com"
 msgid "you@example.com"
 msgstr "you@example.com"
 
-#: packages/admin/src/components/WelcomeModal.tsx:45
+#: packages/admin/src/components/WelcomeModal.tsx:46
 msgid "Your account has been created successfully."
 msgstr "您的帳號已成功建立。"
 
@@ -15856,15 +15856,15 @@ msgstr "您的姓名"
 msgid "Your name (optional)"
 msgstr "您的姓名 (選填)"
 
-#: packages/admin/src/components/WelcomeModal.tsx:46
+#: packages/admin/src/components/WelcomeModal.tsx:47
 msgid "Your Role"
 msgstr "您的角色"
 
-#: packages/admin/src/router.tsx:2017
+#: packages/admin/src/router.tsx:2018
 msgid "Your role can edit your own entries only while they are drafts."
 msgstr ""
 
-#: packages/admin/src/router.tsx:2018
+#: packages/admin/src/router.tsx:2019
 msgid "Your role can't edit this entry."
 msgstr ""
 

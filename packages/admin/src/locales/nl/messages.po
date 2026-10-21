@@ -97,7 +97,7 @@ msgid "{0, plural, one {# comment imported} other {# comments imported}}"
 msgstr "{0, plural, one {# reactie geïmporteerd} other {# reacties geïmporteerd}}"
 
 #. placeholder {0}: result.affected
-#: packages/admin/src/router.tsx:2445
+#: packages/admin/src/router.tsx:2446
 msgid "{0, plural, one {# comment updated} other {# comments updated}}"
 msgstr "{0, plural, one {# reactie bijgewerkt} other {# reacties bijgewerkt}}"
 
@@ -1172,7 +1172,7 @@ msgstr "Uitnodiging accepteren"
 msgid "Access denied"
 msgstr "Toegang geweigerd"
 
-#: packages/admin/src/router.tsx:2465
+#: packages/admin/src/router.tsx:2466
 msgid "Access Denied"
 msgstr "Toegang geweigerd"
 
@@ -1561,7 +1561,7 @@ msgstr "Admin"
 msgid "Admin navigation"
 msgstr "Adminnavigatie"
 
-#: packages/admin/src/components/WelcomeModal.tsx:25
+#: packages/admin/src/components/WelcomeModal.tsx:26
 msgid "Administrator"
 msgstr "Beheerder"
 
@@ -1829,11 +1829,11 @@ msgstr "Een versleutelde digitale sleutel die je ontgrendelt met je vingerafdruk
 #: packages/admin/src/router.tsx:1593
 #: packages/admin/src/router.tsx:1626
 #: packages/admin/src/router.tsx:1647
-#: packages/admin/src/router.tsx:2410
-#: packages/admin/src/router.tsx:2426
-#: packages/admin/src/router.tsx:2451
-#: packages/admin/src/router.tsx:2877
-#: packages/admin/src/router.tsx:3062
+#: packages/admin/src/router.tsx:2411
+#: packages/admin/src/router.tsx:2427
+#: packages/admin/src/router.tsx:2452
+#: packages/admin/src/router.tsx:2878
+#: packages/admin/src/router.tsx:3063
 #: packages/admin/src/routes/byline-schema.tsx:103
 #: packages/admin/src/routes/byline-schema.tsx:123
 #: packages/admin/src/routes/byline-schema.tsx:139
@@ -1984,7 +1984,7 @@ msgstr "Weet je zeker dat je het veld \"{0}\" wilt verwijderen?"
 msgid "Are you sure you want to delete this menu? This will also delete all menu items. This action cannot be undone."
 msgstr "Weet je zeker dat je dit menu wilt verwijderen? Hiermee worden ook alle menu-items verwijderd. Deze actie kan niet ongedaan worden gemaakt."
 
-#: packages/admin/src/components/WelcomeModal.tsx:59
+#: packages/admin/src/components/WelcomeModal.tsx:60
 msgid "As an administrator, you can invite other users from the Users section."
 msgstr "Als beheerder kun je andere gebruikers uitnodigen via de sectie Gebruikers."
 
@@ -2058,7 +2058,7 @@ msgstr "Authenticatie is geannuleerd of verlopen. Probeer het opnieuw."
 #: packages/admin/src/components/ContentSettingsPanel.tsx:1418
 #: packages/admin/src/components/RelationForm.tsx:315
 #: packages/admin/src/components/users/roleDefinitions.ts:30
-#: packages/admin/src/components/WelcomeModal.tsx:27
+#: packages/admin/src/components/WelcomeModal.tsx:28
 msgid "Author"
 msgstr "Auteur"
 
@@ -3096,7 +3096,7 @@ msgstr "Klik op deze link om in te loggen op {siteName}:"
 #: packages/admin/src/components/users/InviteUserModal.tsx:88
 #: packages/admin/src/components/users/InviteUserModal.tsx:94
 #: packages/admin/src/components/users/InviteUserModal.tsx:98
-#: packages/admin/src/components/WelcomeModal.tsx:60
+#: packages/admin/src/components/WelcomeModal.tsx:61
 #: packages/admin/src/components/Widgets.tsx:414
 #: packages/admin/src/components/Widgets.tsx:420
 #: packages/admin/src/components/Widgets.tsx:424
@@ -3482,7 +3482,7 @@ msgid "Continue with security key"
 msgstr "Doorgaan met beveiligingssleutel"
 
 #: packages/admin/src/components/users/roleDefinitions.ts:24
-#: packages/admin/src/components/WelcomeModal.tsx:28
+#: packages/admin/src/components/WelcomeModal.tsx:29
 msgid "Contributor"
 msgstr "Bijdrager"
 
@@ -5111,7 +5111,7 @@ msgid "visualEditing.sessionExpired"
 msgstr "De bewerksessie is verlopen. Ververs de pagina om verder te gaan."
 
 #: packages/admin/src/components/users/roleDefinitions.ts:36
-#: packages/admin/src/components/WelcomeModal.tsx:26
+#: packages/admin/src/components/WelcomeModal.tsx:27
 msgid "Editor"
 msgstr "Redacteur"
 
@@ -5413,7 +5413,7 @@ msgstr "item aan de verwijzende kant"
 #: packages/admin/src/components/SetupWizard.tsx:607
 #: packages/admin/src/components/TaxonomyManager.tsx:1210
 #: packages/admin/src/components/Widgets.tsx:773
-#: packages/admin/src/router.tsx:3337
+#: packages/admin/src/router.tsx:3338
 msgid "Error"
 msgstr "Fout"
 
@@ -5790,7 +5790,7 @@ msgid "Failed to delete collection"
 msgstr "Verwijderen van collectie mislukt"
 
 #: packages/admin/src/lib/api/comments.ts:114
-#: packages/admin/src/router.tsx:2425
+#: packages/admin/src/router.tsx:2426
 msgid "Failed to delete comment"
 msgstr "Verwijderen van reactie mislukt"
 
@@ -5885,7 +5885,7 @@ msgstr "Verwerpen van concept mislukt"
 msgid "Failed to dismiss scheduled publication rejection"
 msgstr "Melding over geblokkeerde ingeplande publicatie kon niet worden gesloten"
 
-#: packages/admin/src/components/WelcomeModal.tsx:76
+#: packages/admin/src/components/WelcomeModal.tsx:78
 msgid "Failed to dismiss welcome"
 msgstr "Verbergen van welkomstscherm mislukt"
 
@@ -6155,7 +6155,7 @@ msgstr "Ophalen van updatestatus mislukt"
 #: packages/admin/src/lib/api/current-user.ts:22
 #: packages/admin/src/lib/api/users.ts:91
 #: packages/admin/src/lib/api/users.ts:96
-#: packages/admin/src/router.tsx:2356
+#: packages/admin/src/router.tsx:2357
 msgid "Failed to fetch user"
 msgstr "Ophalen van gebruiker mislukt"
 
@@ -6344,7 +6344,7 @@ msgid "Failed to lock the entry"
 msgstr "Vergrendelen van item mislukt"
 
 #: packages/admin/src/lib/api/comments.ts:131
-#: packages/admin/src/router.tsx:2450
+#: packages/admin/src/router.tsx:2451
 msgid "Failed to perform bulk action"
 msgstr "Uitvoeren van bulkactie mislukt"
 
@@ -6374,7 +6374,7 @@ msgstr "Publiceren van content mislukt"
 msgid "Failed to read byline field usage"
 msgstr "Ophalen van gebruik van auteursvermeldingsveld mislukt"
 
-#: packages/admin/src/router.tsx:2876
+#: packages/admin/src/router.tsx:2877
 msgid "Failed to register {slug}"
 msgstr "Registreren van {slug} mislukt"
 
@@ -6457,7 +6457,7 @@ msgstr "Herschrijven van URL's mislukt"
 
 #: packages/admin/src/router.tsx:910
 #: packages/admin/src/router.tsx:1313
-#: packages/admin/src/router.tsx:3061
+#: packages/admin/src/router.tsx:3062
 msgid "Failed to save"
 msgstr "Opslaan mislukt"
 
@@ -6627,7 +6627,7 @@ msgstr "Bijwerken van sectie mislukt"
 msgid "Failed to update settings"
 msgstr "Bijwerken van instellingen mislukt"
 
-#: packages/admin/src/router.tsx:2409
+#: packages/admin/src/router.tsx:2410
 msgid "Failed to update status"
 msgstr "Bijwerken van status mislukt"
 
@@ -6873,7 +6873,7 @@ msgstr "Map verwijderd"
 msgid "Folder name must be between 1 and 200 characters"
 msgstr "Mapnaam moet tussen 1 en 200 tekens lang zijn"
 
-#: packages/admin/src/router.tsx:2079
+#: packages/admin/src/router.tsx:2080
 msgid "Folder no longer exists"
 msgstr "Map bestaat niet meer"
 
@@ -6991,7 +6991,7 @@ msgstr "Algemene instellingen"
 msgid "Genres"
 msgstr "Genres"
 
-#: packages/admin/src/components/WelcomeModal.tsx:154
+#: packages/admin/src/components/WelcomeModal.tsx:156
 msgid "Get Started"
 msgstr "Aan de slag"
 
@@ -7020,7 +7020,7 @@ msgid "Go live {countdown}"
 msgstr "Worden gepubliceerd {countdown}"
 
 #: packages/admin/src/components/WordPressImport.tsx:2477
-#: packages/admin/src/router.tsx:3357
+#: packages/admin/src/router.tsx:3358
 msgid "Go to Dashboard"
 msgstr "Ga naar dashboard"
 
@@ -8207,7 +8207,7 @@ msgid "Load preview"
 msgstr "Voorbeeld laden"
 
 #: packages/admin/src/components/calendar/CalendarToolbar.tsx:59
-#: packages/admin/src/router.tsx:3312
+#: packages/admin/src/router.tsx:3313
 msgid "Loading"
 msgstr "Laden"
 
@@ -8236,8 +8236,8 @@ msgstr "Collecties laden..."
 msgid "Loading comments..."
 msgstr "Reacties laden..."
 
-#: packages/admin/src/router.tsx:3314
-#: packages/admin/src/router.tsx:3326
+#: packages/admin/src/router.tsx:3315
+#: packages/admin/src/router.tsx:3327
 msgid "Loading configuration..."
 msgstr "Configuratie laden..."
 
@@ -8549,11 +8549,11 @@ msgstr "Markdown"
 msgid "Marketplace"
 msgstr "Marketplace"
 
-#: packages/admin/src/router.tsx:2713
+#: packages/admin/src/router.tsx:2714
 msgid "Marketplace browsing is no longer available."
 msgstr "Bladeren door de marketplace is niet meer beschikbaar."
 
-#: packages/admin/src/router.tsx:2688
+#: packages/admin/src/router.tsx:2689
 msgid "Marketplace browsing is no longer available. Manage installed plugins from Plugins."
 msgstr "Bladeren door de marketplace is niet meer beschikbaar. Beheer geïnstalleerde plugins via Plugins."
 
@@ -10068,7 +10068,7 @@ msgstr "Hashwaarde van het pakket"
 msgid "Package downloaded"
 msgstr "Pakket gedownload"
 
-#: packages/admin/src/router.tsx:3352
+#: packages/admin/src/router.tsx:3353
 msgid "Page Not Found"
 msgstr "Pagina niet gevonden"
 
@@ -10422,8 +10422,8 @@ msgstr "Plugin Registry"
 msgid "Plugin registry configuration error"
 msgstr "Configuratiefout in pluginregistry"
 
-#: packages/admin/src/router.tsx:2648
-#: packages/admin/src/router.tsx:2679
+#: packages/admin/src/router.tsx:2649
+#: packages/admin/src/router.tsx:2680
 msgid "Plugin registry is not configured."
 msgstr "De pluginregistry is niet geconfigureerd."
 
@@ -10850,7 +10850,7 @@ msgid "Read your taxonomies and terms"
 msgstr "Je taxonomieën en termen lezen"
 
 #: packages/admin/src/components/EntryLockNotice.tsx:70
-#: packages/admin/src/router.tsx:2012
+#: packages/admin/src/router.tsx:2013
 msgid "Read-only"
 msgstr "Alleen-lezen"
 
@@ -11573,7 +11573,7 @@ msgstr "Buiten gebruik"
 #: packages/admin/src/components/Sections.tsx:281
 #: packages/admin/src/components/ThemeMarketplaceBrowse.tsx:122
 #: packages/admin/src/lib/content-editor-panels.tsx:201
-#: packages/admin/src/router.tsx:3340
+#: packages/admin/src/router.tsx:3341
 #: packages/admin/src/routes/byline-schema.tsx:280
 #: packages/admin/src/routes/calendar.tsx:345
 msgid "Retry"
@@ -13220,7 +13220,7 @@ msgid "Sub-Fields"
 msgstr "Subvelden"
 
 #: packages/admin/src/components/users/roleDefinitions.ts:18
-#: packages/admin/src/components/WelcomeModal.tsx:29
+#: packages/admin/src/components/WelcomeModal.tsx:30
 msgid "Subscriber"
 msgstr "Abonnee"
 
@@ -13708,7 +13708,7 @@ msgstr "De content uit het pakket wordt naar deze site geschreven. Zodra de impo
 msgid "The package’s file index is not valid."
 msgstr "De bestandsindex van het pakket is ongeldig."
 
-#: packages/admin/src/router.tsx:3354
+#: packages/admin/src/router.tsx:3355
 msgid "The page you're looking for doesn't exist."
 msgstr "De pagina die je zoekt bestaat niet."
 
@@ -13940,11 +13940,11 @@ msgstr "Dit item is elders gewijzigd nadat je het hebt geopend."
 msgid "This entry changed somewhere else. Save anyway, or reload to get the newer version."
 msgstr "Dit item is elders gewijzigd. Sla toch op, of laad opnieuw om de nieuwere versie op te halen."
 
-#: packages/admin/src/router.tsx:1949
+#: packages/admin/src/router.tsx:1950
 msgid "This entry doesn't exist or isn't published. Your role can only view published content."
 msgstr "Dit item bestaat niet of is niet gepubliceerd. Met je rol kun je alleen gepubliceerde content bekijken."
 
-#: packages/admin/src/router.tsx:1950
+#: packages/admin/src/router.tsx:1951
 msgid "This entry doesn't exist or was deleted."
 msgstr "Dit item bestaat niet of is verwijderd."
 
@@ -15390,11 +15390,11 @@ msgstr "Website"
 msgid "Website URL"
 msgstr "Website-URL"
 
-#: packages/admin/src/components/WelcomeModal.tsx:102
+#: packages/admin/src/components/WelcomeModal.tsx:104
 msgid "Welcome to EmDash, {firstName}!"
 msgstr "Welkom bij EmDash, {firstName}!"
 
-#: packages/admin/src/components/WelcomeModal.tsx:102
+#: packages/admin/src/components/WelcomeModal.tsx:104
 msgid "Welcome to EmDash!"
 msgstr "Welkom bij EmDash!"
 
@@ -15666,11 +15666,11 @@ msgstr "Yoast/RankMath"
 msgid "You can close this page and return to your terminal."
 msgstr "Je kunt deze pagina sluiten en teruggaan naar je terminal."
 
-#: packages/admin/src/components/WelcomeModal.tsx:49
+#: packages/admin/src/components/WelcomeModal.tsx:50
 msgid "You can create and edit your own content."
 msgstr "Je kunt je eigen content aanmaken en bewerken."
 
-#: packages/admin/src/components/WelcomeModal.tsx:48
+#: packages/admin/src/components/WelcomeModal.tsx:49
 msgid "You can manage content, media, menus, and taxonomies."
 msgstr "Je kunt content, media, menu's en taxonomieën beheren."
 
@@ -15678,7 +15678,7 @@ msgstr "Je kunt content, media, menu's en taxonomieën beheren."
 msgid "You can still edit the fixed fields above. Saving will not touch any stored custom-field values."
 msgstr "Je kunt de vaste velden hierboven nog steeds bewerken. Opslaan wijzigt geen opgeslagen waarden van aangepaste velden."
 
-#: packages/admin/src/components/WelcomeModal.tsx:50
+#: packages/admin/src/components/WelcomeModal.tsx:51
 msgid "You can view and contribute to the site."
 msgstr "Je kunt de site bekijken en eraan bijdragen."
 
@@ -15703,7 +15703,7 @@ msgstr "Je hebt geen rechten om dit bestand te verplaatsen."
 msgid "You don't have permission to view the calendar."
 msgstr "Je hebt geen rechten om de kalender te bekijken."
 
-#: packages/admin/src/components/WelcomeModal.tsx:47
+#: packages/admin/src/components/WelcomeModal.tsx:48
 msgid "You have full access to manage this site, including users, settings, and all content."
 msgstr "Je hebt volledige toegang om deze site te beheren, inclusief gebruikers, instellingen en alle content."
 
@@ -15719,7 +15719,7 @@ msgstr "Je hebt admin-rechten nodig om het bijhouden van mediagebruik te beheren
 msgid "You need Admin permissions to transfer this site."
 msgstr "Je hebt Admin-rechten nodig om deze site over te dragen."
 
-#: packages/admin/src/router.tsx:2466
+#: packages/admin/src/router.tsx:2467
 msgid "You need Editor permissions to moderate comments."
 msgstr "Je hebt redacteursrechten nodig om reacties te modereren."
 
@@ -15782,7 +15782,7 @@ msgstr "jij@bedrijf.com"
 msgid "you@example.com"
 msgstr "jij@voorbeeld.com"
 
-#: packages/admin/src/components/WelcomeModal.tsx:45
+#: packages/admin/src/components/WelcomeModal.tsx:46
 msgid "Your account has been created successfully."
 msgstr "Je account is succesvol aangemaakt."
 
@@ -15856,15 +15856,15 @@ msgstr "Je naam"
 msgid "Your name (optional)"
 msgstr "Je naam (optioneel)"
 
-#: packages/admin/src/components/WelcomeModal.tsx:46
+#: packages/admin/src/components/WelcomeModal.tsx:47
 msgid "Your Role"
 msgstr "Je rol"
 
-#: packages/admin/src/router.tsx:2017
+#: packages/admin/src/router.tsx:2018
 msgid "Your role can edit your own entries only while they are drafts."
 msgstr "Met je rol kun je je eigen items alleen bewerken zolang ze concepten zijn."
 
-#: packages/admin/src/router.tsx:2018
+#: packages/admin/src/router.tsx:2019
 msgid "Your role can't edit this entry."
 msgstr "Met je rol kun je dit item niet bewerken."
 

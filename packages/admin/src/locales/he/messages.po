@@ -98,7 +98,7 @@ msgid "{0, plural, one {# comment imported} other {# comments imported}}"
 msgstr "{0, plural, one {תגובה אחת יובאה} two {שתי תגובות יובאו} other {# תגובות יובאו}}"
 
 #. placeholder {0}: result.affected
-#: packages/admin/src/router.tsx:2445
+#: packages/admin/src/router.tsx:2446
 msgid "{0, plural, one {# comment updated} other {# comments updated}}"
 msgstr "{0, plural, one {תגובה אחת עודכנה} two {שתי תגובות עודכנו} other {# תגובות עודכנו}}"
 
@@ -1173,7 +1173,7 @@ msgstr "אישור הזמנה"
 msgid "Access denied"
 msgstr "הגישה נדחתה"
 
-#: packages/admin/src/router.tsx:2465
+#: packages/admin/src/router.tsx:2466
 msgid "Access Denied"
 msgstr "הגישה נדחתה"
 
@@ -1562,7 +1562,7 @@ msgstr "מנהל/ת"
 msgid "Admin navigation"
 msgstr "ניווט ניהול"
 
-#: packages/admin/src/components/WelcomeModal.tsx:25
+#: packages/admin/src/components/WelcomeModal.tsx:26
 msgid "Administrator"
 msgstr "מנהל/ת"
 
@@ -1830,11 +1830,11 @@ msgstr "מפתח דיגיטלי מוצפן שנפתח באמצעות טביעת 
 #: packages/admin/src/router.tsx:1593
 #: packages/admin/src/router.tsx:1626
 #: packages/admin/src/router.tsx:1647
-#: packages/admin/src/router.tsx:2410
-#: packages/admin/src/router.tsx:2426
-#: packages/admin/src/router.tsx:2451
-#: packages/admin/src/router.tsx:2877
-#: packages/admin/src/router.tsx:3062
+#: packages/admin/src/router.tsx:2411
+#: packages/admin/src/router.tsx:2427
+#: packages/admin/src/router.tsx:2452
+#: packages/admin/src/router.tsx:2878
+#: packages/admin/src/router.tsx:3063
 #: packages/admin/src/routes/byline-schema.tsx:103
 #: packages/admin/src/routes/byline-schema.tsx:123
 #: packages/admin/src/routes/byline-schema.tsx:139
@@ -1985,7 +1985,7 @@ msgstr "האם למחוק את השדה \"{0}\"?"
 msgid "Are you sure you want to delete this menu? This will also delete all menu items. This action cannot be undone."
 msgstr "האם למחוק את התפריט הזה? פעולה זו תמחק גם את כל פריטי התפריט. לא ניתן לבטל פעולה זו."
 
-#: packages/admin/src/components/WelcomeModal.tsx:59
+#: packages/admin/src/components/WelcomeModal.tsx:60
 msgid "As an administrator, you can invite other users from the Users section."
 msgstr "כמנהל/ת, תוכלו להזמין משתמשים אחרים ממסך המשתמשים."
 
@@ -2059,7 +2059,7 @@ msgstr "האימות בוטל או שתם זמנו. נסו שוב."
 #: packages/admin/src/components/ContentSettingsPanel.tsx:1418
 #: packages/admin/src/components/RelationForm.tsx:315
 #: packages/admin/src/components/users/roleDefinitions.ts:30
-#: packages/admin/src/components/WelcomeModal.tsx:27
+#: packages/admin/src/components/WelcomeModal.tsx:28
 msgid "Author"
 msgstr "כותב/ת"
 
@@ -3097,7 +3097,7 @@ msgstr "לחצו על הקישור הזה כדי להתחבר אל {siteName}:"
 #: packages/admin/src/components/users/InviteUserModal.tsx:88
 #: packages/admin/src/components/users/InviteUserModal.tsx:94
 #: packages/admin/src/components/users/InviteUserModal.tsx:98
-#: packages/admin/src/components/WelcomeModal.tsx:60
+#: packages/admin/src/components/WelcomeModal.tsx:61
 #: packages/admin/src/components/Widgets.tsx:414
 #: packages/admin/src/components/Widgets.tsx:420
 #: packages/admin/src/components/Widgets.tsx:424
@@ -3483,7 +3483,7 @@ msgid "Continue with security key"
 msgstr "המשך עם מפתח אבטחה"
 
 #: packages/admin/src/components/users/roleDefinitions.ts:24
-#: packages/admin/src/components/WelcomeModal.tsx:28
+#: packages/admin/src/components/WelcomeModal.tsx:29
 msgid "Contributor"
 msgstr "תורם/ת"
 
@@ -5112,7 +5112,7 @@ msgid "visualEditing.sessionExpired"
 msgstr "פג תוקף הפעלת העריכה החזותית"
 
 #: packages/admin/src/components/users/roleDefinitions.ts:36
-#: packages/admin/src/components/WelcomeModal.tsx:26
+#: packages/admin/src/components/WelcomeModal.tsx:27
 msgid "Editor"
 msgstr "עורך/ת"
 
@@ -5414,7 +5414,7 @@ msgstr "פריט בצד המקשר"
 #: packages/admin/src/components/SetupWizard.tsx:607
 #: packages/admin/src/components/TaxonomyManager.tsx:1210
 #: packages/admin/src/components/Widgets.tsx:773
-#: packages/admin/src/router.tsx:3337
+#: packages/admin/src/router.tsx:3338
 msgid "Error"
 msgstr "שגיאה"
 
@@ -5791,7 +5791,7 @@ msgid "Failed to delete collection"
 msgstr "מחיקת אוסף נכשלה"
 
 #: packages/admin/src/lib/api/comments.ts:114
-#: packages/admin/src/router.tsx:2425
+#: packages/admin/src/router.tsx:2426
 msgid "Failed to delete comment"
 msgstr "מחיקת תגובה נכשלה"
 
@@ -5886,7 +5886,7 @@ msgstr ""
 msgid "Failed to dismiss scheduled publication rejection"
 msgstr "סגירת דחיית הפרסום המתוזמן נכשלה"
 
-#: packages/admin/src/components/WelcomeModal.tsx:76
+#: packages/admin/src/components/WelcomeModal.tsx:78
 msgid "Failed to dismiss welcome"
 msgstr "סגירת הודעת הפתיחה נכשלה"
 
@@ -6156,7 +6156,7 @@ msgstr "אחזור סטטוס העדכון נכשל"
 #: packages/admin/src/lib/api/current-user.ts:22
 #: packages/admin/src/lib/api/users.ts:91
 #: packages/admin/src/lib/api/users.ts:96
-#: packages/admin/src/router.tsx:2356
+#: packages/admin/src/router.tsx:2357
 msgid "Failed to fetch user"
 msgstr "אחזור משתמש נכשל"
 
@@ -6345,7 +6345,7 @@ msgid "Failed to lock the entry"
 msgstr "נעילת הפריט נכשלה"
 
 #: packages/admin/src/lib/api/comments.ts:131
-#: packages/admin/src/router.tsx:2450
+#: packages/admin/src/router.tsx:2451
 msgid "Failed to perform bulk action"
 msgstr "ביצוע פעולה בכמות גדולה נכשל"
 
@@ -6375,7 +6375,7 @@ msgstr ""
 msgid "Failed to read byline field usage"
 msgstr "קריאת השימוש בשדה קרדיט נכשלה"
 
-#: packages/admin/src/router.tsx:2876
+#: packages/admin/src/router.tsx:2877
 msgid "Failed to register {slug}"
 msgstr ""
 
@@ -6458,7 +6458,7 @@ msgstr "כתיבה מחדש של כתובות URL נכשלה"
 
 #: packages/admin/src/router.tsx:910
 #: packages/admin/src/router.tsx:1313
-#: packages/admin/src/router.tsx:3061
+#: packages/admin/src/router.tsx:3062
 msgid "Failed to save"
 msgstr "השמירה נכשלה"
 
@@ -6628,7 +6628,7 @@ msgstr "עדכון מקטע נכשל"
 msgid "Failed to update settings"
 msgstr "עדכון הגדרות נכשל"
 
-#: packages/admin/src/router.tsx:2409
+#: packages/admin/src/router.tsx:2410
 msgid "Failed to update status"
 msgstr "עדכון סטטוס נכשל"
 
@@ -6874,7 +6874,7 @@ msgstr "התיקייה נמחקה"
 msgid "Folder name must be between 1 and 200 characters"
 msgstr "שם התיקייה חייב להכיל בין 1 ל-200 תווים"
 
-#: packages/admin/src/router.tsx:2079
+#: packages/admin/src/router.tsx:2080
 msgid "Folder no longer exists"
 msgstr "התיקייה אינה קיימת עוד"
 
@@ -6992,7 +6992,7 @@ msgstr "הגדרות כלליות"
 msgid "Genres"
 msgstr "סוגות"
 
-#: packages/admin/src/components/WelcomeModal.tsx:154
+#: packages/admin/src/components/WelcomeModal.tsx:156
 msgid "Get Started"
 msgstr "תחילת העבודה"
 
@@ -7021,7 +7021,7 @@ msgid "Go live {countdown}"
 msgstr "יתפרסמו {countdown}"
 
 #: packages/admin/src/components/WordPressImport.tsx:2477
-#: packages/admin/src/router.tsx:3357
+#: packages/admin/src/router.tsx:3358
 msgid "Go to Dashboard"
 msgstr "מעבר ללוח הבקרה"
 
@@ -8208,7 +8208,7 @@ msgid "Load preview"
 msgstr "טעינת תצוגה מקדימה"
 
 #: packages/admin/src/components/calendar/CalendarToolbar.tsx:59
-#: packages/admin/src/router.tsx:3312
+#: packages/admin/src/router.tsx:3313
 msgid "Loading"
 msgstr "בטעינה"
 
@@ -8237,8 +8237,8 @@ msgstr "מתבצעת טעינת אוספים..."
 msgid "Loading comments..."
 msgstr "מתבצעת טעינת תגובות..."
 
-#: packages/admin/src/router.tsx:3314
-#: packages/admin/src/router.tsx:3326
+#: packages/admin/src/router.tsx:3315
+#: packages/admin/src/router.tsx:3327
 msgid "Loading configuration..."
 msgstr "מתבצעת טעינת תצורה..."
 
@@ -8550,11 +8550,11 @@ msgstr "תחביר Markdown"
 msgid "Marketplace"
 msgstr "חנות התוספים"
 
-#: packages/admin/src/router.tsx:2713
+#: packages/admin/src/router.tsx:2714
 msgid "Marketplace browsing is no longer available."
 msgstr "העיון בחנות התוספים אינו זמין עוד."
 
-#: packages/admin/src/router.tsx:2688
+#: packages/admin/src/router.tsx:2689
 msgid "Marketplace browsing is no longer available. Manage installed plugins from Plugins."
 msgstr "העיון בחנות התוספים אינו זמין עוד. נהלו תוספים מותקנים ממסך התוספים."
 
@@ -10069,7 +10069,7 @@ msgstr "תמצית החבילה"
 msgid "Package downloaded"
 msgstr "החבילה הורדה"
 
-#: packages/admin/src/router.tsx:3352
+#: packages/admin/src/router.tsx:3353
 msgid "Page Not Found"
 msgstr "העמוד לא נמצא"
 
@@ -10423,8 +10423,8 @@ msgstr "רישום תוספים"
 msgid "Plugin registry configuration error"
 msgstr "שגיאת תצורת רישום תוספים"
 
-#: packages/admin/src/router.tsx:2648
-#: packages/admin/src/router.tsx:2679
+#: packages/admin/src/router.tsx:2649
+#: packages/admin/src/router.tsx:2680
 msgid "Plugin registry is not configured."
 msgstr "רישום התוספים אינו מוגדר."
 
@@ -10851,7 +10851,7 @@ msgid "Read your taxonomies and terms"
 msgstr "קריאת הטקסונומיות והמונחים שלכם"
 
 #: packages/admin/src/components/EntryLockNotice.tsx:70
-#: packages/admin/src/router.tsx:2012
+#: packages/admin/src/router.tsx:2013
 msgid "Read-only"
 msgstr "קריאה בלבד"
 
@@ -11574,7 +11574,7 @@ msgstr "הוצא משימוש"
 #: packages/admin/src/components/Sections.tsx:281
 #: packages/admin/src/components/ThemeMarketplaceBrowse.tsx:122
 #: packages/admin/src/lib/content-editor-panels.tsx:201
-#: packages/admin/src/router.tsx:3340
+#: packages/admin/src/router.tsx:3341
 #: packages/admin/src/routes/byline-schema.tsx:280
 #: packages/admin/src/routes/calendar.tsx:345
 msgid "Retry"
@@ -13221,7 +13221,7 @@ msgid "Sub-Fields"
 msgstr "שדות משנה"
 
 #: packages/admin/src/components/users/roleDefinitions.ts:18
-#: packages/admin/src/components/WelcomeModal.tsx:29
+#: packages/admin/src/components/WelcomeModal.tsx:30
 msgid "Subscriber"
 msgstr "מנוי/ה"
 
@@ -13709,7 +13709,7 @@ msgstr "תוכן החבילה נכתב לאתר זה. אי אפשר לבטל א�
 msgid "The package’s file index is not valid."
 msgstr "אינדקס הקבצים של החבילה אינו תקין."
 
-#: packages/admin/src/router.tsx:3354
+#: packages/admin/src/router.tsx:3355
 msgid "The page you're looking for doesn't exist."
 msgstr "העמוד שאתם מחפשים אינו קיים."
 
@@ -13941,11 +13941,11 @@ msgstr "פריט זה השתנה במקום אחר לאחר שפתחתם אות�
 msgid "This entry changed somewhere else. Save anyway, or reload to get the newer version."
 msgstr "פריט זה השתנה במקום אחר. שמרו בכל זאת או טענו מחדש כדי לקבל את הגרסה החדשה יותר."
 
-#: packages/admin/src/router.tsx:1949
+#: packages/admin/src/router.tsx:1950
 msgid "This entry doesn't exist or isn't published. Your role can only view published content."
 msgstr ""
 
-#: packages/admin/src/router.tsx:1950
+#: packages/admin/src/router.tsx:1951
 msgid "This entry doesn't exist or was deleted."
 msgstr ""
 
@@ -15391,11 +15391,11 @@ msgstr "אתר אינטרנט"
 msgid "Website URL"
 msgstr "URL של אתר אינטרנט"
 
-#: packages/admin/src/components/WelcomeModal.tsx:102
+#: packages/admin/src/components/WelcomeModal.tsx:104
 msgid "Welcome to EmDash, {firstName}!"
 msgstr "ברוכים הבאים ל-EmDash, {firstName}!"
 
-#: packages/admin/src/components/WelcomeModal.tsx:102
+#: packages/admin/src/components/WelcomeModal.tsx:104
 msgid "Welcome to EmDash!"
 msgstr "ברוכים הבאים ל-EmDash!"
 
@@ -15667,11 +15667,11 @@ msgstr "תוספי Yoast/RankMath"
 msgid "You can close this page and return to your terminal."
 msgstr "תוכלו לסגור עמוד זה ולחזור למסוף שלכם."
 
-#: packages/admin/src/components/WelcomeModal.tsx:49
+#: packages/admin/src/components/WelcomeModal.tsx:50
 msgid "You can create and edit your own content."
 msgstr "תוכלו ליצור ולערוך את התוכן שלכם."
 
-#: packages/admin/src/components/WelcomeModal.tsx:48
+#: packages/admin/src/components/WelcomeModal.tsx:49
 msgid "You can manage content, media, menus, and taxonomies."
 msgstr "תוכלו לנהל תוכן, מדיה, תפריטים וטקסונומיות."
 
@@ -15679,7 +15679,7 @@ msgstr "תוכלו לנהל תוכן, מדיה, תפריטים וטקסונומ�
 msgid "You can still edit the fixed fields above. Saving will not touch any stored custom-field values."
 msgstr "עדיין תוכלו לערוך את השדות הקבועים למעלה. השמירה לא תיגע בערכים שמורים של שדות מותאמים אישית."
 
-#: packages/admin/src/components/WelcomeModal.tsx:50
+#: packages/admin/src/components/WelcomeModal.tsx:51
 msgid "You can view and contribute to the site."
 msgstr "תוכלו לצפות באתר ולתרום לו."
 
@@ -15704,7 +15704,7 @@ msgstr "אין לכם הרשאה להעביר קובץ זה."
 msgid "You don't have permission to view the calendar."
 msgstr "אין לכם הרשאה לצפות בלוח השנה."
 
-#: packages/admin/src/components/WelcomeModal.tsx:47
+#: packages/admin/src/components/WelcomeModal.tsx:48
 msgid "You have full access to manage this site, including users, settings, and all content."
 msgstr "יש לכם גישה מלאה לניהול אתר זה, כולל משתמשים, הגדרות וכל התוכן."
 
@@ -15720,7 +15720,7 @@ msgstr "נדרשות הרשאות מנהל/ת כדי לנהל מעקב שימו�
 msgid "You need Admin permissions to transfer this site."
 msgstr "נדרשות הרשאות מנהל/ת כדי להעביר את האתר הזה."
 
-#: packages/admin/src/router.tsx:2466
+#: packages/admin/src/router.tsx:2467
 msgid "You need Editor permissions to moderate comments."
 msgstr "נדרשות הרשאות עורך/ת כדי לנהל תגובות."
 
@@ -15783,7 +15783,7 @@ msgstr "אתם@company.com"
 msgid "you@example.com"
 msgstr "אתם@example.com"
 
-#: packages/admin/src/components/WelcomeModal.tsx:45
+#: packages/admin/src/components/WelcomeModal.tsx:46
 msgid "Your account has been created successfully."
 msgstr "החשבון שלכם נוצר בהצלחה."
 
@@ -15857,15 +15857,15 @@ msgstr "השם שלכם"
 msgid "Your name (optional)"
 msgstr "השם שלכם (אופציונלי)"
 
-#: packages/admin/src/components/WelcomeModal.tsx:46
+#: packages/admin/src/components/WelcomeModal.tsx:47
 msgid "Your Role"
 msgstr "התפקיד שלכם"
 
-#: packages/admin/src/router.tsx:2017
+#: packages/admin/src/router.tsx:2018
 msgid "Your role can edit your own entries only while they are drafts."
 msgstr ""
 
-#: packages/admin/src/router.tsx:2018
+#: packages/admin/src/router.tsx:2019
 msgid "Your role can't edit this entry."
 msgstr ""
 

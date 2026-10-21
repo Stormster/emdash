@@ -97,7 +97,7 @@ msgid "{0, plural, one {# comment imported} other {# comments imported}}"
 msgstr "{0, plural, one {# टिप्पणी आयातित} other {# टिप्पणियाँ आयात की गईं}}"
 
 #. placeholder {0}: result.affected
-#: packages/admin/src/router.tsx:2445
+#: packages/admin/src/router.tsx:2446
 msgid "{0, plural, one {# comment updated} other {# comments updated}}"
 msgstr "{0, plural, one {# टिप्पणी अपडेट की गई} other {# टिप्पणियाँ अपडेट की गईं}}"
 
@@ -1172,7 +1172,7 @@ msgstr "आमंत्रण स्वीकार करें"
 msgid "Access denied"
 msgstr "पहुंच अस्वीकृत"
 
-#: packages/admin/src/router.tsx:2465
+#: packages/admin/src/router.tsx:2466
 msgid "Access Denied"
 msgstr "पहुंच अस्वीकृत"
 
@@ -1561,7 +1561,7 @@ msgstr "व्यवस्थापक"
 msgid "Admin navigation"
 msgstr "व्यवस्थापक नेविगेशन"
 
-#: packages/admin/src/components/WelcomeModal.tsx:25
+#: packages/admin/src/components/WelcomeModal.tsx:26
 msgid "Administrator"
 msgstr "प्रशासक"
 
@@ -1829,11 +1829,11 @@ msgstr "एक एन्क्रिप्टेड डिजिटल कुं
 #: packages/admin/src/router.tsx:1593
 #: packages/admin/src/router.tsx:1626
 #: packages/admin/src/router.tsx:1647
-#: packages/admin/src/router.tsx:2410
-#: packages/admin/src/router.tsx:2426
-#: packages/admin/src/router.tsx:2451
-#: packages/admin/src/router.tsx:2877
-#: packages/admin/src/router.tsx:3062
+#: packages/admin/src/router.tsx:2411
+#: packages/admin/src/router.tsx:2427
+#: packages/admin/src/router.tsx:2452
+#: packages/admin/src/router.tsx:2878
+#: packages/admin/src/router.tsx:3063
 #: packages/admin/src/routes/byline-schema.tsx:103
 #: packages/admin/src/routes/byline-schema.tsx:123
 #: packages/admin/src/routes/byline-schema.tsx:139
@@ -1984,7 +1984,7 @@ msgstr "क्या आप वाकई \"{0}\" फ़ील्ड को ह�
 msgid "Are you sure you want to delete this menu? This will also delete all menu items. This action cannot be undone."
 msgstr "क्या आप वाकई इस मेनू को हटाना चाहते हैं? इससे सभी मेनू आइटम भी हट जाएंगे. इस एक्शन को वापस नहीं किया जा सकता।"
 
-#: packages/admin/src/components/WelcomeModal.tsx:59
+#: packages/admin/src/components/WelcomeModal.tsx:60
 msgid "As an administrator, you can invite other users from the Users section."
 msgstr "एक व्यवस्थापक के रूप में, आप उपयोगकर्ता अनुभाग से अन्य उपयोगकर्ताओं को आमंत्रित कर सकते हैं।"
 
@@ -2058,7 +2058,7 @@ msgstr "प्रमाणीकरण रद्द कर दिया गय�
 #: packages/admin/src/components/ContentSettingsPanel.tsx:1418
 #: packages/admin/src/components/RelationForm.tsx:315
 #: packages/admin/src/components/users/roleDefinitions.ts:30
-#: packages/admin/src/components/WelcomeModal.tsx:27
+#: packages/admin/src/components/WelcomeModal.tsx:28
 msgid "Author"
 msgstr "लेखक"
 
@@ -3096,7 +3096,7 @@ msgstr "{siteName} में साइन इन करने के लिए �
 #: packages/admin/src/components/users/InviteUserModal.tsx:88
 #: packages/admin/src/components/users/InviteUserModal.tsx:94
 #: packages/admin/src/components/users/InviteUserModal.tsx:98
-#: packages/admin/src/components/WelcomeModal.tsx:60
+#: packages/admin/src/components/WelcomeModal.tsx:61
 #: packages/admin/src/components/Widgets.tsx:414
 #: packages/admin/src/components/Widgets.tsx:420
 #: packages/admin/src/components/Widgets.tsx:424
@@ -3482,7 +3482,7 @@ msgid "Continue with security key"
 msgstr "सुरक्षा कुंजी के साथ जारी रखें"
 
 #: packages/admin/src/components/users/roleDefinitions.ts:24
-#: packages/admin/src/components/WelcomeModal.tsx:28
+#: packages/admin/src/components/WelcomeModal.tsx:29
 msgid "Contributor"
 msgstr "योगदानकर्ता"
 
@@ -5111,7 +5111,7 @@ msgid "visualEditing.sessionExpired"
 msgstr "संपादन सत्र समाप्त हो गया। जारी रखने के लिए पेज रीफ़्रेश करें।"
 
 #: packages/admin/src/components/users/roleDefinitions.ts:36
-#: packages/admin/src/components/WelcomeModal.tsx:26
+#: packages/admin/src/components/WelcomeModal.tsx:27
 msgid "Editor"
 msgstr "संपादक"
 
@@ -5413,7 +5413,7 @@ msgstr "लिंक करने वाली ओर की एंट्री"
 #: packages/admin/src/components/SetupWizard.tsx:607
 #: packages/admin/src/components/TaxonomyManager.tsx:1210
 #: packages/admin/src/components/Widgets.tsx:773
-#: packages/admin/src/router.tsx:3337
+#: packages/admin/src/router.tsx:3338
 msgid "Error"
 msgstr "एरर"
 
@@ -5790,7 +5790,7 @@ msgid "Failed to delete collection"
 msgstr "संग्रह हटाने में विफल"
 
 #: packages/admin/src/lib/api/comments.ts:114
-#: packages/admin/src/router.tsx:2425
+#: packages/admin/src/router.tsx:2426
 msgid "Failed to delete comment"
 msgstr "टिप्पणी हटाने में विफल"
 
@@ -5885,7 +5885,7 @@ msgstr ""
 msgid "Failed to dismiss scheduled publication rejection"
 msgstr ""
 
-#: packages/admin/src/components/WelcomeModal.tsx:76
+#: packages/admin/src/components/WelcomeModal.tsx:78
 msgid "Failed to dismiss welcome"
 msgstr "स्वागत को ख़ारिज करने में विफल"
 
@@ -6155,7 +6155,7 @@ msgstr ""
 #: packages/admin/src/lib/api/current-user.ts:22
 #: packages/admin/src/lib/api/users.ts:91
 #: packages/admin/src/lib/api/users.ts:96
-#: packages/admin/src/router.tsx:2356
+#: packages/admin/src/router.tsx:2357
 msgid "Failed to fetch user"
 msgstr "उपयोगकर्ता लाने में विफल"
 
@@ -6344,7 +6344,7 @@ msgid "Failed to lock the entry"
 msgstr ""
 
 #: packages/admin/src/lib/api/comments.ts:131
-#: packages/admin/src/router.tsx:2450
+#: packages/admin/src/router.tsx:2451
 msgid "Failed to perform bulk action"
 msgstr "थोक कार्रवाई करने में विफल"
 
@@ -6374,7 +6374,7 @@ msgstr ""
 msgid "Failed to read byline field usage"
 msgstr "बायलाइन फ़ील्ड उपयोग को पढ़ने में विफल"
 
-#: packages/admin/src/router.tsx:2876
+#: packages/admin/src/router.tsx:2877
 msgid "Failed to register {slug}"
 msgstr ""
 
@@ -6457,7 +6457,7 @@ msgstr "URL पुनः लिखने में विफल"
 
 #: packages/admin/src/router.tsx:910
 #: packages/admin/src/router.tsx:1313
-#: packages/admin/src/router.tsx:3061
+#: packages/admin/src/router.tsx:3062
 msgid "Failed to save"
 msgstr "सहेजने में विफल"
 
@@ -6627,7 +6627,7 @@ msgstr "अनुभाग अद्यतन करने में विफ�
 msgid "Failed to update settings"
 msgstr "सेटिंग्स अपडेट करने में विफल"
 
-#: packages/admin/src/router.tsx:2409
+#: packages/admin/src/router.tsx:2410
 msgid "Failed to update status"
 msgstr "स्थिति अपडेट करने में विफल"
 
@@ -6873,7 +6873,7 @@ msgstr ""
 msgid "Folder name must be between 1 and 200 characters"
 msgstr ""
 
-#: packages/admin/src/router.tsx:2079
+#: packages/admin/src/router.tsx:2080
 msgid "Folder no longer exists"
 msgstr ""
 
@@ -6991,7 +6991,7 @@ msgstr "सामान्य सेटिंग्स"
 msgid "Genres"
 msgstr "शैलियां"
 
-#: packages/admin/src/components/WelcomeModal.tsx:154
+#: packages/admin/src/components/WelcomeModal.tsx:156
 msgid "Get Started"
 msgstr "शुरू हो जाओ"
 
@@ -7020,7 +7020,7 @@ msgid "Go live {countdown}"
 msgstr ""
 
 #: packages/admin/src/components/WordPressImport.tsx:2477
-#: packages/admin/src/router.tsx:3357
+#: packages/admin/src/router.tsx:3358
 msgid "Go to Dashboard"
 msgstr "डैशबोर्ड पर जाएँ"
 
@@ -8207,7 +8207,7 @@ msgid "Load preview"
 msgstr ""
 
 #: packages/admin/src/components/calendar/CalendarToolbar.tsx:59
-#: packages/admin/src/router.tsx:3312
+#: packages/admin/src/router.tsx:3313
 msgid "Loading"
 msgstr "लोड हो रहा है"
 
@@ -8236,8 +8236,8 @@ msgstr "संग्रह लोड हो रहा है..."
 msgid "Loading comments..."
 msgstr "टिप्पणियाँ लोड हो रही हैं..."
 
-#: packages/admin/src/router.tsx:3314
-#: packages/admin/src/router.tsx:3326
+#: packages/admin/src/router.tsx:3315
+#: packages/admin/src/router.tsx:3327
 msgid "Loading configuration..."
 msgstr "कॉन्फ़िगरेशन लोड हो रहा है..."
 
@@ -8549,11 +8549,11 @@ msgstr "markdown"
 msgid "Marketplace"
 msgstr "बाजार"
 
-#: packages/admin/src/router.tsx:2713
+#: packages/admin/src/router.tsx:2714
 msgid "Marketplace browsing is no longer available."
 msgstr ""
 
-#: packages/admin/src/router.tsx:2688
+#: packages/admin/src/router.tsx:2689
 msgid "Marketplace browsing is no longer available. Manage installed plugins from Plugins."
 msgstr ""
 
@@ -10068,7 +10068,7 @@ msgstr ""
 msgid "Package downloaded"
 msgstr ""
 
-#: packages/admin/src/router.tsx:3352
+#: packages/admin/src/router.tsx:3353
 msgid "Page Not Found"
 msgstr "पृष्ठ नहीं मिला"
 
@@ -10422,8 +10422,8 @@ msgstr "प्लगइन रजिस्ट्री"
 msgid "Plugin registry configuration error"
 msgstr ""
 
-#: packages/admin/src/router.tsx:2648
-#: packages/admin/src/router.tsx:2679
+#: packages/admin/src/router.tsx:2649
+#: packages/admin/src/router.tsx:2680
 msgid "Plugin registry is not configured."
 msgstr ""
 
@@ -10850,7 +10850,7 @@ msgid "Read your taxonomies and terms"
 msgstr "अपनी वर्गीकरण और शर्तें पढ़ें"
 
 #: packages/admin/src/components/EntryLockNotice.tsx:70
-#: packages/admin/src/router.tsx:2012
+#: packages/admin/src/router.tsx:2013
 msgid "Read-only"
 msgstr ""
 
@@ -11573,7 +11573,7 @@ msgstr ""
 #: packages/admin/src/components/Sections.tsx:281
 #: packages/admin/src/components/ThemeMarketplaceBrowse.tsx:122
 #: packages/admin/src/lib/content-editor-panels.tsx:201
-#: packages/admin/src/router.tsx:3340
+#: packages/admin/src/router.tsx:3341
 #: packages/admin/src/routes/byline-schema.tsx:280
 #: packages/admin/src/routes/calendar.tsx:345
 msgid "Retry"
@@ -13220,7 +13220,7 @@ msgid "Sub-Fields"
 msgstr "उप क्षेत्रों"
 
 #: packages/admin/src/components/users/roleDefinitions.ts:18
-#: packages/admin/src/components/WelcomeModal.tsx:29
+#: packages/admin/src/components/WelcomeModal.tsx:30
 msgid "Subscriber"
 msgstr "ग्राहक"
 
@@ -13708,7 +13708,7 @@ msgstr ""
 msgid "The package’s file index is not valid."
 msgstr ""
 
-#: packages/admin/src/router.tsx:3354
+#: packages/admin/src/router.tsx:3355
 msgid "The page you're looking for doesn't exist."
 msgstr "आप जिस पृष्ठ को खोज रहे हैं वह मौजूद नहीं है।"
 
@@ -13940,11 +13940,11 @@ msgstr ""
 msgid "This entry changed somewhere else. Save anyway, or reload to get the newer version."
 msgstr ""
 
-#: packages/admin/src/router.tsx:1949
+#: packages/admin/src/router.tsx:1950
 msgid "This entry doesn't exist or isn't published. Your role can only view published content."
 msgstr ""
 
-#: packages/admin/src/router.tsx:1950
+#: packages/admin/src/router.tsx:1951
 msgid "This entry doesn't exist or was deleted."
 msgstr ""
 
@@ -15390,11 +15390,11 @@ msgstr "वेबसाइट"
 msgid "Website URL"
 msgstr "वेबसाइट URL"
 
-#: packages/admin/src/components/WelcomeModal.tsx:102
+#: packages/admin/src/components/WelcomeModal.tsx:104
 msgid "Welcome to EmDash, {firstName}!"
 msgstr "EmDash में आपका स्वागत है, {firstName}!"
 
-#: packages/admin/src/components/WelcomeModal.tsx:102
+#: packages/admin/src/components/WelcomeModal.tsx:104
 msgid "Welcome to EmDash!"
 msgstr "EmDash में आपका स्वागत है!"
 
@@ -15666,11 +15666,11 @@ msgstr "योस्ट/रैंकमैथ"
 msgid "You can close this page and return to your terminal."
 msgstr "आप इस पृष्ठ को बंद कर सकते हैं और अपने टर्मिनल पर वापस लौट सकते हैं।"
 
-#: packages/admin/src/components/WelcomeModal.tsx:49
+#: packages/admin/src/components/WelcomeModal.tsx:50
 msgid "You can create and edit your own content."
 msgstr "आप अपनी स्वयं की सामग्री बना और संपादित कर सकते हैं."
 
-#: packages/admin/src/components/WelcomeModal.tsx:48
+#: packages/admin/src/components/WelcomeModal.tsx:49
 msgid "You can manage content, media, menus, and taxonomies."
 msgstr "आप सामग्री, मीडिया, मेनू और वर्गीकरण प्रबंधित कर सकते हैं।"
 
@@ -15678,7 +15678,7 @@ msgstr "आप सामग्री, मीडिया, मेनू और �
 msgid "You can still edit the fixed fields above. Saving will not touch any stored custom-field values."
 msgstr "आप अभी भी ऊपर दिए गए निश्चित फ़ील्ड संपादित कर सकते हैं. बचत किसी भी संग्रहीत कस्टम-फ़ील्ड मान को नहीं छूएगी।"
 
-#: packages/admin/src/components/WelcomeModal.tsx:50
+#: packages/admin/src/components/WelcomeModal.tsx:51
 msgid "You can view and contribute to the site."
 msgstr "आप साइट को देख सकते हैं और उसमें योगदान कर सकते हैं।"
 
@@ -15703,7 +15703,7 @@ msgstr ""
 msgid "You don't have permission to view the calendar."
 msgstr ""
 
-#: packages/admin/src/components/WelcomeModal.tsx:47
+#: packages/admin/src/components/WelcomeModal.tsx:48
 msgid "You have full access to manage this site, including users, settings, and all content."
 msgstr "आपके पास उपयोगकर्ताओं, सेटिंग्स और सभी सामग्री सहित इस साइट को प्रबंधित करने की पूरी पहुंच है।"
 
@@ -15719,7 +15719,7 @@ msgstr ""
 msgid "You need Admin permissions to transfer this site."
 msgstr ""
 
-#: packages/admin/src/router.tsx:2466
+#: packages/admin/src/router.tsx:2467
 msgid "You need Editor permissions to moderate comments."
 msgstr "टिप्पणियों को मॉडरेट करने के लिए आपको संपादक की अनुमति की आवश्यकता है।"
 
@@ -15782,7 +15782,7 @@ msgstr "you@company.com"
 msgid "you@example.com"
 msgstr "you@example.com"
 
-#: packages/admin/src/components/WelcomeModal.tsx:45
+#: packages/admin/src/components/WelcomeModal.tsx:46
 msgid "Your account has been created successfully."
 msgstr "आपका खाता सफलतापूर्वक बन गया है."
 
@@ -15856,15 +15856,15 @@ msgstr "आपका नाम"
 msgid "Your name (optional)"
 msgstr "आपका नाम (वैकल्पिक)"
 
-#: packages/admin/src/components/WelcomeModal.tsx:46
+#: packages/admin/src/components/WelcomeModal.tsx:47
 msgid "Your Role"
 msgstr "आपकी भूमिका"
 
-#: packages/admin/src/router.tsx:2017
+#: packages/admin/src/router.tsx:2018
 msgid "Your role can edit your own entries only while they are drafts."
 msgstr ""
 
-#: packages/admin/src/router.tsx:2018
+#: packages/admin/src/router.tsx:2019
 msgid "Your role can't edit this entry."
 msgstr ""
 

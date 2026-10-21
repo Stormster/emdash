@@ -97,7 +97,7 @@ msgid "{0, plural, one {# comment imported} other {# comments imported}}"
 msgstr "{0, plural, one {# kommentar importeret} other {# kommentarer importeret}}"
 
 #. placeholder {0}: result.affected
-#: packages/admin/src/router.tsx:2445
+#: packages/admin/src/router.tsx:2446
 msgid "{0, plural, one {# comment updated} other {# comments updated}}"
 msgstr "{0, plural, one {# kommentar opdateret} other {# kommentarer opdateret}}"
 
@@ -1172,7 +1172,7 @@ msgstr "Accepter invitation"
 msgid "Access denied"
 msgstr "Adgang nægtet"
 
-#: packages/admin/src/router.tsx:2465
+#: packages/admin/src/router.tsx:2466
 msgid "Access Denied"
 msgstr "Adgang nægtet"
 
@@ -1561,7 +1561,7 @@ msgstr "Admin"
 msgid "Admin navigation"
 msgstr "Administrationsnavigation"
 
-#: packages/admin/src/components/WelcomeModal.tsx:25
+#: packages/admin/src/components/WelcomeModal.tsx:26
 msgid "Administrator"
 msgstr "Administrator"
 
@@ -1829,11 +1829,11 @@ msgstr "En krypteret digital nøgle, som du låser op med dit fingeraftryk, dit 
 #: packages/admin/src/router.tsx:1593
 #: packages/admin/src/router.tsx:1626
 #: packages/admin/src/router.tsx:1647
-#: packages/admin/src/router.tsx:2410
-#: packages/admin/src/router.tsx:2426
-#: packages/admin/src/router.tsx:2451
-#: packages/admin/src/router.tsx:2877
-#: packages/admin/src/router.tsx:3062
+#: packages/admin/src/router.tsx:2411
+#: packages/admin/src/router.tsx:2427
+#: packages/admin/src/router.tsx:2452
+#: packages/admin/src/router.tsx:2878
+#: packages/admin/src/router.tsx:3063
 #: packages/admin/src/routes/byline-schema.tsx:103
 #: packages/admin/src/routes/byline-schema.tsx:123
 #: packages/admin/src/routes/byline-schema.tsx:139
@@ -1984,7 +1984,7 @@ msgstr "Er du sikker på, at du vil slette feltet \"{0}\"?"
 msgid "Are you sure you want to delete this menu? This will also delete all menu items. This action cannot be undone."
 msgstr "Er du sikker på, at du vil slette denne menu? Dette sletter også alle menupunkter. Handlingen kan ikke fortrydes."
 
-#: packages/admin/src/components/WelcomeModal.tsx:59
+#: packages/admin/src/components/WelcomeModal.tsx:60
 msgid "As an administrator, you can invite other users from the Users section."
 msgstr "Som administrator kan du invitere andre brugere fra sektionen Brugere."
 
@@ -2058,7 +2058,7 @@ msgstr "Login blev annulleret eller fik timeout. Prøv igen."
 #: packages/admin/src/components/ContentSettingsPanel.tsx:1418
 #: packages/admin/src/components/RelationForm.tsx:315
 #: packages/admin/src/components/users/roleDefinitions.ts:30
-#: packages/admin/src/components/WelcomeModal.tsx:27
+#: packages/admin/src/components/WelcomeModal.tsx:28
 msgid "Author"
 msgstr "Forfatter"
 
@@ -3096,7 +3096,7 @@ msgstr "Klik på dette link for at logge ind på {siteName}:"
 #: packages/admin/src/components/users/InviteUserModal.tsx:88
 #: packages/admin/src/components/users/InviteUserModal.tsx:94
 #: packages/admin/src/components/users/InviteUserModal.tsx:98
-#: packages/admin/src/components/WelcomeModal.tsx:60
+#: packages/admin/src/components/WelcomeModal.tsx:61
 #: packages/admin/src/components/Widgets.tsx:414
 #: packages/admin/src/components/Widgets.tsx:420
 #: packages/admin/src/components/Widgets.tsx:424
@@ -3482,7 +3482,7 @@ msgid "Continue with security key"
 msgstr "Fortsæt med sikkerhedsnøgle"
 
 #: packages/admin/src/components/users/roleDefinitions.ts:24
-#: packages/admin/src/components/WelcomeModal.tsx:28
+#: packages/admin/src/components/WelcomeModal.tsx:29
 msgid "Contributor"
 msgstr "Bidragyder"
 
@@ -5111,7 +5111,7 @@ msgid "visualEditing.sessionExpired"
 msgstr "Redigeringssessionen er udløbet. Opdater siden for at fortsætte."
 
 #: packages/admin/src/components/users/roleDefinitions.ts:36
-#: packages/admin/src/components/WelcomeModal.tsx:26
+#: packages/admin/src/components/WelcomeModal.tsx:27
 msgid "Editor"
 msgstr "Redaktør"
 
@@ -5413,7 +5413,7 @@ msgstr "indlæg på den linkende side"
 #: packages/admin/src/components/SetupWizard.tsx:607
 #: packages/admin/src/components/TaxonomyManager.tsx:1210
 #: packages/admin/src/components/Widgets.tsx:773
-#: packages/admin/src/router.tsx:3337
+#: packages/admin/src/router.tsx:3338
 msgid "Error"
 msgstr "Fejl"
 
@@ -5790,7 +5790,7 @@ msgid "Failed to delete collection"
 msgstr "Samlingen kunne ikke slettes"
 
 #: packages/admin/src/lib/api/comments.ts:114
-#: packages/admin/src/router.tsx:2425
+#: packages/admin/src/router.tsx:2426
 msgid "Failed to delete comment"
 msgstr "Kommentaren kunne ikke slettes"
 
@@ -5885,7 +5885,7 @@ msgstr ""
 msgid "Failed to dismiss scheduled publication rejection"
 msgstr "Afvisningen af den planlagte udgivelse kunne ikke lukkes"
 
-#: packages/admin/src/components/WelcomeModal.tsx:76
+#: packages/admin/src/components/WelcomeModal.tsx:78
 msgid "Failed to dismiss welcome"
 msgstr "Velkomstbeskeden kunne ikke lukkes"
 
@@ -6155,7 +6155,7 @@ msgstr "Opdateringsstatus kunne ikke hentes"
 #: packages/admin/src/lib/api/current-user.ts:22
 #: packages/admin/src/lib/api/users.ts:91
 #: packages/admin/src/lib/api/users.ts:96
-#: packages/admin/src/router.tsx:2356
+#: packages/admin/src/router.tsx:2357
 msgid "Failed to fetch user"
 msgstr "Brugeren kunne ikke hentes"
 
@@ -6344,7 +6344,7 @@ msgid "Failed to lock the entry"
 msgstr "Indlægget kunne ikke låses"
 
 #: packages/admin/src/lib/api/comments.ts:131
-#: packages/admin/src/router.tsx:2450
+#: packages/admin/src/router.tsx:2451
 msgid "Failed to perform bulk action"
 msgstr "Massehandlingen kunne ikke udføres"
 
@@ -6374,7 +6374,7 @@ msgstr ""
 msgid "Failed to read byline field usage"
 msgstr "Brugen af bylinefeltet kunne ikke læses"
 
-#: packages/admin/src/router.tsx:2876
+#: packages/admin/src/router.tsx:2877
 msgid "Failed to register {slug}"
 msgstr ""
 
@@ -6457,7 +6457,7 @@ msgstr "URL'erne kunne ikke omskrives"
 
 #: packages/admin/src/router.tsx:910
 #: packages/admin/src/router.tsx:1313
-#: packages/admin/src/router.tsx:3061
+#: packages/admin/src/router.tsx:3062
 msgid "Failed to save"
 msgstr "Kunne ikke gemme"
 
@@ -6627,7 +6627,7 @@ msgstr "Sektionen kunne ikke opdateres"
 msgid "Failed to update settings"
 msgstr "Indstillingerne kunne ikke opdateres"
 
-#: packages/admin/src/router.tsx:2409
+#: packages/admin/src/router.tsx:2410
 msgid "Failed to update status"
 msgstr "Status kunne ikke opdateres"
 
@@ -6873,7 +6873,7 @@ msgstr "Mappen er slettet"
 msgid "Folder name must be between 1 and 200 characters"
 msgstr "Mappenavnet skal være mellem 1 og 200 tegn"
 
-#: packages/admin/src/router.tsx:2079
+#: packages/admin/src/router.tsx:2080
 msgid "Folder no longer exists"
 msgstr "Mappen findes ikke længere"
 
@@ -6991,7 +6991,7 @@ msgstr "Generelle indstillinger"
 msgid "Genres"
 msgstr "Genrer"
 
-#: packages/admin/src/components/WelcomeModal.tsx:154
+#: packages/admin/src/components/WelcomeModal.tsx:156
 msgid "Get Started"
 msgstr "Kom i gang"
 
@@ -7020,7 +7020,7 @@ msgid "Go live {countdown}"
 msgstr ""
 
 #: packages/admin/src/components/WordPressImport.tsx:2477
-#: packages/admin/src/router.tsx:3357
+#: packages/admin/src/router.tsx:3358
 msgid "Go to Dashboard"
 msgstr "Gå til kontrolpanelet"
 
@@ -8207,7 +8207,7 @@ msgid "Load preview"
 msgstr ""
 
 #: packages/admin/src/components/calendar/CalendarToolbar.tsx:59
-#: packages/admin/src/router.tsx:3312
+#: packages/admin/src/router.tsx:3313
 msgid "Loading"
 msgstr "Indlæser"
 
@@ -8236,8 +8236,8 @@ msgstr "Indlæser samlinger..."
 msgid "Loading comments..."
 msgstr "Indlæser kommentarer..."
 
-#: packages/admin/src/router.tsx:3314
-#: packages/admin/src/router.tsx:3326
+#: packages/admin/src/router.tsx:3315
+#: packages/admin/src/router.tsx:3327
 msgid "Loading configuration..."
 msgstr "Indlæser konfiguration..."
 
@@ -8549,11 +8549,11 @@ msgstr "Markdown"
 msgid "Marketplace"
 msgstr "Markedsplads"
 
-#: packages/admin/src/router.tsx:2713
+#: packages/admin/src/router.tsx:2714
 msgid "Marketplace browsing is no longer available."
 msgstr "Markedspladsen er ikke længere tilgængelig."
 
-#: packages/admin/src/router.tsx:2688
+#: packages/admin/src/router.tsx:2689
 msgid "Marketplace browsing is no longer available. Manage installed plugins from Plugins."
 msgstr "Markedspladsen er ikke længere tilgængelig. Administrer installerede plugins under Plugins."
 
@@ -10068,7 +10068,7 @@ msgstr "Pakkens digest"
 msgid "Package downloaded"
 msgstr "Pakken er downloadet"
 
-#: packages/admin/src/router.tsx:3352
+#: packages/admin/src/router.tsx:3353
 msgid "Page Not Found"
 msgstr "Siden blev ikke fundet"
 
@@ -10422,8 +10422,8 @@ msgstr "Plugin-register"
 msgid "Plugin registry configuration error"
 msgstr "Konfigurationsfejl i plugin-registeret"
 
-#: packages/admin/src/router.tsx:2648
-#: packages/admin/src/router.tsx:2679
+#: packages/admin/src/router.tsx:2649
+#: packages/admin/src/router.tsx:2680
 msgid "Plugin registry is not configured."
 msgstr "Plugin-registeret er ikke konfigureret."
 
@@ -10850,7 +10850,7 @@ msgid "Read your taxonomies and terms"
 msgstr "Læs dine taksonomier og termer"
 
 #: packages/admin/src/components/EntryLockNotice.tsx:70
-#: packages/admin/src/router.tsx:2012
+#: packages/admin/src/router.tsx:2013
 msgid "Read-only"
 msgstr "Skrivebeskyttet"
 
@@ -11573,7 +11573,7 @@ msgstr "Udfaset"
 #: packages/admin/src/components/Sections.tsx:281
 #: packages/admin/src/components/ThemeMarketplaceBrowse.tsx:122
 #: packages/admin/src/lib/content-editor-panels.tsx:201
-#: packages/admin/src/router.tsx:3340
+#: packages/admin/src/router.tsx:3341
 #: packages/admin/src/routes/byline-schema.tsx:280
 #: packages/admin/src/routes/calendar.tsx:345
 msgid "Retry"
@@ -13220,7 +13220,7 @@ msgid "Sub-Fields"
 msgstr "Underfelter"
 
 #: packages/admin/src/components/users/roleDefinitions.ts:18
-#: packages/admin/src/components/WelcomeModal.tsx:29
+#: packages/admin/src/components/WelcomeModal.tsx:30
 msgid "Subscriber"
 msgstr "Abonnent"
 
@@ -13708,7 +13708,7 @@ msgstr "Pakkens indhold skrives til dette websted. Importen kan ikke fortrydes, 
 msgid "The package’s file index is not valid."
 msgstr "Pakkens filindeks er ugyldigt."
 
-#: packages/admin/src/router.tsx:3354
+#: packages/admin/src/router.tsx:3355
 msgid "The page you're looking for doesn't exist."
 msgstr "Siden, du leder efter, findes ikke."
 
@@ -13940,11 +13940,11 @@ msgstr "Dette indlæg blev ændret et andet sted, efter du åbnede det."
 msgid "This entry changed somewhere else. Save anyway, or reload to get the newer version."
 msgstr "Dette indlæg blev ændret et andet sted. Gem alligevel, eller genindlæs for at få den nyere version."
 
-#: packages/admin/src/router.tsx:1949
+#: packages/admin/src/router.tsx:1950
 msgid "This entry doesn't exist or isn't published. Your role can only view published content."
 msgstr ""
 
-#: packages/admin/src/router.tsx:1950
+#: packages/admin/src/router.tsx:1951
 msgid "This entry doesn't exist or was deleted."
 msgstr ""
 
@@ -15390,11 +15390,11 @@ msgstr "Websted"
 msgid "Website URL"
 msgstr "Webstedets URL"
 
-#: packages/admin/src/components/WelcomeModal.tsx:102
+#: packages/admin/src/components/WelcomeModal.tsx:104
 msgid "Welcome to EmDash, {firstName}!"
 msgstr "Velkommen til EmDash, {firstName}!"
 
-#: packages/admin/src/components/WelcomeModal.tsx:102
+#: packages/admin/src/components/WelcomeModal.tsx:104
 msgid "Welcome to EmDash!"
 msgstr "Velkommen til EmDash!"
 
@@ -15666,11 +15666,11 @@ msgstr "Yoast/RankMath"
 msgid "You can close this page and return to your terminal."
 msgstr "Du kan lukke denne side og vende tilbage til din terminal."
 
-#: packages/admin/src/components/WelcomeModal.tsx:49
+#: packages/admin/src/components/WelcomeModal.tsx:50
 msgid "You can create and edit your own content."
 msgstr "Du kan oprette og redigere dit eget indhold."
 
-#: packages/admin/src/components/WelcomeModal.tsx:48
+#: packages/admin/src/components/WelcomeModal.tsx:49
 msgid "You can manage content, media, menus, and taxonomies."
 msgstr "Du kan administrere indhold, media, menuer og taksonomier."
 
@@ -15678,7 +15678,7 @@ msgstr "Du kan administrere indhold, media, menuer og taksonomier."
 msgid "You can still edit the fixed fields above. Saving will not touch any stored custom-field values."
 msgstr "Du kan stadig redigere de faste felter ovenfor. Når du gemmer, berøres ingen gemte værdier i brugerdefinerede felter."
 
-#: packages/admin/src/components/WelcomeModal.tsx:50
+#: packages/admin/src/components/WelcomeModal.tsx:51
 msgid "You can view and contribute to the site."
 msgstr "Du kan se og bidrage til webstedet."
 
@@ -15703,7 +15703,7 @@ msgstr "Du har ikke tilladelse til at flytte denne fil."
 msgid "You don't have permission to view the calendar."
 msgstr ""
 
-#: packages/admin/src/components/WelcomeModal.tsx:47
+#: packages/admin/src/components/WelcomeModal.tsx:48
 msgid "You have full access to manage this site, including users, settings, and all content."
 msgstr "Du har fuld adgang til at administrere dette websted, herunder brugere, indstillinger og alt indhold."
 
@@ -15719,7 +15719,7 @@ msgstr "Du skal have administratortilladelser for at administrere sporing af med
 msgid "You need Admin permissions to transfer this site."
 msgstr "Du skal have administratortilladelser for at overføre dette websted."
 
-#: packages/admin/src/router.tsx:2466
+#: packages/admin/src/router.tsx:2467
 msgid "You need Editor permissions to moderate comments."
 msgstr "Du skal have redaktørtilladelser for at moderere kommentarer."
 
@@ -15782,7 +15782,7 @@ msgstr "dig@firma.dk"
 msgid "you@example.com"
 msgstr "dig@eksempel.dk"
 
-#: packages/admin/src/components/WelcomeModal.tsx:45
+#: packages/admin/src/components/WelcomeModal.tsx:46
 msgid "Your account has been created successfully."
 msgstr "Din konto er oprettet."
 
@@ -15856,15 +15856,15 @@ msgstr "Dit navn"
 msgid "Your name (optional)"
 msgstr "Dit navn (valgfrit)"
 
-#: packages/admin/src/components/WelcomeModal.tsx:46
+#: packages/admin/src/components/WelcomeModal.tsx:47
 msgid "Your Role"
 msgstr "Din rolle"
 
-#: packages/admin/src/router.tsx:2017
+#: packages/admin/src/router.tsx:2018
 msgid "Your role can edit your own entries only while they are drafts."
 msgstr ""
 
-#: packages/admin/src/router.tsx:2018
+#: packages/admin/src/router.tsx:2019
 msgid "Your role can't edit this entry."
 msgstr ""
 

@@ -97,7 +97,7 @@ msgid "{0, plural, one {# comment imported} other {# comments imported}}"
 msgstr "{0, plural, one {นำเข้าความคิดเห็น # รายการแล้ว} other {นำเข้าความคิดเห็น # รายการแล้ว}}"
 
 #. placeholder {0}: result.affected
-#: packages/admin/src/router.tsx:2445
+#: packages/admin/src/router.tsx:2446
 msgid "{0, plural, one {# comment updated} other {# comments updated}}"
 msgstr "{0, plural, one {อัปเดตความคิดเห็น # รายการ} other {อัปเดตความคิดเห็น # รายการ}}"
 
@@ -1172,7 +1172,7 @@ msgstr "ยอมรับคำเชิญ"
 msgid "Access denied"
 msgstr "ไม่มีสิทธิ์เข้าถึง"
 
-#: packages/admin/src/router.tsx:2465
+#: packages/admin/src/router.tsx:2466
 msgid "Access Denied"
 msgstr "การเข้าถึงถูกปฏิเสธ"
 
@@ -1561,7 +1561,7 @@ msgstr "ผู้ดูแลระบบ"
 msgid "Admin navigation"
 msgstr "การนำทางของผู้ดูแลระบบ"
 
-#: packages/admin/src/components/WelcomeModal.tsx:25
+#: packages/admin/src/components/WelcomeModal.tsx:26
 msgid "Administrator"
 msgstr "ผู้ดูแลระบบ"
 
@@ -1829,11 +1829,11 @@ msgstr "กุญแจดิจิทัลที่เข้ารหัส �
 #: packages/admin/src/router.tsx:1593
 #: packages/admin/src/router.tsx:1626
 #: packages/admin/src/router.tsx:1647
-#: packages/admin/src/router.tsx:2410
-#: packages/admin/src/router.tsx:2426
-#: packages/admin/src/router.tsx:2451
-#: packages/admin/src/router.tsx:2877
-#: packages/admin/src/router.tsx:3062
+#: packages/admin/src/router.tsx:2411
+#: packages/admin/src/router.tsx:2427
+#: packages/admin/src/router.tsx:2452
+#: packages/admin/src/router.tsx:2878
+#: packages/admin/src/router.tsx:3063
 #: packages/admin/src/routes/byline-schema.tsx:103
 #: packages/admin/src/routes/byline-schema.tsx:123
 #: packages/admin/src/routes/byline-schema.tsx:139
@@ -1984,7 +1984,7 @@ msgstr "คุณแน่ใจหรือไม่ว่าต้องกา
 msgid "Are you sure you want to delete this menu? This will also delete all menu items. This action cannot be undone."
 msgstr "คุณแน่ใจหรือไม่ว่าต้องการลบเมนูนี้? การดำเนินการนี้จะลบรายการเมนูทั้งหมดด้วย และไม่สามารถยกเลิกได้"
 
-#: packages/admin/src/components/WelcomeModal.tsx:59
+#: packages/admin/src/components/WelcomeModal.tsx:60
 msgid "As an administrator, you can invite other users from the Users section."
 msgstr "ในฐานะผู้ดูแลระบบ คุณสามารถเชิญผู้ใช้คนอื่นได้จากส่วนผู้ใช้"
 
@@ -2058,7 +2058,7 @@ msgstr "การยืนยันตัวตนถูกยกเลิกห
 #: packages/admin/src/components/ContentSettingsPanel.tsx:1418
 #: packages/admin/src/components/RelationForm.tsx:315
 #: packages/admin/src/components/users/roleDefinitions.ts:30
-#: packages/admin/src/components/WelcomeModal.tsx:27
+#: packages/admin/src/components/WelcomeModal.tsx:28
 msgid "Author"
 msgstr "ผู้เขียน"
 
@@ -3096,7 +3096,7 @@ msgstr "คลิกลิงก์นี้เพื่อเข้าสู่
 #: packages/admin/src/components/users/InviteUserModal.tsx:88
 #: packages/admin/src/components/users/InviteUserModal.tsx:94
 #: packages/admin/src/components/users/InviteUserModal.tsx:98
-#: packages/admin/src/components/WelcomeModal.tsx:60
+#: packages/admin/src/components/WelcomeModal.tsx:61
 #: packages/admin/src/components/Widgets.tsx:414
 #: packages/admin/src/components/Widgets.tsx:420
 #: packages/admin/src/components/Widgets.tsx:424
@@ -3482,7 +3482,7 @@ msgid "Continue with security key"
 msgstr "ดำเนินการต่อด้วยคีย์ความปลอดภัย"
 
 #: packages/admin/src/components/users/roleDefinitions.ts:24
-#: packages/admin/src/components/WelcomeModal.tsx:28
+#: packages/admin/src/components/WelcomeModal.tsx:29
 msgid "Contributor"
 msgstr "ผู้ร่วมเขียน"
 
@@ -5111,7 +5111,7 @@ msgid "visualEditing.sessionExpired"
 msgstr "เซสชันการแก้ไขหมดอายุ รีเฟรชหน้าเพื่อดำเนินการต่อ"
 
 #: packages/admin/src/components/users/roleDefinitions.ts:36
-#: packages/admin/src/components/WelcomeModal.tsx:26
+#: packages/admin/src/components/WelcomeModal.tsx:27
 msgid "Editor"
 msgstr "ผู้แก้ไข"
 
@@ -5413,7 +5413,7 @@ msgstr "รายการฝั่งที่ลิงก์"
 #: packages/admin/src/components/SetupWizard.tsx:607
 #: packages/admin/src/components/TaxonomyManager.tsx:1210
 #: packages/admin/src/components/Widgets.tsx:773
-#: packages/admin/src/router.tsx:3337
+#: packages/admin/src/router.tsx:3338
 msgid "Error"
 msgstr "ข้อผิดพลาด"
 
@@ -5790,7 +5790,7 @@ msgid "Failed to delete collection"
 msgstr "ลบคอลเลกชันไม่สำเร็จ"
 
 #: packages/admin/src/lib/api/comments.ts:114
-#: packages/admin/src/router.tsx:2425
+#: packages/admin/src/router.tsx:2426
 msgid "Failed to delete comment"
 msgstr "ลบความคิดเห็นไม่สำเร็จ"
 
@@ -5885,7 +5885,7 @@ msgstr ""
 msgid "Failed to dismiss scheduled publication rejection"
 msgstr "ปิดการแจ้งการปฏิเสธการเผยแพร่ตามกำหนดเวลาไม่สำเร็จ"
 
-#: packages/admin/src/components/WelcomeModal.tsx:76
+#: packages/admin/src/components/WelcomeModal.tsx:78
 msgid "Failed to dismiss welcome"
 msgstr "ปิดข้อความต้อนรับไม่สำเร็จ"
 
@@ -6155,7 +6155,7 @@ msgstr "ดึงสถานะการอัปเดตไม่สำเร
 #: packages/admin/src/lib/api/current-user.ts:22
 #: packages/admin/src/lib/api/users.ts:91
 #: packages/admin/src/lib/api/users.ts:96
-#: packages/admin/src/router.tsx:2356
+#: packages/admin/src/router.tsx:2357
 msgid "Failed to fetch user"
 msgstr "ดึงข้อมูลผู้ใช้ไม่สำเร็จ"
 
@@ -6344,7 +6344,7 @@ msgid "Failed to lock the entry"
 msgstr "ล็อกรายการไม่สำเร็จ"
 
 #: packages/admin/src/lib/api/comments.ts:131
-#: packages/admin/src/router.tsx:2450
+#: packages/admin/src/router.tsx:2451
 msgid "Failed to perform bulk action"
 msgstr "ดำเนินการแบบกลุ่มไม่สำเร็จ"
 
@@ -6374,7 +6374,7 @@ msgstr ""
 msgid "Failed to read byline field usage"
 msgstr "อ่านข้อมูลการใช้งานฟิลด์ชื่อผู้เขียนไม่สำเร็จ"
 
-#: packages/admin/src/router.tsx:2876
+#: packages/admin/src/router.tsx:2877
 msgid "Failed to register {slug}"
 msgstr ""
 
@@ -6457,7 +6457,7 @@ msgstr "เขียน URL ใหม่ไม่สำเร็จ"
 
 #: packages/admin/src/router.tsx:910
 #: packages/admin/src/router.tsx:1313
-#: packages/admin/src/router.tsx:3061
+#: packages/admin/src/router.tsx:3062
 msgid "Failed to save"
 msgstr "บันทึกไม่สำเร็จ"
 
@@ -6627,7 +6627,7 @@ msgstr "อัปเดตส่วนไม่สำเร็จ"
 msgid "Failed to update settings"
 msgstr "อัปเดตการตั้งค่าไม่สำเร็จ"
 
-#: packages/admin/src/router.tsx:2409
+#: packages/admin/src/router.tsx:2410
 msgid "Failed to update status"
 msgstr "อัปเดตสถานะไม่สำเร็จ"
 
@@ -6873,7 +6873,7 @@ msgstr "ลบโฟลเดอร์แล้ว"
 msgid "Folder name must be between 1 and 200 characters"
 msgstr "ชื่อโฟลเดอร์ต้องมีความยาว 1 ถึง 200 อักขระ"
 
-#: packages/admin/src/router.tsx:2079
+#: packages/admin/src/router.tsx:2080
 msgid "Folder no longer exists"
 msgstr "ไม่มีโฟลเดอร์นี้แล้ว"
 
@@ -6991,7 +6991,7 @@ msgstr "การตั้งค่าทั่วไป"
 msgid "Genres"
 msgstr "แนว"
 
-#: packages/admin/src/components/WelcomeModal.tsx:154
+#: packages/admin/src/components/WelcomeModal.tsx:156
 msgid "Get Started"
 msgstr "เริ่มต้นใช้งาน"
 
@@ -7020,7 +7020,7 @@ msgid "Go live {countdown}"
 msgstr "เผยแพร่ {countdown}"
 
 #: packages/admin/src/components/WordPressImport.tsx:2477
-#: packages/admin/src/router.tsx:3357
+#: packages/admin/src/router.tsx:3358
 msgid "Go to Dashboard"
 msgstr "ไปที่แดชบอร์ด"
 
@@ -8207,7 +8207,7 @@ msgid "Load preview"
 msgstr "โหลดตัวอย่าง"
 
 #: packages/admin/src/components/calendar/CalendarToolbar.tsx:59
-#: packages/admin/src/router.tsx:3312
+#: packages/admin/src/router.tsx:3313
 msgid "Loading"
 msgstr "กำลังโหลด"
 
@@ -8236,8 +8236,8 @@ msgstr "กำลังโหลดคอลเลกชัน..."
 msgid "Loading comments..."
 msgstr "กำลังโหลดความคิดเห็น..."
 
-#: packages/admin/src/router.tsx:3314
-#: packages/admin/src/router.tsx:3326
+#: packages/admin/src/router.tsx:3315
+#: packages/admin/src/router.tsx:3327
 msgid "Loading configuration..."
 msgstr "กำลังโหลดการกำหนดค่า..."
 
@@ -8549,11 +8549,11 @@ msgstr "Markdown"
 msgid "Marketplace"
 msgstr "Marketplace"
 
-#: packages/admin/src/router.tsx:2713
+#: packages/admin/src/router.tsx:2714
 msgid "Marketplace browsing is no longer available."
 msgstr "การเรียกดู Marketplace ไม่พร้อมใช้งานแล้ว"
 
-#: packages/admin/src/router.tsx:2688
+#: packages/admin/src/router.tsx:2689
 msgid "Marketplace browsing is no longer available. Manage installed plugins from Plugins."
 msgstr "การเรียกดู Marketplace ไม่พร้อมใช้งานแล้ว จัดการปลั๊กอินที่ติดตั้งได้จากหน้าปลั๊กอิน"
 
@@ -10068,7 +10068,7 @@ msgstr "Digest ของแพ็กเกจ"
 msgid "Package downloaded"
 msgstr "ดาวน์โหลดแพ็กเกจแล้ว"
 
-#: packages/admin/src/router.tsx:3352
+#: packages/admin/src/router.tsx:3353
 msgid "Page Not Found"
 msgstr "ไม่พบหน้า"
 
@@ -10422,8 +10422,8 @@ msgstr "ทะเบียนปลั๊กอิน"
 msgid "Plugin registry configuration error"
 msgstr "การกำหนดค่ารีจิสทรีปลั๊กอินผิดพลาด"
 
-#: packages/admin/src/router.tsx:2648
-#: packages/admin/src/router.tsx:2679
+#: packages/admin/src/router.tsx:2649
+#: packages/admin/src/router.tsx:2680
 msgid "Plugin registry is not configured."
 msgstr "ยังไม่ได้กำหนดค่ารีจิสทรีปลั๊กอิน"
 
@@ -10850,7 +10850,7 @@ msgid "Read your taxonomies and terms"
 msgstr "อ่านอนุกรมวิธานและเทอมของคุณ"
 
 #: packages/admin/src/components/EntryLockNotice.tsx:70
-#: packages/admin/src/router.tsx:2012
+#: packages/admin/src/router.tsx:2013
 msgid "Read-only"
 msgstr "อ่านอย่างเดียว"
 
@@ -11573,7 +11573,7 @@ msgstr "เลิกใช้แล้ว"
 #: packages/admin/src/components/Sections.tsx:281
 #: packages/admin/src/components/ThemeMarketplaceBrowse.tsx:122
 #: packages/admin/src/lib/content-editor-panels.tsx:201
-#: packages/admin/src/router.tsx:3340
+#: packages/admin/src/router.tsx:3341
 #: packages/admin/src/routes/byline-schema.tsx:280
 #: packages/admin/src/routes/calendar.tsx:345
 msgid "Retry"
@@ -13220,7 +13220,7 @@ msgid "Sub-Fields"
 msgstr "ฟิลด์ย่อย"
 
 #: packages/admin/src/components/users/roleDefinitions.ts:18
-#: packages/admin/src/components/WelcomeModal.tsx:29
+#: packages/admin/src/components/WelcomeModal.tsx:30
 msgid "Subscriber"
 msgstr "ผู้ติดตาม"
 
@@ -13708,7 +13708,7 @@ msgstr "เนื้อหาของแพ็กเกจจะถูกเข
 msgid "The package’s file index is not valid."
 msgstr "ดัชนีไฟล์ของแพ็กเกจไม่ถูกต้อง"
 
-#: packages/admin/src/router.tsx:3354
+#: packages/admin/src/router.tsx:3355
 msgid "The page you're looking for doesn't exist."
 msgstr "ไม่พบหน้าที่คุณกำลังค้นหา"
 
@@ -13940,11 +13940,11 @@ msgstr "รายการนี้ถูกเปลี่ยนจากที
 msgid "This entry changed somewhere else. Save anyway, or reload to get the newer version."
 msgstr "รายการนี้ถูกเปลี่ยนจากที่อื่น บันทึกต่อไป หรือโหลดใหม่เพื่อรับเวอร์ชันที่ใหม่กว่า"
 
-#: packages/admin/src/router.tsx:1949
+#: packages/admin/src/router.tsx:1950
 msgid "This entry doesn't exist or isn't published. Your role can only view published content."
 msgstr ""
 
-#: packages/admin/src/router.tsx:1950
+#: packages/admin/src/router.tsx:1951
 msgid "This entry doesn't exist or was deleted."
 msgstr ""
 
@@ -15390,11 +15390,11 @@ msgstr "เว็บไซต์"
 msgid "Website URL"
 msgstr "URL ของเว็บไซต์"
 
-#: packages/admin/src/components/WelcomeModal.tsx:102
+#: packages/admin/src/components/WelcomeModal.tsx:104
 msgid "Welcome to EmDash, {firstName}!"
 msgstr "ยินดีต้อนรับสู่ EmDash, {firstName}!"
 
-#: packages/admin/src/components/WelcomeModal.tsx:102
+#: packages/admin/src/components/WelcomeModal.tsx:104
 msgid "Welcome to EmDash!"
 msgstr "ยินดีต้อนรับสู่ EmDash!"
 
@@ -15666,11 +15666,11 @@ msgstr "Yoast/RankMath"
 msgid "You can close this page and return to your terminal."
 msgstr "คุณสามารถปิดหน้านี้และกลับไปยังเทอร์มินัลของคุณได้"
 
-#: packages/admin/src/components/WelcomeModal.tsx:49
+#: packages/admin/src/components/WelcomeModal.tsx:50
 msgid "You can create and edit your own content."
 msgstr "คุณสามารถสร้างและแก้ไขเนื้อหาของคุณเองได้"
 
-#: packages/admin/src/components/WelcomeModal.tsx:48
+#: packages/admin/src/components/WelcomeModal.tsx:49
 msgid "You can manage content, media, menus, and taxonomies."
 msgstr "คุณสามารถจัดการเนื้อหา มีเดีย เมนู และอนุกรมวิธานได้"
 
@@ -15678,7 +15678,7 @@ msgstr "คุณสามารถจัดการเนื้อหา ม�
 msgid "You can still edit the fixed fields above. Saving will not touch any stored custom-field values."
 msgstr "คุณยังแก้ไขฟิลด์ตายตัวด้านบนได้ การบันทึกจะไม่กระทบค่าของฟิลด์ที่กำหนดเองที่จัดเก็บไว้"
 
-#: packages/admin/src/components/WelcomeModal.tsx:50
+#: packages/admin/src/components/WelcomeModal.tsx:51
 msgid "You can view and contribute to the site."
 msgstr "คุณสามารถดูและมีส่วนร่วมกับเว็บไซต์ได้"
 
@@ -15703,7 +15703,7 @@ msgstr "คุณไม่มีสิทธิ์ย้ายไฟล์นี
 msgid "You don't have permission to view the calendar."
 msgstr "คุณไม่มีสิทธิ์ดูปฏิทิน"
 
-#: packages/admin/src/components/WelcomeModal.tsx:47
+#: packages/admin/src/components/WelcomeModal.tsx:48
 msgid "You have full access to manage this site, including users, settings, and all content."
 msgstr "คุณมีสิทธิ์เข้าถึงเต็มรูปแบบในการจัดการเว็บไซต์นี้ รวมถึงผู้ใช้ การตั้งค่า และเนื้อหาทั้งหมด"
 
@@ -15719,7 +15719,7 @@ msgstr "คุณต้องมีสิทธิ์ผู้ดูแลระ
 msgid "You need Admin permissions to transfer this site."
 msgstr "คุณต้องมีสิทธิ์ผู้ดูแลระบบเพื่อย้ายเว็บไซต์นี้"
 
-#: packages/admin/src/router.tsx:2466
+#: packages/admin/src/router.tsx:2467
 msgid "You need Editor permissions to moderate comments."
 msgstr "คุณต้องมีสิทธิ์ผู้แก้ไขเพื่อกลั่นกรองความคิดเห็น"
 
@@ -15782,7 +15782,7 @@ msgstr "you@company.com"
 msgid "you@example.com"
 msgstr "you@example.com"
 
-#: packages/admin/src/components/WelcomeModal.tsx:45
+#: packages/admin/src/components/WelcomeModal.tsx:46
 msgid "Your account has been created successfully."
 msgstr "สร้างบัญชีของคุณสำเร็จแล้ว"
 
@@ -15856,15 +15856,15 @@ msgstr "ชื่อของคุณ"
 msgid "Your name (optional)"
 msgstr "ชื่อของคุณ (ไม่บังคับ)"
 
-#: packages/admin/src/components/WelcomeModal.tsx:46
+#: packages/admin/src/components/WelcomeModal.tsx:47
 msgid "Your Role"
 msgstr "บทบาทของคุณ"
 
-#: packages/admin/src/router.tsx:2017
+#: packages/admin/src/router.tsx:2018
 msgid "Your role can edit your own entries only while they are drafts."
 msgstr ""
 
-#: packages/admin/src/router.tsx:2018
+#: packages/admin/src/router.tsx:2019
 msgid "Your role can't edit this entry."
 msgstr ""
 

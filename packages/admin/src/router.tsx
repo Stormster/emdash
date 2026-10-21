@@ -1921,6 +1921,7 @@ function ContentEditPage() {
 	);
 	const handlePluginEntryRefresh = React.useCallback(async () => {
 		await Promise.all([
+			queryClient.invalidateQueries({ queryKey: ["entry-terms", collection, id] }),
 			queryClient.invalidateQueries({ queryKey: ["content", collection, id] }),
 			queryClient.invalidateQueries({ queryKey: ["revisions", collection, id] }),
 			queryClient.invalidateQueries({ queryKey: ["translations", collection, id] }),
