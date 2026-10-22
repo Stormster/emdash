@@ -4,8 +4,9 @@ export { slugify } from "@emdash-cms/admin/slugify";
 
 /**
  * The slug to store when a write sets one. A slug equal to the entry's current
- * slug is kept as stored, so saving an entry never moves a URL it already has;
- * any other slug is stripped of whitespace, which never belongs in a URL.
+ * slug is kept as stored, so saving an entry never moves a URL it already has.
+ * Any other slug has whitespace trimmed from its ends, and each inner run of
+ * whitespace, with any hyphens beside it, becomes one hyphen.
  */
 export function normalizeIncomingSlug(slug: string, currentSlug?: string | null): string;
 export function normalizeIncomingSlug(
