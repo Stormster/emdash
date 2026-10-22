@@ -67,6 +67,12 @@ export interface AtomicBatchAdapter {
 	executeAtomicBatch(queries: readonly CompiledQuery[]): Promise<readonly QueryResult<unknown>[]>;
 }
 
+/** Whether `executeAtomicBatchIfSupported` runs a batch on this database. */
+export function supportsAtomicBatch<DB>(db: Kysely<DB>): boolean {
+	const adapter: object = db.getExecutor().adapter;
+	return "executeAtomicBatch" in adapter && typeof adapter.executeAtomicBatch === "function";
+}
+
 /**
  * Execute a fixed statement list atomically when the active adapter supports
  * it. Returns `null` for adapters that should use an ordinary transaction.
