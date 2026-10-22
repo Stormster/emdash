@@ -1,4 +1,24 @@
+import { normalizeSlugWhitespace } from "@emdash-cms/admin/slugify";
+
 export { slugify } from "@emdash-cms/admin/slugify";
+
+/**
+ * The slug to store when a write sets one. A slug equal to the entry's current
+ * slug is kept as stored, so saving an entry never moves a URL it already has;
+ * any other slug is stripped of whitespace, which never belongs in a URL.
+ */
+export function normalizeIncomingSlug(slug: string, currentSlug?: string | null): string;
+export function normalizeIncomingSlug(
+	slug: string | null | undefined,
+	currentSlug?: string | null,
+): string | null | undefined;
+export function normalizeIncomingSlug(
+	slug: string | null | undefined,
+	currentSlug?: string | null,
+): string | null | undefined {
+	if (typeof slug !== "string" || slug === currentSlug) return slug;
+	return normalizeSlugWhitespace(slug);
+}
 
 /**
  * Decode a URI-encoded slug parameter.
