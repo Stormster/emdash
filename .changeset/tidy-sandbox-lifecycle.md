@@ -1,5 +1,6 @@
 ---
 "emdash": patch
+"@emdash-cms/plugin-test": patch
 ---
 
 Fixes sandboxed plugins declared in the integration's `sandboxed` config skipping `plugin:install` and `plugin:activate` on first boot. These hooks now run once for plugins without a recorded state, allowing activation hooks to schedule recurring cron tasks without an admin disable/re-enable cycle.

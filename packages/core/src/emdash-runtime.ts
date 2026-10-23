@@ -1213,6 +1213,7 @@ export class EmDashRuntime {
 				console.error(`EmDash: Failed to record config plugin "${plugin.id}" as disabled:`, error);
 			}
 			this.pluginStates.set(plugin.id, "inactive");
+			this.setSandboxedPluginActive(plugin.id, false);
 			this.enabledPlugins.delete(plugin.id);
 		}
 		await this.rebuildHookPipeline();

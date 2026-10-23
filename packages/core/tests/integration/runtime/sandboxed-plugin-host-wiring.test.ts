@@ -67,6 +67,7 @@ class MemoryStorage implements Storage {
 
 let currentInvokeHook: SandboxedPluginInstance["invokeHook"] = async () => undefined;
 let loadedSandboxCapabilities: string[] = [];
+let setSandboxActive = vi.fn<(active: boolean) => void>();
 
 function createDeps(
 	invokeHook: SandboxedPluginInstance["invokeHook"],
@@ -75,6 +76,7 @@ function createDeps(
 ): RuntimeDependencies {
 	currentInvokeHook = invokeHook;
 	loadedSandboxCapabilities = [];
+	setSandboxActive = vi.fn();
 	const database = new Database(":memory:");
 	const runner = {
 		isAvailable: () => true,
@@ -86,6 +88,7 @@ function createDeps(
 				invokeHook: (...args: Parameters<SandboxedPluginInstance["invokeHook"]>) =>
 					currentInvokeHook(...args),
 				invokeRoute: vi.fn(),
+				setActive: setSandboxActive,
 				terminate: vi.fn(),
 			};
 		}),
@@ -310,34 +313,43 @@ describe("EmDashRuntime sandboxed plugin host wiring", () => {
 		expect(calls).toEqual(["plugin:install", "plugin:activate"]);
 	});
 
-	it("records a failed sandbox install as inactive without activating or retrying", async () => {
-		const calls: string[] = [];
-		const invokeHook = vi.fn(async (name: string) => {
-			calls.push(name);
-			if (name === "plugin:install") throw new Error("install failed");
-		});
-		const deps = createDeps(invokeHook, {}, "sandbox-failed-install");
-		deps.sandboxedPluginEntries[0]!.hooks = [
-			"plugin:install",
-			...(deps.sandboxedPluginEntries[0]!.hooks ?? []),
-		];
-		runtime = await EmDashRuntime.create(deps);
+	it.each(["plugin:install", "plugin:activate"])(
+		"revokes sandbox access after %s fails and does not retry on boot",
+		async (failingHook) => {
+			const calls: string[] = [];
+			const invokeHook = vi.fn(async (name: string) => {
+				calls.push(name);
+				if (name === failingHook) throw new Error("lifecycle failed");
+			});
+			const deps = createDeps(invokeHook, {}, "sandbox-failed-install");
+			deps.sandboxedPluginEntries[0]!.hooks = [
+				"plugin:install",
+				...(deps.sandboxedPluginEntries[0]!.hooks ?? []),
+			];
+			const expectedCalls =
+				failingHook === "plugin:install"
+					? ["plugin:install"]
+					: ["plugin:install", "plugin:activate"];
+			runtime = await EmDashRuntime.create(deps);
 
-		expect(calls).toEqual(["plugin:install"]);
-		expect(await new PluginStateRepository(runtime.db).get("sandbox-failed-install")).toMatchObject(
-			{
+			expect(calls).toEqual(expectedCalls);
+			expect(setSandboxActive).toHaveBeenLastCalledWith(false);
+			expect(
+				await new PluginStateRepository(runtime.db).get("sandbox-failed-install"),
+			).toMatchObject({
 				status: "inactive",
-			},
-		);
-		await runtime.shutdown();
-		runtime = await EmDashRuntime.create(deps);
-		expect(calls).toEqual(["plugin:install"]);
-		expect(await new PluginStateRepository(runtime.db).get("sandbox-failed-install")).toMatchObject(
-			{
+			});
+			await runtime.shutdown();
+			runtime = await EmDashRuntime.create(deps);
+			expect(calls).toEqual(expectedCalls);
+			expect(setSandboxActive).toHaveBeenLastCalledWith(false);
+			expect(
+				await new PluginStateRepository(runtime.db).get("sandbox-failed-install"),
+			).toMatchObject({
 				status: "inactive",
-			},
-		);
-	});
+			});
+		},
+	);
 
 	it("does not record a state when the sandbox runner is unavailable", async () => {
 		const calls: string[] = [];
