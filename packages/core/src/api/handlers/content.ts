@@ -1610,9 +1610,10 @@ export async function handleContentUpdate(
 			}
 		}
 
-		// Wrap content + SEO writes in a transaction for atomicity.
-		// The _rev check is inside the transaction so the read-then-write
-		// is atomic -- no concurrent write can slip between the check and update.
+		// Wrap content + SEO writes in a transaction for atomicity. The transaction
+		// does not keep a concurrent save out between the _rev check and the update
+		// (D1 has none, and Postgres reads without a lock), so the update repeats
+		// the check in its WHERE clause.
 		let redirectChanged = false;
 		const item = await withTransaction(db, async (trx) => {
 			const trxRepo = new ContentRepository(trx);
@@ -1686,15 +1687,20 @@ export async function handleContentUpdate(
 			// Collections without revisions save to the columns, and reads show any
 			// draft revision over them, so no draft pointer may outlive a save.
 			const { supportsRevisions } = await getCollectionPublishConfig(trx, collection);
-			const updated = await trxRepo.update(collection, resolvedId, {
-				data: body.data,
-				slug,
-				locale: existing?.locale ?? body.locale,
-				status: body.status,
-				authorId: body.authorId,
-				publishedAt: body.publishedAt,
-				...(supportsRevisions ? {} : { draftRevisionId: null }),
-			});
+			const updated = await trxRepo.update(
+				collection,
+				resolvedId,
+				{
+					data: body.data,
+					slug,
+					locale: existing?.locale ?? body.locale,
+					status: body.status,
+					authorId: body.authorId,
+					publishedAt: body.publishedAt,
+					...(supportsRevisions ? {} : { draftRevisionId: null }),
+				},
+				body._rev ? decodeRevisionPrecondition(body._rev) : undefined,
+			);
 
 			if (body.bylines !== undefined) {
 				const credits = await bylineRepo.setContentBylines(collection, resolvedId, body.bylines);
@@ -1789,6 +1795,12 @@ export async function handleContentUpdate(
 			return {
 				success: false,
 				error: { code: error.apiError.code, message: error.message },
+			};
+		}
+		if (error instanceof ContentMutationConflictError) {
+			return {
+				success: false,
+				error: { code: "CONFLICT", message: error.message },
 			};
 		}
 		if (isMissingTableError(error)) {
