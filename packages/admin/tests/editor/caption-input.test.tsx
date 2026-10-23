@@ -60,7 +60,7 @@ function EditorFixture({
 				{ type: "paragraph" },
 			],
 		},
-		onCreate: ({ editor }) => onCreate(editor),
+		onCreate: ({ editor: instance }) => onCreate(instance),
 	});
 
 	return editor ? <EditorContent editor={editor} /> : null;
