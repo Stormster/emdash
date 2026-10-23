@@ -75,6 +75,7 @@ function createDeps(
 ): RuntimeDependencies {
 	currentInvokeHook = invokeHook;
 	loadedSandboxCapabilities = [];
+	const database = new Database(":memory:");
 	const runner = {
 		isAvailable: () => true,
 		isHealthy: () => true,
@@ -101,7 +102,7 @@ function createDeps(
 			},
 		},
 		plugins: [],
-		createDialect: () => new SqliteDialect({ database: new Database(":memory:") }),
+		createDialect: () => new SqliteDialect({ database }),
 		createStorage: null,
 		createScheduler: null,
 		sandboxEnabled: true,
@@ -144,7 +145,7 @@ describe("EmDashRuntime sandboxed plugin host wiring", () => {
 	let runtime: EmDashRuntime | undefined;
 
 	afterEach(async () => {
-		await runtime?.stopCron();
+		await runtime?.shutdown();
 		runtime = undefined;
 	});
 
@@ -181,6 +182,7 @@ describe("EmDashRuntime sandboxed plugin host wiring", () => {
 		const metadata = await runtime.collectPageMetadata({ kind: "generic", url: "https://test/" });
 
 		expect(calls).toEqual([
+			"plugin:activate",
 			"content:afterSave",
 			"media:afterUpload",
 			"cron",
@@ -280,7 +282,7 @@ describe("EmDashRuntime sandboxed plugin host wiring", () => {
 		]);
 	});
 
-	it("runs first-install lifecycle exactly once when requested by an install flow", async () => {
+	it("runs the first-install lifecycle automatically on boot and only once", async () => {
 		const calls: string[] = [];
 		const invokeHook = vi.fn(async (name: string) => calls.push(name));
 		const deps = createDeps(invokeHook, {}, "sandbox-install-lifecycle");
@@ -290,9 +292,85 @@ describe("EmDashRuntime sandboxed plugin host wiring", () => {
 		];
 		runtime = await EmDashRuntime.create(deps);
 
-		await runtime.runPluginInstallLifecycle("sandbox-install-lifecycle");
-
 		expect(calls).toEqual(["plugin:install", "plugin:activate"]);
+		expect(
+			await new PluginStateRepository(runtime.db).get("sandbox-install-lifecycle"),
+		).toMatchObject({
+			status: "active",
+			version: "1.0.0",
+		});
+
+		await runtime.shutdown();
+		runtime = await EmDashRuntime.create(deps);
+		await expect(
+			new PluginStateRepository(runtime.db).get("sandbox-install-lifecycle"),
+		).resolves.toMatchObject({
+			status: "active",
+		});
+		expect(calls).toEqual(["plugin:install", "plugin:activate"]);
+	});
+
+	it("records a failed sandbox install as inactive without activating or retrying", async () => {
+		const calls: string[] = [];
+		const invokeHook = vi.fn(async (name: string) => {
+			calls.push(name);
+			if (name === "plugin:install") throw new Error("install failed");
+		});
+		const deps = createDeps(invokeHook, {}, "sandbox-failed-install");
+		deps.sandboxedPluginEntries[0]!.hooks = [
+			"plugin:install",
+			...(deps.sandboxedPluginEntries[0]!.hooks ?? []),
+		];
+		runtime = await EmDashRuntime.create(deps);
+
+		expect(calls).toEqual(["plugin:install"]);
+		expect(await new PluginStateRepository(runtime.db).get("sandbox-failed-install")).toMatchObject(
+			{
+				status: "inactive",
+			},
+		);
+		await runtime.shutdown();
+		runtime = await EmDashRuntime.create(deps);
+		expect(calls).toEqual(["plugin:install"]);
+		expect(await new PluginStateRepository(runtime.db).get("sandbox-failed-install")).toMatchObject(
+			{
+				status: "inactive",
+			},
+		);
+	});
+
+	it("does not record a state when the sandbox runner is unavailable", async () => {
+		const calls: string[] = [];
+		const database = new Database(":memory:");
+		const dialect = new SqliteDialect({ database });
+		const entrypoint = `test-unavailable-${randomUUID()}`;
+		const invokeHook = vi.fn(async (name: string) => calls.push(name));
+		const unavailable = createDeps(
+			invokeHook,
+			{
+				config: { database: { entrypoint, config: {}, type: "sqlite" } },
+				createDialect: () => dialect,
+				createSandboxRunner: () => null,
+			},
+			"sandbox-unavailable",
+		);
+		runtime = await EmDashRuntime.create(unavailable);
+		expect(await new PluginStateRepository(runtime.db).get("sandbox-unavailable")).toBeNull();
+		await runtime.shutdown();
+
+		const available = createDeps(
+			invokeHook,
+			{
+				config: { database: { entrypoint, config: {}, type: "sqlite" } },
+				createDialect: () => dialect,
+			},
+			"sandbox-unavailable",
+		);
+		runtime = await EmDashRuntime.create(available);
+		expect(calls).toEqual(["plugin:activate"]);
+		expect(await new PluginStateRepository(runtime.db).get("sandbox-unavailable")).toMatchObject({
+			status: "active",
+		});
 	});
 
 	it("orders sandboxed and trusted hooks by shared pipeline priority", async () => {
