@@ -6,11 +6,11 @@
  * `{ _type: "iframe", _key, src, title?, width?, height?, allow?, allowFullscreen? }`.
  */
 
-import { Button } from "@cloudflare/kumo";
+import { Banner, Button } from "@cloudflare/kumo";
 import type { MessageDescriptor } from "@lingui/core";
 import { msg } from "@lingui/core/macro";
 import { useLingui } from "@lingui/react/macro";
-import { Code, Eye, Play } from "@phosphor-icons/react";
+import { Code, Eye, Info, Play } from "@phosphor-icons/react";
 import { Node, mergeAttributes } from "@tiptap/core";
 import { closeHistory } from "@tiptap/pm/history";
 import type { Node as ProseMirrorNode } from "@tiptap/pm/model";
@@ -50,10 +50,9 @@ type IframeDraft =
 	| { kind: "pending"; source: string; node: ProseMirrorNode }
 	| { kind: "parsed"; source: string; node: ProseMirrorNode; result: IframeParseResult };
 
-const REASONS: Record<IframeError["reason"], MessageDescriptor> = {
+const REASONS: Record<Exclude<IframeError["reason"], "requires-html">, MessageDescriptor> = {
 	"no-iframe": msg`No iframe found in this code. For an embed that runs a script, use an HTML block.`,
 	"not-https": msg`Only https links can be embedded.`,
-	"requires-html": msg`This code needs an HTML block to keep all its parts. The full snippet has not been saved.`,
 };
 
 const PARSE_DELAY_MS = 250;
@@ -318,18 +317,27 @@ function IframeBlockNodeView({ editor, node, getPos, updateAttributes }: NodeVie
 					/>
 				</>
 			)}
-			<div id={errorId} aria-live="polite" className="px-3 text-xs text-kumo-danger">
-				{error && <p className="py-2">{t(REASONS[error.reason])}</p>}
-				{error?.reason === "requires-html" && (
-					<Button
-						type="button"
-						size="sm"
-						className="mb-3"
-						disabled={!editable}
-						onClick={useHtmlBlock}
-					>
-						{t`Use as HTML block`}
-					</Button>
+			<div id={errorId} aria-live="polite">
+				{error?.reason === "requires-html" ? (
+					<div className="p-3">
+						<Banner
+							variant="secondary"
+							icon={<Info className="size-4" aria-hidden="true" />}
+							title={t`Keep the complete embed`}
+							description={
+								<div className="flex flex-col items-start gap-3 text-base">
+									<p>{t`This code includes extra HTML, attributes, or scripts. Convert it to an HTML block before saving.`}</p>
+									<Button type="button" disabled={!editable} onClick={useHtmlBlock}>
+										{t`Use as HTML block`}
+									</Button>
+								</div>
+							}
+						/>
+					</div>
+				) : (
+					error && (
+						<p className="px-3 py-2 text-base text-kumo-danger">{t(REASONS[error.reason])}</p>
+					)
 				)}
 			</div>
 		</EmbedBlockCard>
