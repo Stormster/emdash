@@ -67,10 +67,13 @@ export interface AtomicBatchAdapter {
 	executeAtomicBatch(queries: readonly CompiledQuery[]): Promise<readonly QueryResult<unknown>[]>;
 }
 
+function isAtomicBatchAdapter(adapter: object): adapter is AtomicBatchAdapter {
+	return "executeAtomicBatch" in adapter && typeof adapter.executeAtomicBatch === "function";
+}
+
 /** Whether `executeAtomicBatchIfSupported` runs a batch on this database. */
 export function supportsAtomicBatch<DB>(db: Kysely<DB>): boolean {
-	const adapter: object = db.getExecutor().adapter;
-	return "executeAtomicBatch" in adapter && typeof adapter.executeAtomicBatch === "function";
+	return isAtomicBatchAdapter(db.getExecutor().adapter);
 }
 
 /**
@@ -82,9 +85,7 @@ export async function executeAtomicBatchIfSupported<DB>(
 	queries: readonly (Compilable | RawBuilder<unknown>)[],
 ): Promise<readonly QueryResult<unknown>[] | null> {
 	const adapter: object = db.getExecutor().adapter;
-	if (!("executeAtomicBatch" in adapter) || typeof adapter.executeAtomicBatch !== "function") {
-		return null;
-	}
+	if (!isAtomicBatchAdapter(adapter)) return null;
 
 	return adapter.executeAtomicBatch(
 		queries.map((query) => ("isRawBuilder" in query ? query.compile(db) : query.compile())),
