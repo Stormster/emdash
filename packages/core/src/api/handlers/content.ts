@@ -278,12 +278,14 @@ async function getCollectionTitleField(
 	db: Kysely<Database>,
 	collection: string,
 ): Promise<string | null> {
-	const row = await db
-		.selectFrom("_emdash_collections")
-		.select("title_field")
-		.where("slug", "=", collection)
-		.executeTakeFirst();
-	return row?.title_field ?? null;
+	return requestCached(`collectionTitleField:${collection}`, async () => {
+		const row = await db
+			.selectFrom("_emdash_collections")
+			.select("title_field")
+			.where("slug", "=", collection)
+			.executeTakeFirst();
+		return row?.title_field ?? null;
+	});
 }
 
 function requireRoutablePublishSlug(routable: boolean, slug: string | null | undefined): void {
