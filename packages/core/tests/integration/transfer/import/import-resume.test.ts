@@ -397,7 +397,74 @@ describeEachDialect("site import resumption", (dialect) => {
 			deletedCollectionId: "deleted-posts",
 		});
 		expect(operation.errorDetail).not.toMatchObject({ reason: "COLLECTION_EXISTS" });
+		expect(operation.errorDetail?.message).toContain(
+			`emdash site import abandon ${staged.operationId}`,
+		);
+		expect(operation.errorDetail?.message).toContain(
+			"POST /_emdash/api/admin/media-usage/collection-deletions/retry",
+		);
+		expect(operation.errorDetail?.message).toContain('"collectionId":"deleted-posts"');
 	});
+
+	it.each(["pending", "leased", "retry"] as const)(
+		"cancels during %s collection cleanup before importing the collection",
+		async (state) => {
+			await activateCapture(ctx.db);
+			const registry = new SchemaRegistry(ctx.db);
+			await registry.deleteCollection("posts", { force: true });
+			await registry.deleteCollection("pages", { force: true });
+			if (state !== "pending") {
+				await ctx.db
+					.updateTable("_emdash_media_usage_collection_deletions")
+					.set({
+						state,
+						...(state === "leased"
+							? { lease_token: "another-worker", lease_expires_at: "2999-01-01T00:00:00.000Z" }
+							: { next_attempt_at: "2999-01-01T00:00:00.000Z" }),
+					})
+					.where("collection_slug", "=", "posts")
+					.execute();
+			}
+
+			const staged = await stageGoldenImport(ctx.db, storage, dialect);
+			const download = storage.download.bind(storage);
+			let callbackRan = false;
+			let cancellationCursor: unknown;
+			storage.download = async (key) => {
+				const result = await download(key);
+				if (callbackRan || !key.endsWith("records/collection/000000.ndjson")) return result;
+				const operation = await new TransferOperationRepository(ctx.db).require(staged.operationId);
+				if (operation.stage !== "schema") return result;
+				const originalCursor = operation.cursor;
+				callbackRan = true;
+				const cancelled = await new TransferOperationRepository(ctx.db).requestCancel(
+					staged.operationId,
+				);
+				cancellationCursor = cancelled.cursor;
+				expect(cancelled.cursor).toEqual(originalCursor);
+				expect(cancelled.state).toBe("running");
+				expect(cancelled.leaseToken).not.toBeNull();
+				expect(cancelled.cancelRequestedAt).not.toBeNull();
+				return result;
+			};
+
+			const result = await advanceImport({
+				db: ctx.db,
+				storage,
+				operationId: staged.operationId,
+				verify: verifyOk,
+			});
+
+			expect(callbackRan).toBe(true);
+			expect(result.operation.state).toBe("cancelled");
+			expect(result.nextRequestInMs).toBeNull();
+			expect(result.ended).toBe(true);
+			expect(result.operation.cursor).toEqual(cancellationCursor);
+			expect(result.operation.leaseToken).toBeNull();
+			expect(result.operation.completedAt).not.toBeNull();
+			expect(await registry.getCollection("posts")).toBeNull();
+		},
+	);
 
 	it("fails instead of rewriting when a resumed unit reads back a different row", async () => {
 		const staged = await stageGoldenImport(ctx.db, storage, dialect);
@@ -590,9 +657,9 @@ describeEachDialect("site import resumption", (dialect) => {
 				.updateTable("_emdash_media_usage_collection_deletions")
 				.set({
 					state,
-					next_attempt_at: "2999-01-01T00:00:00.000Z",
-					lease_token: "another-worker",
-					lease_expires_at: "2999-01-01T00:00:00.000Z",
+					...(state === "leased"
+						? { lease_token: "another-worker", lease_expires_at: "2999-01-01T00:00:00.000Z" }
+						: { next_attempt_at: "2999-01-01T00:00:00.000Z" }),
 				})
 				.where("collection_slug", "=", "posts")
 				.execute();

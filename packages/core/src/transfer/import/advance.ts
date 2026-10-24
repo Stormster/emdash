@@ -219,7 +219,7 @@ async function advanceClaimed(
 		}
 		if (error instanceof ImportCollectionDeletionSignal) {
 			return result(
-				await ops.release(operation.id, leaseToken),
+				await ops.releaseUnlessCancelled(operation.id, leaseToken, "running"),
 				error.waiting ? IMPORT_RETRY_MS : 0,
 			);
 		}

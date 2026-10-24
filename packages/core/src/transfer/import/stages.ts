@@ -235,6 +235,7 @@ async function importCollection(
 					id: record.id,
 					reason: "COLLECTION_DELETION_FAILED",
 					deletedCollectionId: deletion.collectionId,
+					message: `Deletion of the previous collection "${record.slug}" failed. Abandon this import with \`emdash site import abandon ${context.operationId}\`, then send {"collectionId":"${deletion.collectionId}"} to POST /_emdash/api/admin/media-usage/collection-deletions/retry. After cleanup finishes, reset this site or set up a new one before analyzing and running the import again.`,
 				},
 			});
 		}
