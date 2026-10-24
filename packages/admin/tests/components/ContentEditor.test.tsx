@@ -3489,6 +3489,57 @@ describe("ContentEditor", () => {
 
 			await expect.element(screen.getByText("This field is required")).toBeVisible();
 		});
+
+		it("starts quiet again on the next entry after a save attempt", async () => {
+			function Switcher({ item }: { item: ContentItem }) {
+				return (
+					<ContentEditor
+						collection="posts"
+						collectionLabel="Post"
+						fields={requiredFields}
+						isNew={false}
+						item={item}
+						onSave={vi.fn()}
+					/>
+				);
+			}
+			const screen = await render(
+				<Switcher item={makeItem({ id: "post-en", data: { title: "Hello" } })} />,
+			);
+			await screen.getByLabelText("Title").fill("Hello again");
+			await userEvent.click(screen.getByRole("button", { name: "Save" }).first());
+			await expect.element(screen.getByText("Select at least one entry.")).toBeVisible();
+
+			await screen.rerender(
+				<Switcher item={makeItem({ id: "post-fr", locale: "fr", data: { title: "Bonjour" } })} />,
+			);
+
+			await expect.element(screen.getByLabelText("Title")).toHaveValue("Bonjour");
+			expectNoRequiredMessage(screen);
+		});
+
+		it("reports each empty field when scheduling saves pending changes", async () => {
+			const onSchedule = vi.fn().mockResolvedValue(undefined);
+			const screen = await renderEditor({
+				isNew: false,
+				item: makeItem({ status: "draft", data: { title: "Hello" } }),
+				fields: requiredFields,
+				onSchedule,
+			});
+			await screen.getByLabelText("Title").fill("Hello again");
+
+			await screen.getByRole("button", { name: "Schedule" }).click();
+			screen
+				.getByRole("dialog", { name: "Schedule publication" })
+				.getByRole("button", { name: "Schedule", exact: true })
+				.element()
+				.click();
+
+			await vi.waitFor(() => expect(onSchedule).toHaveBeenCalledOnce());
+			expect(onSchedule.mock.calls[0]?.[1]).toBeDefined();
+			await expect.element(screen.getByText("Select at least one entry.")).toBeVisible();
+			expect(screen.getByText("This field is required").elements()).toHaveLength(2);
+		});
 	});
 
 	describe("reference field that predates relations", () => {

@@ -765,6 +765,7 @@ export function ContentEditor({
 		entrySwitchesRef.current++;
 		setReferenceState(seedReferenceState(item));
 		setRejectedAutosaveState(null);
+		setSaveAttempted(false);
 		setBylinesTouched(false);
 		setHasAppliedEditorDraftPatch(false);
 	}
@@ -1476,6 +1477,7 @@ export function ContentEditor({
 			invalidFieldsMessage?: string,
 			{ allowUnmodifiedConflict = false }: { allowUnmodifiedConflict?: boolean } = {},
 		) => {
+			if (hasPendingSaveRef.current) setSaveAttempted(true);
 			if (isPublishingRef.current) {
 				return Promise.reject(new Error(t`A publishing action is already in progress`));
 			}
