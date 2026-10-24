@@ -99,6 +99,7 @@ describe("describeContentValidationError", () => {
 				409,
 				"SLUG_CONFLICT",
 				"Slug 'trustee' already exists in collection 'staff'",
+				{ slug: "trustee" },
 			);
 
 			expect(describeContentValidationError(conflict, FIELDS)).toBe(
@@ -106,11 +107,12 @@ describe("describeContentValidationError", () => {
 			);
 		});
 
-		it("does not name a slug the server generated", () => {
+		it("does not name a slug when the server sends none", () => {
+			// An update that sent no slug puts the entry's id in the message.
 			const conflict = new ApiResponseError(
 				409,
 				"SLUG_CONFLICT",
-				"Slug '(auto-generated)' already exists in collection 'staff'",
+				"Slug '01JABCDEF' already exists in collection 'staff'",
 			);
 
 			expect(describeContentValidationError(conflict, FIELDS)).toBe(

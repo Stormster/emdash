@@ -1435,6 +1435,7 @@ describe("ContentNewPage – create failure surfaces the server's error", () => 
 					error: {
 						code: "SLUG_CONFLICT",
 						message: "Slug 'test-post' already exists in collection 'posts'",
+						details: { slug: "test-post" },
 					},
 				},
 				409,
@@ -1462,8 +1463,6 @@ describe("ContentNewPage – create failure surfaces the server's error", () => 
 
 		await screen.getByRole("button", { name: "Save", exact: true }).click();
 
-		// The UI surfaces WHAT happened — the slug that is taken and how to
-		// get out of it, in the editor's own words.
 		await expect.element(screen.getByText("Failed to save")).toBeInTheDocument();
 		await expect
 			.element(screen.getByText(/The slug "test-post" is already used by another entry/))
@@ -1834,7 +1833,7 @@ describe("ContentEditPage – autosave cache patching", () => {
 	});
 
 	it("words a slug conflict at publish instead of showing the server text", async () => {
-		// A contributor cannot publish; the editor is not offered the action.
+		// Publishing needs a role that may publish; the default mocked user cannot.
 		mockFetch.on("GET", "/_emdash/api/auth/me", { data: { id: "user_01", role: 50 } });
 		const fetchWithMocks = globalThis.fetch;
 		const json = (body: unknown, status: number) =>
@@ -1884,6 +1883,7 @@ describe("ContentEditPage – autosave cache patching", () => {
 							code: "SLUG_CONFLICT",
 							message:
 								"Cannot publish: slug 'published-slug' is already used by another entry in this collection (id: post_9). Choose a different slug.",
+							details: { slug: "published-slug" },
 						},
 					},
 					409,
@@ -1906,7 +1906,7 @@ describe("ContentEditPage – autosave cache patching", () => {
 
 			await expect.element(screen.getByText("Failed to publish")).toBeInTheDocument();
 			await expect
-				.element(screen.getByText(/This slug is already used by another entry in this collection/))
+				.element(screen.getByText(/The slug "published-slug" is already used by another entry/))
 				.toBeInTheDocument();
 		} finally {
 			globalThis.fetch = fetchWithMocks;
