@@ -103,7 +103,9 @@ function invalidCommentStatus(value: string, name: string): string | null {
 	return COMMENT_STATUSES.has(value) ? null : `${name} must be one of: approved, pending, spam`;
 }
 
-const EMAIL_SEND_CALLBACK_KEY = Symbol.for("emdash:sandbox-email-send-callback");
+// The bridge can run in a different isolate than the one that set this callback.
+// emailSend starts EmDash locally when the callback is missing.
+let emailSendCallback: SandboxEmailSendCallback | null = null;
 const CONTENT_CREATE_CALLBACKS_KEY = Symbol.for("emdash:sandbox-content-create-callbacks");
 const TAXONOMY_WRITE_CALLBACKS_KEY = Symbol.for("emdash:sandbox-taxonomy-write-callbacks");
 const CONTENT_ACTION_CALLBACKS_KEY = Symbol.for("emdash:sandbox-content-action-callbacks");
@@ -112,14 +114,6 @@ let cronNowCallback: (() => Date) | null = null;
 let commentModerateCallback: SandboxCommentModerateCallback | null = null;
 const httpFetchCallbacks = new Map<string, typeof fetch>();
 const mediaStorageCallbacks = new Map<string, Pick<Storage, "download">>();
-
-// The runner and exported WorkerEntrypoint may be loaded in separate SSR chunks.
-function emailSendState(): { callback: SandboxEmailSendCallback | null } {
-	const store = globalThis as typeof globalThis & {
-		[EMAIL_SEND_CALLBACK_KEY]?: { callback: SandboxEmailSendCallback | null };
-	};
-	return (store[EMAIL_SEND_CALLBACK_KEY] ??= { callback: null });
-}
 
 function contentCreateCallbacks(): Map<string, SandboxContentCreateCallback> {
 	const store = globalThis as Record<symbol, unknown>;
@@ -162,7 +156,7 @@ function contentActionCallbacks(): Map<string, ContentActionCallbacks> {
  * Called by the runner when the EmailPipeline is available.
  */
 export function setEmailSendCallback(callback: SandboxEmailSendCallback | null): void {
-	emailSendState().callback = callback;
+	emailSendCallback = callback;
 }
 
 export function setContentCreateCallback(
@@ -1941,11 +1935,18 @@ export class PluginBridge extends WorkerEntrypoint<PluginBridgeEnv, PluginBridge
 		if (!capabilities.includes("email:send")) {
 			throw new Error("Missing capability: email:send");
 		}
-		const callback = emailSendState().callback;
-		if (!callback) {
-			throw new Error("Email is not configured. No email provider is available.");
+		if (emailSendCallback) {
+			await emailSendCallback(message, pluginId);
+			return;
 		}
-		await callback(message, pluginId);
+
+		const { withEmDashRuntime } = await import("emdash/middleware");
+		await withEmDashRuntime(async () => {
+			if (!emailSendCallback) {
+				throw new Error("Email is not configured. No email provider is available.");
+			}
+			await emailSendCallback(message, pluginId);
+		});
 	}
 
 	async cronSchedule(
