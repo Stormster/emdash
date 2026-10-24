@@ -3354,8 +3354,11 @@ describe("ContentEditor", () => {
 			};
 		}
 
-		it("says a required reference field needs an entry while none is selected", async () => {
+		it("says a required reference field needs an entry once a save is attempted", async () => {
 			const screen = await renderEditor({ fields: referenceField(true) });
+			expect(screen.getByText("Select at least one entry.").query()).toBeNull();
+
+			await userEvent.click(screen.getByRole("button", { name: "Save" }).first());
 
 			await expect.element(screen.getByText("Select at least one entry.")).toBeInTheDocument();
 		});
@@ -3365,6 +3368,126 @@ describe("ContentEditor", () => {
 
 			await expect.element(screen.getByText("(optional)")).toBeInTheDocument();
 			expect(screen.getByText("Select at least one entry.").query()).toBeNull();
+		});
+	});
+
+	describe("required file, image and reference fields", () => {
+		const REQUIRED_MESSAGES = ["This field is required", "Select at least one entry."];
+		const requiredFields: Record<string, FieldDescriptor> = {
+			title: { kind: "string", label: "Title", required: true },
+			attachment: { kind: "file", label: "Attachment", required: true },
+			photo: { kind: "image", label: "Photo", required: true },
+			related: {
+				kind: "reference",
+				label: "Related",
+				required: true,
+				validation: { relation: "rel-group-1", targetCollection: "posts", multiple: true },
+			},
+		};
+
+		function expectNoRequiredMessage(screen: Awaited<ReturnType<typeof renderEditor>>) {
+			for (const message of REQUIRED_MESSAGES) {
+				expect(screen.getByText(message).query()).toBeNull();
+			}
+		}
+
+		it("stays quiet when the form opens", async () => {
+			const screen = await renderEditor({ fields: requiredFields });
+			await expect.element(screen.getByRole("button", { name: "Select Attachment" })).toBeVisible();
+
+			expectNoRequiredMessage(screen);
+		});
+
+		it("reports each empty field after a save the browser stopped", async () => {
+			// The empty required title fails the browser's own check, so the form
+			// never submits; the editor still has to answer the click.
+			const onSave = vi.fn();
+			const screen = await renderEditor({ fields: requiredFields, onSave });
+
+			await userEvent.click(screen.getByRole("button", { name: "Save" }).first());
+
+			expect(onSave).not.toHaveBeenCalled();
+			await expect.element(screen.getByText("Select at least one entry.")).toBeVisible();
+			await expect.element(screen.getByText("This field is required").first()).toBeVisible();
+			expect(screen.getByText("This field is required").elements()).toHaveLength(2);
+		});
+
+		it("reports each empty field after a save that goes through", async () => {
+			const onSave = vi.fn();
+			const screen = await renderEditor({ fields: requiredFields, onSave });
+			await screen.getByLabelText("Title").fill("Hello");
+
+			await userEvent.click(screen.getByRole("button", { name: "Save" }).first());
+
+			expect(onSave).toHaveBeenCalledOnce();
+			await expect.element(screen.getByText("Select at least one entry.")).toBeVisible();
+			expect(screen.getByText("This field is required").elements()).toHaveLength(2);
+		});
+
+		it("reports each empty field after a publish", async () => {
+			const onPublish = vi.fn();
+			const screen = await renderEditor({
+				isNew: false,
+				item: makeItem({ status: "draft", data: { title: "Hello" } }),
+				fields: requiredFields,
+				onPublish,
+			});
+			expectNoRequiredMessage(screen);
+
+			await screen.getByRole("button", { name: "Publish now", exact: true }).click();
+			screen
+				.getByRole("dialog", { name: "Publish now?" })
+				.getByRole("button", { name: "Publish now", exact: true })
+				.element()
+				.click();
+
+			expect(onPublish).toHaveBeenCalledOnce();
+			await expect.element(screen.getByText("Select at least one entry.")).toBeVisible();
+			expect(screen.getByText("This field is required").elements()).toHaveLength(2);
+		});
+
+		it("links the message to the control that is missing a value", async () => {
+			const screen = await renderEditor({ fields: requiredFields });
+			const fileButton = screen.getByRole("button", { name: "Select Attachment" });
+			await expect.element(fileButton).not.toHaveAttribute("aria-invalid");
+
+			await userEvent.click(screen.getByRole("button", { name: "Save" }).first());
+
+			const describedBy = fileButton.element().getAttribute("aria-describedby");
+			expect(fileButton.element().getAttribute("aria-invalid")).toBe("true");
+			const message = document.getElementById(describedBy ?? "");
+			expect(message?.textContent).toBe("This field is required");
+			expect(message?.getAttribute("role")).toBe("alert");
+			expect(
+				screen
+					.getByRole("button", { name: "Add reference" })
+					.element()
+					.getAttribute("aria-invalid"),
+			).toBe("true");
+		});
+
+		it("reports a file the editor removes at once", async () => {
+			const screen = await renderEditor({
+				isNew: false,
+				item: makeItem({
+					data: {
+						title: "Hello",
+						attachment: {
+							id: "file-1",
+							filename: "report.pdf",
+							mimeType: "application/pdf",
+							size: 1024,
+						},
+					},
+				}),
+				fields: { title: requiredFields.title!, attachment: requiredFields.attachment! },
+			});
+			await expect.element(screen.getByText("report.pdf")).toBeVisible();
+			expectNoRequiredMessage(screen);
+
+			await screen.getByRole("button", { name: "Remove Attachment" }).click();
+
+			await expect.element(screen.getByText("This field is required")).toBeVisible();
 		});
 	});
 
