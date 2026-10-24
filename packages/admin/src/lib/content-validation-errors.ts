@@ -117,15 +117,40 @@ function describeIssue(issue: ContentValidationIssue, name: string): string {
 	return i18n._(msg`${name} has an invalid value.`);
 }
 
+// The server words a slug collision as "Slug 'x' already exists in collection
+// 'y'" and sends no structured details, so the slug is read from the message.
+const SLUG_CONFLICT_PATTERN = /^Slug '(.+)' already exists in collection /;
+
+/**
+ * Word a slug collision. The unique (slug, locale) constraint also covers
+ * entries in the trash, so the holder may not be visible in the content list.
+ */
+function describeSlugConflict(error: ApiResponseError): string {
+	const slug = SLUG_CONFLICT_PATTERN.exec(error.message)?.[1];
+	// The server's placeholder when it generated the slug itself.
+	if (!slug || slug === "(auto-generated)") {
+		return i18n._(
+			msg`This slug is already used by another entry in this collection, which may be in the trash. Change the slug, or permanently delete the trashed entry.`,
+		);
+	}
+	return i18n._(
+		msg`The slug "${slug}" is already used by another entry in this collection, which may be in the trash. Change the slug, or permanently delete the trashed entry.`,
+	);
+}
+
 /**
  * Word a rejected content save for the editor, naming each field by the label
  * the editor shows. Returns undefined for any error that does not carry the
  * content validator's per-field issues, so the caller keeps the server message.
+ * A slug collision (`SLUG_CONFLICT`) is worded here too.
  */
 export function describeContentValidationError(
 	error: unknown,
 	fields: ManifestFields,
 ): string | undefined {
+	if (error instanceof ApiResponseError && error.code === "SLUG_CONFLICT") {
+		return describeSlugConflict(error);
+	}
 	if (!(error instanceof ApiResponseError) || error.code !== "VALIDATION_ERROR") return undefined;
 	const issues = error.details?.issues;
 	if (!Array.isArray(issues) || issues.length === 0) return undefined;
