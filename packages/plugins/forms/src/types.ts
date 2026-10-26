@@ -52,6 +52,12 @@ export interface FormSettings {
 	nextLabel?: string;
 	/** Label for Previous button on multi-page forms */
 	prevLabel?: string;
+	/** Accepted submissions allowed before the form closes. Absent means no limit. */
+	maxSubmissions?: number;
+	/** Shown to visitors instead of the form once every place is taken */
+	fullMessage?: string;
+	/** Show visitors how many places are left */
+	showRemaining?: boolean;
 }
 
 // ─── Form Fields ─────────────────────────────────────────────────
