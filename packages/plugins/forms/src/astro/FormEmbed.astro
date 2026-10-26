@@ -27,6 +27,9 @@ const form = await loadPublicFormDefinition({
 });
 if (!form) return;
 
+const isFull = form.full === true;
+const placesLeft = !isFull ? form.remaining : undefined;
+
 const submitUrl = `/_emdash/api/plugins/emdash-forms/submit`;
 const isMultiPage = form.pages.length > 1;
 const turnstileSiteKey = form._turnstileSiteKey;
@@ -51,6 +54,23 @@ function fieldId(name: string): string {
 }
 ---
 
+{
+	isFull && (
+		<div class="ec-form-status ec-form-status--closed" role="status">
+			{form.settings.fullMessage}
+		</div>
+	)
+}
+
+{
+	placesLeft !== undefined && (
+		<p class="ec-form-progress">
+			{placesLeft === 1 ? "1 place left" : `${placesLeft} places left`}
+		</p>
+	)
+}
+
+{!isFull && (
 <form
 	class="ec-form"
 	method="POST"
@@ -263,6 +283,7 @@ function fieldId(name: string): string {
 
 	<div class="ec-form-status" data-form-status aria-live="polite"></div>
 </form>
+)}
 
 <script>
 	import { initForms } from "@emdash-cms/plugin-forms/client";

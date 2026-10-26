@@ -23,6 +23,7 @@ type SubmitResponse = {
 	message?: string;
 	redirect?: string;
 	errors?: Array<{ field: string; message: string }>;
+	error?: { code?: string; message?: string };
 };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -104,6 +105,7 @@ async function handleSubmit(e: Event) {
 	}
 
 	clearStatus(form);
+	let formFull = false;
 
 	try {
 		const res = await fetch(form.action, {
@@ -130,6 +132,9 @@ async function handleSubmit(e: Event) {
 			}
 		} else if (result.errors) {
 			showErrors(form, result.errors);
+		} else if (result.error?.code === "FORM_FULL" && result.error.message) {
+			formFull = true;
+			showStatus(form, result.error.message, "closed");
 		} else {
 			showStatus(form, "Something went wrong. Please try again.", "error");
 		}
@@ -137,7 +142,7 @@ async function handleSubmit(e: Event) {
 		showStatus(form, "Network error. Please try again.", "error");
 	} finally {
 		if (submitBtn) {
-			submitBtn.disabled = false;
+			submitBtn.disabled = formFull;
 			submitBtn.textContent = form.dataset.submitLabel || "Submit";
 		}
 	}
@@ -410,7 +415,7 @@ function showErrors(form: HTMLFormElement, errors: Array<{ field: string; messag
 
 // ─── Status Messages ─────────────────────────────────────────────
 
-function showStatus(form: HTMLFormElement, message: string, type: "success" | "error") {
+function showStatus(form: HTMLFormElement, message: string, type: "success" | "error" | "closed") {
 	const status = form.querySelector("[data-form-status]");
 	if (status) {
 		status.textContent = message;

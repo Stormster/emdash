@@ -192,6 +192,12 @@
 	border: 1px solid #fecaca;
 }
 
+.ec-form-status--closed {
+	background: #f8fafc;
+	color: #334155;
+	border: 1px solid #e2e8f0;
+}
+
 .ec-form-turnstile {
 	margin-top: 0.5rem;
 }
