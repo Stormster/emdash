@@ -39,6 +39,7 @@ Changing the limit:
 
 - Raising the limit, or clearing it, reopens a full form straight away.
 - Lowering the limit below the number of submissions closes the form. Existing submissions are kept.
+- Duplicating a form copies its limit. The copy starts with no submissions, so all its places are free.
 
 On the site:
 
@@ -66,20 +67,21 @@ On the site:
 
 ## Interfaces and compatibility
 
-- **Form settings.** `FormSettings` gains three optional fields: `maxSubmissions` (an integer of at least 1, or absent for no limit), `fullMessage` (a string), and `showRemaining` (a boolean, default `false`). The create and update route schemas accept them. A form without `maxSubmissions` behaves exactly as it does today. No migration is needed, because settings live in the form's existing storage document.
+- **Form settings.** `FormSettings` gains three optional fields: `maxSubmissions` (an integer of at least 1, or absent for no limit), `fullMessage` (a string), and `showRemaining` (a boolean, default `false`). The create and update route schemas accept them. Because the update route merges settings over the stored ones, the update schema accepts `maxSubmissions: null` to clear a limit, the same way an empty string clears `redirectUrl` today. A form without `maxSubmissions` behaves exactly as it does today. No migration is needed, because settings live in the form's existing storage document.
 - **Counting.** The limit uses the form's existing `submissionCount`. This depends on #4419, which makes that counter exact under concurrent submissions and deletes and requires `emdash` 0.38.0 or later.
-- **Submit route.** The submit handler takes a place before uploading files or saving the submission. It uses one guarded `updateIf` on the form: increment `submissionCount` only while the form is `active` and the count is below `maxSubmissions`. If the update doesn't apply, the handler rejects the submission. If the upload or save fails afterwards, the handler gives the place back. For forms without a limit, the guard checks only that the form is active. This also closes a gap where a submission that started before an admin paused the form was still saved.
+- **Submit route.** The submit handler takes a place before uploading files or saving the submission. It uses one guarded `updateIf` on the form: increment `submissionCount` only while the form is `active` and the count is below `maxSubmissions`. If the update doesn't apply, the handler rejects the submission. If anything after that throws, including the file type and size checks, the upload and the save, the handler gives the place back. For forms without a limit, the guard checks only that the form is active. This also closes a gap where a submission that started before an admin paused the form was still saved.
 - **New error code.** A full form returns `FORM_FULL` with HTTP 409 and the form's `fullMessage`. `FORM_PAUSED` (410) is unchanged.
 - **Public definition route.** The route that serves a form to the site embed adds a `full` flag, and `remaining` when `showRemaining` is on. Both come from the form document the route already reads, so public pages make no extra queries. The public definition validator gains the same fields.
-- **Embed and client.** `FormEmbed.astro` renders `fullMessage` instead of the form when `full` is set, and shows the remaining count when it is present. The client script shows the `FORM_FULL` message in the existing status region.
-- **Admin.** The form editor's Settings section gains the three fields. The forms list shows "taken / limit". All new strings go through Lingui and use RTL-safe layout.
-- **Rolling back.** Older plugin versions ignore the new settings fields, so a downgrade removes the limit without breaking the form.
+- **Embed and client.** `FormEmbed.astro` renders `fullMessage` instead of the form when `full` is set, and shows the remaining count when it is present. The client script currently shows a generic error for any rejected submission. It gains a case that reads the error code and shows the `FORM_FULL` message in the existing status region.
+- **Admin.** The form editor's Settings section gains the three fields. The forms list shows "taken / limit". The forms plugin's admin screens and embed are English-only today, and the new strings follow that convention. Localizing the plugin is separate work. New layout uses logical (RTL-safe) classes, as the plugin already does.
+- **Rolling back.** Older plugin versions ignore the new settings fields, so after a downgrade forms accept submissions without a limit and keep working. The stored limit stays in the form's settings and applies again after upgrading.
 
 ## Errors and edge cases
 
 - **Last place.** Concurrent submissions for the last place resolve in the database, so exactly one succeeds. The others get `FORM_FULL`.
 - **Cached pages.** A page cached while places were left still shows the form and the old remaining count. The submit check is authoritative: a late visitor gets the full message at submit time.
-- **Failed uploads.** If a file upload or the submission save fails after a place is taken, the handler releases the place, so a failure never uses one up.
+- **Failures after taking a place.** If a file check, upload or the submission save fails after a place is taken, the handler releases the place. If the process stops between taking and releasing a place, for example when a Worker is killed, that place stays taken until a submission is deleted.
+- **Limit changed during a submission.** The handler checks against the limit it read when the request started. A submission already in progress when an organizer lowers the limit can still take a place under the old limit.
 - **Spam.** The honeypot returns a silent success before taking a place, so bots never use places.
 - **Notifications.** A rejected submission sends no notification, autoresponder or webhook.
 - **Paused and full.** A paused form stays hidden on the site whatever its count. Resuming a full form shows the full message.
@@ -89,12 +91,12 @@ On the site:
 ## Verification
 
 - Concurrency tests on real plugin storage (SQLite): at 29 of 30, two overlapping submissions produce one acceptance and one `FORM_FULL`, and the count ends at 30.
-- Tests that a failed upload or save releases its place, that a honeypot hit doesn't take one, and that deleting a submission and retention cleanup free places.
-- Tests for raising, lowering, and clearing the limit, and for the paused-and-full combination.
-- A test that the public definition route returns `full` and `remaining` without an extra query, and a check of the query-count snapshot.
+- Tests that a rejected file, a failed upload and a failed save each release their place, that a honeypot hit doesn't take one, and that deleting a submission and retention cleanup free places.
+- Tests for raising, lowering, and clearing the limit (`null`), duplicating a form with a limit, and the paused-and-full combination.
+- A test that the public definition route returns `full` and `remaining` from the form it already reads, with no extra query.
 - Embed render tests for the full message and the remaining count, and a client test for the `FORM_FULL` message.
 - Admin tests for the new settings and the "taken / limit" column.
-- A manual pass on a local site: fill a form to its limit with simultaneous submissions, and check the editor, the embed, and the error message in English and Arabic, at phone width, and with a screen reader.
+- A manual pass on a local site: fill a form to its limit with simultaneous submissions, and check the editor, the embed, and the error message at phone width, with the admin in a right-to-left language, and with a screen reader.
 
 ## Open questions
 
