@@ -8,9 +8,13 @@ export interface PublicFormDefinition {
 	pages: FormDefinition["pages"];
 	settings: Pick<
 		FormDefinition["settings"],
-		"spamProtection" | "submitLabel" | "nextLabel" | "prevLabel"
+		"spamProtection" | "submitLabel" | "nextLabel" | "prevLabel" | "fullMessage"
 	>;
 	status: FormDefinition["status"];
+	/** Every place is taken; the embed shows `settings.fullMessage` instead of the form. */
+	full?: boolean;
+	/** Places left, present only when the form has a limit and shows remaining places. */
+	remaining?: number;
 	_turnstileSiteKey?: string | null;
 }
 
