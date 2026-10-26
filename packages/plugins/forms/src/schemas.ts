@@ -108,6 +108,10 @@ const formSettingsShape = {
 	submitLabel: z.string().min(1),
 	nextLabel: z.string().optional(),
 	prevLabel: z.string().optional(),
+	maxSubmissions: z.number().int().min(1).optional(),
+	/** `""` means no message of the form's own: visitors see the default. */
+	fullMessage: z.string().optional(),
+	showRemaining: z.boolean().optional(),
 };
 
 /** Create: a missing setting takes its default. */
@@ -124,10 +128,16 @@ const formSettingsSchema = z.object({
 	submitLabel: formSettingsShape.submitLabel.default("Submit"),
 });
 
-/** Update: a missing setting stays missing, so the handler's merge keeps the stored value. */
+/**
+ * Update: a missing setting stays missing, so the handler's merge keeps the stored value. Because of
+ * that merge, clearing a setting needs a value of its own: `null`.
+ */
 const formSettingsUpdateSchema = z
 	.object({
 		...formSettingsShape,
+		maxSubmissions: formSettingsShape.maxSubmissions
+			.nullable()
+			.describe("Send null to remove the submission limit"),
 		autoresponder: autoresponderSchema
 			.nullable()
 			.describe("Send null to disable the autoresponder"),

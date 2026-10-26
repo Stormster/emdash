@@ -11,6 +11,8 @@ import { after, PluginRouteError } from "emdash";
 import { ulid } from "ulidx";
 
 import { formatSubmissionText, formatWebhookPayload } from "../format.js";
+import { DEFAULT_FULL_MESSAGE, placesRemaining, submissionLimit } from "../limits.js";
+import type { PublicFormDefinition } from "../public-definition.js";
 import type { SubmitInput } from "../schemas.js";
 import { verifyTurnstile } from "../turnstile.js";
 import type { FormDefinition, Submission, SubmissionFile } from "../types.js";
@@ -49,6 +51,42 @@ function sameTarget(a: string, b: string): boolean {
 	}
 }
 
+const FORM_PAUSED_MESSAGE = "This form is not currently accepting submissions";
+
+/**
+ * Take one of the form's places: a single guarded increment, so concurrent submissions for the last
+ * place resolve in the database. The guard uses the limit read at the start of the request.
+ */
+async function takePlace(ctx: RouteContext, formId: string, limit: number | undefined) {
+	const claimed = await forms(ctx).updateIf(formId, {
+		where: {
+			status: "active",
+			...(limit !== undefined ? { submissionCount: { lt: limit } } : {}),
+		},
+		delta: { submissionCount: { inc: 1 } },
+		set: { lastSubmissionAt: new Date().toISOString() },
+	});
+	if (claimed.applied) return;
+
+	const current = await forms(ctx).get(formId);
+	if (!current) {
+		throw PluginRouteError.notFound("Form not found");
+	}
+	if (current.status !== "active") {
+		throw new PluginRouteError("FORM_PAUSED", FORM_PAUSED_MESSAGE, 410);
+	}
+	if (limit === undefined) {
+		// Without a limit the guard can only fail on a counter the storage layer refuses to increment.
+		ctx.log.error("Could not count a submission", { formId });
+		throw PluginRouteError.internal("Could not save the submission");
+	}
+	throw new PluginRouteError(
+		"FORM_FULL",
+		current.settings.fullMessage ?? DEFAULT_FULL_MESSAGE,
+		409,
+	);
+}
+
 export async function submitHandler(ctx: RouteContext<SubmitInput>) {
 	const input = ctx.input;
 
@@ -70,11 +108,7 @@ export async function submitHandler(ctx: RouteContext<SubmitInput>) {
 	}
 
 	if (form.status === "paused") {
-		throw new PluginRouteError(
-			"FORM_PAUSED",
-			"This form is not currently accepting submissions",
-			410,
-		);
+		throw new PluginRouteError("FORM_PAUSED", FORM_PAUSED_MESSAGE, 410);
 	}
 
 	const settings = form.settings;
@@ -124,107 +158,101 @@ export async function submitHandler(ctx: RouteContext<SubmitInput>) {
 		return { success: false, errors: result.errors };
 	}
 
-	// 4. Upload files
-	const files: SubmissionFile[] = [];
-	const pending = allFields.flatMap((field) => {
-		if (field.type !== "file") return [];
-		if (field.condition && !evaluateCondition(field.condition, input.data)) return [];
-		const fileData = input.files?.[field.name];
-		return fileData ? [{ field, fileData }] : [];
-	});
-	if (pending.length > 0 && !(ctx.media && "upload" in ctx.media)) {
-		throw PluginRouteError.internal("File uploads are not configured");
-	}
-	if (pending.length > 0) {
-		const mediaWithWrite = ctx.media as {
-			upload(
-				filename: string,
-				contentType: string,
-				bytes: ArrayBuffer,
-			): Promise<{ mediaId: string; storageKey: string; url: string }>;
-			delete(id: string): Promise<boolean>;
-		};
+	// 4. Take a place, given back if the file handling or the save below throws.
+	await takePlace(ctx, formId, submissionLimit(form));
 
-		for (const { field, fileData } of pending) {
-			// Validate file type
-			if (field.validation?.accept) {
-				const allowed = field.validation.accept.split(",").map((s) => s.trim().toLowerCase());
-				const ext = `.${fileData.filename.split(".").pop()?.toLowerCase()}`;
-				const typeMatch = allowed.some(
-					(a) =>
-						a === ext ||
-						a === fileData.contentType ||
-						fileData.contentType.startsWith(a.replace("/*", "/")),
-				);
-				if (!typeMatch) {
-					throw PluginRouteError.badRequest(`File type not allowed for ${field.label}`);
+	const files: SubmissionFile[] = [];
+	const submissionId = ulid();
+	try {
+		// 5. Upload files
+		const pending = allFields.flatMap((field) => {
+			if (field.type !== "file") return [];
+			if (field.condition && !evaluateCondition(field.condition, input.data)) return [];
+			const fileData = input.files?.[field.name];
+			return fileData ? [{ field, fileData }] : [];
+		});
+		if (pending.length > 0 && !(ctx.media && "upload" in ctx.media)) {
+			throw PluginRouteError.internal("File uploads are not configured");
+		}
+		if (pending.length > 0) {
+			const mediaWithWrite = ctx.media as {
+				upload(
+					filename: string,
+					contentType: string,
+					bytes: ArrayBuffer,
+				): Promise<{ mediaId: string; storageKey: string; url: string }>;
+				delete(id: string): Promise<boolean>;
+			};
+
+			for (const { field, fileData } of pending) {
+				// Validate file type
+				if (field.validation?.accept) {
+					const allowed = field.validation.accept.split(",").map((s) => s.trim().toLowerCase());
+					const ext = `.${fileData.filename.split(".").pop()?.toLowerCase()}`;
+					const typeMatch = allowed.some(
+						(a) =>
+							a === ext ||
+							a === fileData.contentType ||
+							fileData.contentType.startsWith(a.replace("/*", "/")),
+					);
+					if (!typeMatch) {
+						throw PluginRouteError.badRequest(`File type not allowed for ${field.label}`);
+					}
+				}
+
+				// Validate file size
+				if (
+					field.validation?.maxFileSize &&
+					fileData.bytes.byteLength > field.validation.maxFileSize
+				) {
+					throw PluginRouteError.badRequest(
+						`File too large for ${field.label}. Maximum: ${Math.round(field.validation.maxFileSize / 1024)} KB`,
+					);
 				}
 			}
 
-			// Validate file size
-			if (
-				field.validation?.maxFileSize &&
-				fileData.bytes.byteLength > field.validation.maxFileSize
-			) {
-				throw PluginRouteError.badRequest(
-					`File too large for ${field.label}. Maximum: ${Math.round(field.validation.maxFileSize / 1024)} KB`,
-				);
+			try {
+				for (const { field, fileData } of pending) {
+					const uploaded = await mediaWithWrite.upload(
+						fileData.filename,
+						fileData.contentType,
+						fileData.bytes.buffer,
+					);
+
+					files.push({
+						fieldName: field.name,
+						filename: fileData.filename,
+						contentType: fileData.contentType,
+						size: fileData.bytes.byteLength,
+						mediaId: uploaded.mediaId,
+					});
+				}
+			} catch (error) {
+				await Promise.allSettled(files.map((file) => mediaWithWrite.delete(file.mediaId)));
+				throw error;
 			}
 		}
 
-		try {
-			for (const { field, fileData } of pending) {
-				const uploaded = await mediaWithWrite.upload(
-					fileData.filename,
-					fileData.contentType,
-					fileData.bytes.buffer,
-				);
+		// 6. Store submission
+		const submission: Submission = {
+			formId,
+			data: result.data,
+			files: files.length > 0 ? files : undefined,
+			status: "new",
+			starred: false,
+			createdAt: new Date().toISOString(),
+			meta: {
+				ip: ctx.requestMeta.ip,
+				userAgent: ctx.requestMeta.userAgent,
+				referer: ctx.requestMeta.referer,
+				country: ctx.requestMeta.geo?.country ?? null,
+			},
+		};
 
-				files.push({
-					fieldName: field.name,
-					filename: fileData.filename,
-					contentType: fileData.contentType,
-					size: fileData.bytes.byteLength,
-					mediaId: uploaded.mediaId,
-				});
-			}
-		} catch (error) {
-			await Promise.allSettled(files.map((file) => mediaWithWrite.delete(file.mediaId)));
-			throw error;
-		}
-	}
-
-	// 5. Store submission
-	const submissionId = ulid();
-	const submission: Submission = {
-		formId,
-		data: result.data,
-		files: files.length > 0 ? files : undefined,
-		status: "new",
-		starred: false,
-		createdAt: new Date().toISOString(),
-		meta: {
-			ip: ctx.requestMeta.ip,
-			userAgent: ctx.requestMeta.userAgent,
-			referer: ctx.requestMeta.referer,
-			country: ctx.requestMeta.geo?.country ?? null,
-		},
-	};
-
-	// Count it before the row exists: a delete can only lower the count for a row it can see, so
-	// the row must never be visible without its increment. Only the counters are written, because
-	// `form` was read before the awaits above and writing it back would undo an admin's edit.
-	await forms(ctx).updateIf(formId, {
-		where: {},
-		set: { lastSubmissionAt: new Date().toISOString() },
-		delta: { submissionCount: { inc: 1 } },
-	});
-
-	try {
 		await submissions(ctx).put(submissionId, submission);
 	} catch (error) {
 		await decrementSubmissionCount(forms(ctx), formId, 1).catch((releaseError: unknown) => {
-			ctx.log.error("Failed to release submission count", {
+			ctx.log.error("Failed to release a place after a failed submission", {
 				formId,
 				error: String(releaseError),
 			});
@@ -325,7 +353,7 @@ export async function submitHandler(ctx: RouteContext<SubmitInput>) {
 
 export async function definitionHandler(
 	ctx: RouteContext<import("../schemas.js").DefinitionInput>,
-) {
+): Promise<PublicFormDefinition> {
 	const { id } = ctx.input;
 
 	// Look up by ID first, then by slug
@@ -355,6 +383,10 @@ export async function definitionHandler(
 			? await ctx.kv.get<string>("settings:turnstileSiteKey")
 			: null;
 
+	// Read from the form document already loaded, so a limit adds no query to public page renders.
+	const remaining = placesRemaining(form);
+	const limited = remaining !== undefined;
+
 	// Return only the settings needed for client rendering — never expose
 	// admin emails, webhook URLs, or other internal configuration.
 	return {
@@ -366,8 +398,11 @@ export async function definitionHandler(
 			submitLabel: form.settings.submitLabel,
 			nextLabel: form.settings.nextLabel,
 			prevLabel: form.settings.prevLabel,
+			...(limited ? { fullMessage: form.settings.fullMessage ?? DEFAULT_FULL_MESSAGE } : {}),
 		},
 		status: form.status,
+		...(limited ? { full: remaining === 0 } : {}),
+		...(limited && form.settings.showRemaining ? { remaining } : {}),
 		_turnstileSiteKey: turnstileSiteKey,
 	};
 }

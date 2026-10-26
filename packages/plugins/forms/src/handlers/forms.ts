@@ -16,7 +16,7 @@ import type {
 	FormDuplicateInput,
 	FormUpdateInput,
 } from "../schemas.js";
-import type { FormDefinition } from "../types.js";
+import type { FormDefinition, FormSettings } from "../types.js";
 
 /** Typed access to plugin storage collections */
 function forms(ctx: RouteContext): StorageCollection<FormDefinition> {
@@ -94,6 +94,9 @@ export async function formsCreateHandler(ctx: RouteContext<FormCreateInput>) {
 			submitLabel: input.settings.submitLabel ?? "Submit",
 			nextLabel: input.settings.nextLabel,
 			prevLabel: input.settings.prevLabel,
+			maxSubmissions: input.settings.maxSubmissions,
+			fullMessage: input.settings.fullMessage || undefined,
+			showRemaining: input.settings.showRemaining,
 		},
 		status: "active",
 		submissionCount: 0,
@@ -144,16 +147,7 @@ export async function formsUpdateHandler(ctx: RouteContext<FormUpdateInput>) {
 		name: input.name ?? existing.name,
 		slug: input.slug ?? existing.slug,
 		pages: input.pages ?? existing.pages,
-		settings: input.settings
-			? {
-					...existing.settings,
-					...input.settings,
-					autoresponder:
-						input.settings.autoresponder === null
-							? undefined
-							: (input.settings.autoresponder ?? existing.settings.autoresponder),
-				}
-			: existing.settings,
+		settings: input.settings ? mergeSettings(existing.settings, input.settings) : existing.settings,
 		status: input.status ?? existing.status,
 		updatedAt: new Date().toISOString(),
 	};
@@ -161,6 +155,7 @@ export async function formsUpdateHandler(ctx: RouteContext<FormUpdateInput>) {
 	// Clean up empty strings
 	if (updated.settings.redirectUrl === "") updated.settings.redirectUrl = undefined;
 	if (updated.settings.webhookUrl === "") updated.settings.webhookUrl = undefined;
+	if (updated.settings.fullMessage === "") updated.settings.fullMessage = undefined;
 
 	// Only the fields this request sent are written. The rest of `existing` may be stale by now: a
 	// counter bumped by a submission, or a status toggled by another admin.
@@ -269,6 +264,23 @@ export async function formsDuplicateHandler(ctx: RouteContext<FormDuplicateInput
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────
+
+/**
+ * The sent settings over the stored ones. `null` removes a setting that can be cleared:
+ * `maxSubmissions` (the limit) and `autoresponder`.
+ */
+function mergeSettings(
+	stored: FormSettings,
+	changes: NonNullable<FormUpdateInput["settings"]>,
+): FormSettings {
+	const { maxSubmissions, autoresponder, ...rest } = changes;
+	const merged: FormSettings = { ...stored, ...rest };
+	if (maxSubmissions === null) delete merged.maxSubmissions;
+	else if (maxSubmissions !== undefined) merged.maxSubmissions = maxSubmissions;
+	if (autoresponder === null) delete merged.autoresponder;
+	else if (autoresponder !== undefined) merged.autoresponder = autoresponder;
+	return merged;
+}
 
 function validateFieldNames(pages: Array<{ fields: Array<{ name: string }> }>) {
 	const names = new Set<string>();
