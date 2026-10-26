@@ -38,27 +38,65 @@ describe("formUpdateSchema", () => {
 	});
 });
 
-describe("formCreateSchema", () => {
-	it("applies the settings defaults", () => {
-		const parsed = formCreateSchema.parse({
-			name: "Contact",
-			slug: "contact",
-			pages: [
+const createInput = (settings: Record<string, unknown>) => ({
+	name: "Contact",
+	slug: "contact",
+	pages: [
+		{
+			fields: [
 				{
-					fields: [
-						{
-							id: "email",
-							name: "email",
-							label: "Email",
-							type: "email",
-							required: true,
-							width: "full",
-						},
-					],
+					id: "email",
+					name: "email",
+					label: "Email",
+					type: "email",
+					required: true,
+					width: "full",
 				},
 			],
-			settings: {},
+		},
+	],
+	settings,
+});
+
+describe("submission limit settings", () => {
+	const id = "01JBQ8Z0000000000000000000";
+
+	it("accept a whole-number limit of at least 1, a full message and the remaining-places switch", () => {
+		const settings = { maxSubmissions: 30, fullMessage: "No beds left.", showRemaining: true };
+		expect(formCreateSchema.parse(createInput(settings)).settings).toMatchObject(settings);
+		expect(formUpdateSchema.parse({ id, settings }).settings).toEqual(settings);
+	});
+
+	it("reject a limit below 1, a fraction, or a number sent as text", () => {
+		for (const maxSubmissions of [0, -1, 1.5, "30"]) {
+			expect(formCreateSchema.safeParse(createInput({ maxSubmissions })).success).toBe(false);
+			expect(formUpdateSchema.safeParse({ id, settings: { maxSubmissions } }).success).toBe(false);
+		}
+	});
+
+	it("accept null to clear the limit on update only", () => {
+		expect(formUpdateSchema.parse({ id, settings: { maxSubmissions: null } }).settings).toEqual({
+			maxSubmissions: null,
 		});
+		expect(formCreateSchema.safeParse(createInput({ maxSubmissions: null })).success).toBe(false);
+	});
+
+	it("accept an empty full message", () => {
+		expect(formUpdateSchema.parse({ id, settings: { fullMessage: "" } }).settings).toEqual({
+			fullMessage: "",
+		});
+	});
+
+	it("leave a form without a limit when none is sent", () => {
+		const parsed = formCreateSchema.parse(createInput({}));
+		expect(parsed.settings).not.toHaveProperty("maxSubmissions");
+		expect(parsed.settings).not.toHaveProperty("showRemaining");
+	});
+});
+
+describe("formCreateSchema", () => {
+	it("applies the settings defaults", () => {
+		const parsed = formCreateSchema.parse(createInput({}));
 
 		expect(parsed.settings).toMatchObject({
 			confirmationMessage: "Thank you for your submission.",

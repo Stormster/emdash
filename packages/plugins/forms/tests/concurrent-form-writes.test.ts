@@ -99,13 +99,13 @@ describe("a form edit made while a submission is being saved", () => {
 		} as never);
 
 		await verifying;
-		await update(storage, { id: formId, name: "Support", status: "paused" });
+		await update(storage, { id: formId, name: "Support", settings: { submitLabel: "Send" } });
 		verify();
 		await expect(pending).resolves.toMatchObject({ success: true });
 
 		const form = await storedForm(formId);
 		expect(form.name).toBe("Support");
-		expect(form.status).toBe("paused");
+		expect(form.settings.submitLabel).toBe("Send");
 		expect(form.submissionCount).toBe(1);
 		expect(form.lastSubmissionAt).not.toBeNull();
 	});

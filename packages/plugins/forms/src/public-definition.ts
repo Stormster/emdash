@@ -33,6 +33,16 @@ function isOptionalString(value: unknown): boolean {
 	return value === undefined || typeof value === "string";
 }
 
+function isOptionalBoolean(value: unknown): boolean {
+	return value === undefined || typeof value === "boolean";
+}
+
+function isOptionalCount(value: unknown): boolean {
+	return (
+		value === undefined || (typeof value === "number" && Number.isSafeInteger(value) && value >= 0)
+	);
+}
+
 function isOptionalStringOrNull(value: unknown): boolean {
 	return value === undefined || value === null || typeof value === "string";
 }
@@ -107,7 +117,8 @@ function isPublicFormSettings(value: unknown): boolean {
 		VALID_SPAM_PROTECTION.has(value.spamProtection) &&
 		typeof value.submitLabel === "string" &&
 		isOptionalString(value.nextLabel) &&
-		isOptionalString(value.prevLabel)
+		isOptionalString(value.prevLabel) &&
+		isOptionalString(value.fullMessage)
 	);
 }
 
@@ -126,6 +137,8 @@ function parsePublicFormDefinitionData(payload: unknown): PublicFormDefinition |
 		!Array.isArray(payload.pages) ||
 		!payload.pages.every(isPublicFormPage) ||
 		!isPublicFormSettings(payload.settings) ||
+		!isOptionalBoolean(payload.full) ||
+		!isOptionalCount(payload.remaining) ||
 		!isOptionalStringOrNull(payload._turnstileSiteKey)
 	) {
 		return null;

@@ -157,6 +157,34 @@ describe("parsePublicFormDefinitionPayload", () => {
 	});
 });
 
+describe("submission limit fields", () => {
+	const limited = (fields: Record<string, unknown>, settings: Record<string, unknown> = {}) => ({
+		success: true,
+		data: { ...activeForm, ...fields, settings: { ...activeForm.settings, ...settings } },
+	});
+
+	it("passes through a full form, its remaining places and its full message", () => {
+		const payload = limited({ full: true, remaining: 0 }, { fullMessage: "This form is full." });
+		expect(parsePublicFormDefinitionPayload(payload)).toEqual(payload.data);
+		expect(parsePublicFormDefinitionPayload(limited({ full: false, remaining: 3 }))).toMatchObject({
+			full: false,
+			remaining: 3,
+		});
+	});
+
+	it("rejects limit fields of the wrong type", () => {
+		for (const fields of [
+			{ full: "yes" },
+			{ remaining: -1 },
+			{ remaining: 1.5 },
+			{ remaining: "3" },
+		]) {
+			expect(parsePublicFormDefinitionPayload(limited(fields))).toBeNull();
+		}
+		expect(parsePublicFormDefinitionPayload(limited({}, { fullMessage: 5 }))).toBeNull();
+	});
+});
+
 describe("loadPublicFormDefinition", () => {
 	it("loads active forms through the internal public plugin route handler", async () => {
 		const handlePublicPluginApiRoute = vi.fn(async () => ({ success: true, data: activeForm }));
