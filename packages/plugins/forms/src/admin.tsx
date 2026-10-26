@@ -32,6 +32,7 @@ import {
 	submissionsLoadError,
 	writeError,
 } from "./admin-errors.js";
+import { DEFAULT_FULL_MESSAGE } from "./limits.js";
 import type { FieldCondition } from "./types.js";
 
 // =============================================================================
@@ -131,6 +132,9 @@ interface FormSettings {
 	retentionDays: number;
 	spamProtection: "none" | "honeypot" | "turnstile";
 	submitLabel: string;
+	maxSubmissions?: number;
+	fullMessage?: string;
+	showRemaining?: boolean;
 }
 
 interface SubmissionItem {
@@ -189,9 +193,26 @@ function formatDateTime(iso: string): string {
 	});
 }
 
+type MessageValues = Record<string, string | number>;
+
+/**
+ * Lingui returns a message that is missing from the host's compiled catalog as raw source, with its
+ * `{name}` placeholders still in it, so they are filled here.
+ */
+function fillPlaceholders(message: string, values?: MessageValues): string {
+	if (!values) return message;
+	return message.replace(/\{(\w+)\}/g, (placeholder, name: string) =>
+		Object.hasOwn(values, name) ? String(values[name]) : placeholder,
+	);
+}
+
 function useEditorI18n() {
 	// Older hosts may load a separate Lingui context for plugin source.
-	return React.useContext(LinguiContext)?.i18n ?? { _: (message: string) => message };
+	const i18n = React.useContext(LinguiContext)?.i18n;
+	return {
+		_: (message: string, values?: MessageValues) =>
+			fillPlaceholders(i18n ? i18n._(message, values) : message, values),
+	};
 }
 
 function autoName(label: string): string {
@@ -218,6 +239,7 @@ function stringifyValue(value: unknown): string {
 // =============================================================================
 
 function FormsListPage() {
+	const i18n = useEditorI18n();
 	const [forms, setForms] = React.useState<FormItem[]>([]);
 	const [loading, setLoading] = React.useState(true);
 	const [error, setError] = React.useState<string | null>(null);
@@ -365,7 +387,14 @@ function FormsListPage() {
 											{form.status}
 										</Badge>
 									</td>
-									<td className="p-3 text-end tabular-nums">{form.submissionCount}</td>
+									<td className="p-3 text-end tabular-nums">
+										{form.settings.maxSubmissions !== undefined
+											? i18n._("{taken} / {max}", {
+													taken: form.submissionCount,
+													max: form.settings.maxSubmissions,
+												})
+											: form.submissionCount}
+									</td>
 									<td className="p-3 text-muted-foreground">
 										{form.lastSubmissionAt ? formatDate(form.lastSubmissionAt) : "Never"}
 									</td>
@@ -505,6 +534,8 @@ function FormEditor({
 	}, [spamProtection]);
 
 	const isNew = !form;
+	const hadLimit = form?.settings.maxSubmissions !== undefined;
+	const maxSubmissions = settings.maxSubmissions;
 
 	const handleNameChange = (value: string) => {
 		setName(value);
@@ -603,7 +634,11 @@ function FormEditor({
 					name,
 					slug,
 					pages: [{ fields: savedFields }],
-					settings: savedSettings,
+					// Settings are merged on update, so a cleared limit has to be sent as null.
+					settings:
+						hadLimit && maxSubmissions === undefined
+							? { ...savedSettings, maxSubmissions: null }
+							: savedSettings,
 				}
 			: {
 					name,
@@ -818,6 +853,63 @@ function FormEditor({
 							onChange={(e) => setSettings((s) => ({ ...s, webhookUrl: e.target.value }))}
 						/>
 					</div>
+					<div>
+						<Input
+							label={i18n._("Maximum submissions")}
+							type="number"
+							min={1}
+							step={1}
+							value={maxSubmissions === undefined ? "" : String(maxSubmissions)}
+							onChange={(e) => {
+								const value = parseInt(e.target.value, 10);
+								setSettings((s) => ({
+									...s,
+									maxSubmissions: value >= 1 ? value : undefined,
+								}));
+							}}
+							description={
+								form && maxSubmissions !== undefined ? (
+									<>
+										<span className="block">{i18n._("Leave empty for no limit.")}</span>
+										<span className="block">
+											{i18n._("{taken} of {max} places taken", {
+												taken: form.submissionCount,
+												max: maxSubmissions,
+											})}
+										</span>
+									</>
+								) : (
+									i18n._("Leave empty for no limit.")
+								)
+							}
+						/>
+					</div>
+					<div className="col-span-2">
+						<InputArea
+							label={i18n._("Message when full")}
+							value={settings.fullMessage ?? ""}
+							placeholder={DEFAULT_FULL_MESSAGE}
+							onChange={(e) => setSettings((s) => ({ ...s, fullMessage: e.target.value }))}
+							description={i18n._(
+								"Visitors see this instead of the form once every place is taken.",
+							)}
+						/>
+					</div>
+					<div className="col-span-2 space-y-1">
+						<Checkbox
+							label={i18n._("Show remaining places")}
+							checked={settings.showRemaining ?? false}
+							onCheckedChange={(checked) => setSettings((s) => ({ ...s, showRemaining: checked }))}
+						/>
+						<p className="text-xs text-muted-foreground">
+							{i18n._('Shows visitors how many places are left, for example "3 places left".')}
+						</p>
+					</div>
+					{maxSubmissions !== undefined && (settings.retentionDays ?? 0) > 0 && (
+						<p className="col-span-2 text-sm text-muted-foreground">
+							{i18n._("Deleting old submissions frees their places.")}
+						</p>
+					)}
 					<div className="col-span-2">
 						<Input
 							label="Redirect URL (optional)"
