@@ -73,7 +73,7 @@ On the site:
 - **New error code.** A full form returns `FORM_FULL` with HTTP 409 and the form's `fullMessage`. `FORM_PAUSED` (410) is unchanged.
 - **Public definition route.** The route that serves a form to the site embed adds a `full` flag, and `remaining` when `showRemaining` is on. Both come from the form document the route already reads, so public pages make no extra queries. The public definition validator gains the same fields.
 - **Embed and client.** `FormEmbed.astro` renders `fullMessage` instead of the form when `full` is set, and shows the remaining count when it is present. The client script currently shows a generic error for any rejected submission. It gains a case that reads the error code and shows the `FORM_FULL` message in the existing status region.
-- **Admin.** The form editor's Settings section gains the three fields. The forms list shows "taken / limit". The forms plugin's admin screens and embed are English-only today, and the new strings follow that convention. Localizing the plugin is separate work. New layout uses logical (RTL-safe) classes, as the plugin already does.
+- **Admin.** The form editor's Settings section gains the three fields. The forms list shows "taken / limit". New admin strings go through Lingui, like the rest of the form editor. The site embed's text stays in English, as its existing text does. New layout uses logical (RTL-safe) classes, as the plugin already does.
 - **Rolling back.** Older plugin versions ignore the new settings fields, so after a downgrade forms accept submissions without a limit and keep working. The stored limit stays in the form's settings and applies again after upgrading.
 
 ## Errors and edge cases
